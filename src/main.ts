@@ -1,5 +1,4 @@
 import './style.css'
-
 console.log ('klklf')
 
 // п1 з1
