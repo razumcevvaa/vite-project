@@ -66,12 +66,12 @@ const isThursday = new Date().getDate() == 22 ? true : false
 console.log(isThursday)
 
 let num = 0
-let number
+let resulte
 if (num > 0) {
-    number = 1
+    resulte = 1
 } else if (num < 0) {
-    number = -1
+    resulte = -1
 } else {
-    number = 0
+    resulte = 0
 }
-console.log(number)
+console.log(resulte)
