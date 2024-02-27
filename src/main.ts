@@ -131,16 +131,16 @@ import './style.css'
 
 //д2з4 
 //Запросить у пользователя год и проверить, високосный он или нет. Високосный год либо кратен 400, либо кратен 4 и при этом не кратен 100
-// {
-//     let year = 2022
-//     let resulte
-//     if (year % 4 == 0 && year % 100 !== 0) {
-//         resulte = 'год високосный'
-//     } else {
-//         resulte = 'год невисокосный'
-//     }
-//     console.log(resulte)
-// }
+{
+    let year = 2007
+    let resulte
+    if (year % 4 == 0 && year % 100 !== 0) {
+        resulte = 'год високосный'
+    } else {
+        resulte = 'год невисокосный'
+    }
+    console.log(resulte)
+}
 
 // д2з6 
 // Написать конвертор валют. Пользователь вводит количе-ство USD, выбирает, в какую валюту хочет перевести: EUR, UAN или AZN, и получает в ответ соответствующую сумму.
@@ -188,7 +188,7 @@ import './style.css'
 // п2з1 
 // Запросить у пользователя число и определить, оно положительное, отрицательное или ноль.
 
-let num = 8
+let num = 0
 let resulte
 if (num > 0) {
     resulte = 'число положительное'
@@ -234,7 +234,7 @@ console.log(resultat)
 
 //п2з6
 // Запросить у пользователя номер месяца и вывести на экран его название.
-let numberOfMonth = 10
+let numberOfMonth = 8
 let Month
 switch (numberOfMonth) {
     case 1:
@@ -276,9 +276,67 @@ switch (numberOfMonth) {
         break;
 }
 console.log(Month)
- 
+
 //п2з7 
 //Реализовать калькулятор. Пользователь вводит 2 числа и знак (+ - * /). В зависимости от введенного знака решить пример и вывести результат.
-// let figure1 = parseFloat(prompt('введите первое число') as string)
-// let figure2 = parseFloat(prompt('введите второе число') as string)
-// let arifmetica=parseFloat(prompt('+ - * /'))
+{
+    let figure1 = 2
+    let figure2 = 3
+    let arifmetica = '+'
+    switch (arifmetica) {
+        case '+':
+            console.log(figure1 + figure2)
+            break;
+        case '-':
+            console.log(figure1 - figure2)
+            break;
+        case '*':
+            console.log(figure1 * figure2)
+            break;
+        case '/':
+            console.log(figure1 / figure2)
+            break;
+        default:
+            console.log('ошибка')
+    }
+}
+
+//27.02
+//1задание
+// {
+//     let age = 13
+//     if (age >= 14 && age <= 90) {
+//         console.log('все хорошо')
+// } else {
+//         console.log('нужно подрасти')
+//     }
+// }
+// {
+//     let age = 30
+//     if (!(age >= 14 && age <= 90)) {
+//         console.log('нужно подрасти')
+//     } else {
+//         console.log('все хорошо')
+//     }
+// }
+
+//задание 2 !!!
+// let login = (prompt('Введите логин'))
+// let pass
+// if (login === 'Админ') {
+//     pass = prompt('Введите пароль')
+//     if (pass === 'Я главный') {
+//         alert('Здравствуйте')
+//     } else if (pass == '' || pass == null) {
+//         alert('отменено')
+//     } else {
+//         alert('неверный пароль')
+//     }
+// } else if (login === '' || login === null) {
+//     alert('отменено')
+// } else {
+//     alert('я вас не знаю')
+// }
+
+
+
