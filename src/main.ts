@@ -228,6 +228,57 @@ let resultat
 if (numb = -numb) {
     resultat = +numb
 } else {
-    resultat=numb
+    resultat = numb
 }
 console.log(resultat)
+
+//п2з6
+// Запросить у пользователя номер месяца и вывести на экран его название.
+let numberOfMonth = 10
+let Month
+switch (numberOfMonth) {
+    case 1:
+        Month = 'январь'
+        break;
+    case 2:
+        Month = 'февраль'
+        break;
+    case 3:
+        Month = 'март'
+        break;
+    case 4:
+        Month = 'апрель'
+        break;
+    case 5:
+        Month = 'май'
+        break;
+    case 6:
+        Month = 'июнь'
+        break;
+    case 7:
+        Month = 'июль'
+        break;
+    case 8:
+        Month = 'август'
+        break;
+    case 9:
+        Month = 'сентябрь'
+        break;
+    case 10:
+        Month = 'октябрь'
+        break;
+    case 11:
+        Month = 'ноябрь'
+        break;
+
+    case 12:
+        Month = 'декабрь'
+        break;
+}
+console.log(Month)
+ 
+//п2з7 
+//Реализовать калькулятор. Пользователь вводит 2 числа и знак (+ - * /). В зависимости от введенного знака решить пример и вывести результат.
+// let figure1 = parseFloat(prompt('введите первое число') as string)
+// let figure2 = parseFloat(prompt('введите второе число') as string)
+// let arifmetica=parseFloat(prompt('+ - * /'))
