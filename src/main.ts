@@ -169,41 +169,65 @@ import './style.css'
 
 // д2з9
 // Задать пользователю 3 вопроса, в каждом вопросе по 3 ва-рианта ответа. За каждый правильный ответ начисляется 2 балла. После вопросов выведите пользователю количество набранных баллов.
-let question1 = prompt('Какая планета самая горячая? 1)Венера 2)Меркурий 3)Марс')
-let question2 = prompt('Какая соцсеть появилась в 2003 году? 1)Twitter 2)Facebook 3)My space')
-let question3 = prompt('Самый крупный наркоторговец в истории? 1)Эль Чапо 2)Пабло Эскобар 3)Хоакин Гусман')
-let score = 0
-if (question1 == '1') {
-    score += 2
-}
-if (question2 == '3') {
-    score += 2
-}
-if (question3 == '2') {
-    score += 2
-}
-alert('Вы набрали ' + score + ' очков')
+// let question1 = prompt('Какая планета самая горячая? 1)Венера 2)Меркурий 3)Марс')
+// let question2 = prompt('Какая соцсеть появилась в 2003 году? 1)Twitter 2)Facebook 3)My space')
+// let question3 = prompt('Самый крупный наркоторговец в истории? 1)Эль Чапо 2)Пабло Эскобар 3)Хоакин Гусман')
+// let score = 0
+// if (question1 == '1') {
+//     score += 2
+// }
+// if (question2 == '3') {
+//     score += 2
+// }
+// if (question3 == '2') {
+//     score += 2
+// }
+// alert('Вы набрали ' + score + ' очков')
 
 
 // п2з1 
 // Запросить у пользователя число и определить, оно положительное, отрицательное или ноль.
-{
-    let num = 0
-    let resulte
-    if (num > 0) {
-        resulte = 'число положительное'
-    } else if (num < 0) {
-        resulte = 'число отрицательное'
-    } else {
-        resulte = 'ноль'
-    }
-    console.log(resulte)
-}
 
-let ages = prompt('Сколько вам лет?')
-let correct = prompt('Вам ' + ages + ' лет? 1-да, 2-нет')
-if (correct == '1') {
-    alert('супер!')
-} else if (correct=='2') {
-    alert('жаль')
+let num = 8
+let resulte
+if (num > 0) {
+    resulte = 'число положительное'
+} else if (num < 0) {
+    resulte = 'число отрицательное'
+} else {
+    resulte = 'ноль'
 }
+console.log(resulte)
+
+// п2з2
+// Запросить у пользователя его возраст и проверить корректность введенных данных (0–120 лет).
+// let ages = prompt('Сколько вам лет?')
+// let correct = prompt('Вам ' + ages + ' лет? 1-да, 2-нет')
+// if (correct == '1') {
+//     alert('супер!')
+// } else if (correct == '2') {
+//     alert('жаль')
+// }
+
+//п2з4
+//Запросить у пользователя время (часы, минуты, секунды) и проверить корректность введенных данных.
+// let hour = prompt('Сколько сейчас часов?')
+// let minutes = prompt('Сколько минут?')
+// let sec = prompt('А сколько секунд?')
+// let verify = prompt('сейчас ' + hour + ' часов ' + minutes + ' минут ' + sec + ' секунд, 1-да, 2-нет')
+// if (verify == '1') {
+//     alert('супер!')
+// } else if (verify == '2') {
+//     alert('жаль')
+// }
+
+//п2з3 
+// Запросить у пользователя число и вывести его модуль (|7| = 7, |-7| = 7).
+let numb = -448
+let resultat
+if (numb = -numb) {
+    resultat = +numb
+} else {
+    resultat=numb
+}
+console.log(resultat)
