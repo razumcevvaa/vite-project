@@ -280,8 +280,8 @@ console.log(Month)
 //п2з7 
 //Реализовать калькулятор. Пользователь вводит 2 числа и знак (+ - * /). В зависимости от введенного знака решить пример и вывести результат.
 {
-    let figure1 = 2
-    let figure2 = 3
+    let figure1 = 28
+    let figure2 = 43
     let arifmetica = '+'
     switch (arifmetica) {
         case '+':
@@ -337,6 +337,37 @@ console.log(Month)
 // } else {
 //     alert('я вас не знаю')
 // }
+
+// п3з1
+// Вывести # столько раз, сколько указал пользователь.
+let userInput = 20
+let text = ''
+while (userInput) {
+    text = text + '#'
+    userInput--
+}
+console.log(text)
+
+//п3з2
+//Пользователь ввел число, а на экран вывелись все числа
+// от введенного до 0
+num = 10
+let screen = 23
+while (num > 0) {
+    num++
+    console.log(screen)
+}
+
+//п3з5
+//Посчитать факториал введенного пользователем числа.
+num = 10
+let result = 1
+while (num) {
+    if (num > 0)
+        result *= num
+    num--
+}
+console.log(result)
 
 
 
