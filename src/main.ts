@@ -338,6 +338,7 @@ console.log(Month)
 //     alert('я вас не знаю')
 // }
 
+//    практика 3
 // п3з1
 // Вывести # столько раз, сколько указал пользователь.
 let userInput = 20
@@ -351,17 +352,37 @@ console.log(text)
 //п3з2
 //Пользователь ввел число, а на экран вывелись все числа
 // от введенного до 0
-num = 10
-let screen = 23
-while (num > 0) {
-    num++
-    console.log(screen)
+
+
+// п3з3 
+// Запросить число и степень. Возвести число в указанную
+// степень и вывести результат.
+num = 2
+let degree = 7
+while (num ** degree) {
+    console.log(num ** degree)
+    break
 }
+
+// пз4
+// Запросить 2 числа и найти все общие делители.
+let a = 5
+let b = 20
+text = ''
+let min = a < b ? a : b
+while (min) {
+    if (a % min == 0 && b % min == 0) {
+        text += min + ' '
+    }
+    min--
+}
+console.log(text)
+
 
 //п3з5
 //Посчитать факториал введенного пользователем числа.
-num = 10
-let result = 1
+num = 22
+let result = 3
 while (num) {
     if (num > 0)
         result *= num
@@ -369,5 +390,12 @@ while (num) {
 }
 console.log(result)
 
+// п3з6
+//Предлагать пользователю решить пример 2 + 2 * 2 до тех
+// пор, пока он не решит его правильно.
+// let primer = parseInt(prompt('Решите пример 2+2*2') as string)
+// do {
+//     primer = parseInt(prompt('Неверно, попробуйте еще') as string)as number
+// } while (primer !== 6)
 
 
