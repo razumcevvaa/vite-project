@@ -1,3 +1,4 @@
+import { TRUE } from 'sass'
 import './style.css'
 
 // console.log(typeof 12)
@@ -432,10 +433,123 @@ for (let i = 1; i < 100; i++) {
 // Подсчитать сумму всех чисел в заданном пользователем
 // диапазоне.
 a = 20
-b = 10
+b = 60
 let sum = 0
 while (a < b) {
     sum += a
     a++
 }
 console.log(sum)
+
+
+
+//практика 4
+//задание1
+// Написать функцию, которая принимает 2 числа и возвра-
+// щает меньшее из них.
+function getMin(a: number, b: number) {
+    if (a < b) {
+        return a
+    }
+    return b
+}
+
+console.log(getMin(3, 5))
+
+// задание 2
+// Написать функцию, которая возводит переданное число
+// в указанную степень.
+function getDegreeOfNum(a: number, b: number) {
+    return a ** b
+}
+
+console.log(getDegreeOfNum(2, 8))
+
+// задание 3
+// Написать функцию, которая принимает 2 числа и знак
+// (+ - * /), считает пример и возвращает результат.
+function getNum(figure1: number, figure2: number, arifmetica: string) {
+    switch (arifmetica) {
+        case '+':
+            return figure1 + figure2
+            break;
+        case '-':
+            return figure1 - figure2
+            break;
+        case '*':
+            return figure1 * figure2
+            break;
+        case '/':
+            return figure1 / figure2
+            break;
+        default:
+            return 'ошибка'
+    }
+}
+
+console.log(getNum(1, 5, '-'))
+
+// задание 4
+// Написать функцию, которая проверяет, является ли пере-
+// данное ей число простым.
+function getPrimeNum(a: number) {
+    if (a == 0) {
+        return false
+    } else if (a === 2) {
+        return ('простое')
+    } else {
+        for (var x = 2; x < a; x++) {
+            if (a % x === 0) {
+                return ('не простое')
+            }
+        }
+        return ('простое')
+    }
+}
+console.log(getPrimeNum(5))
+
+// задание 5
+// Написать функцию, которая принимает число и выводит
+// таблицу умножения для этого числа. Вызовите функцию
+// для всех чисел от 2 до 9
+function ShowTimesTableForNum(a: number) {
+    if (a > 1 && a < 10) {
+        return (`
+        ${a}*2=${a * 2}  
+        ${a}*3=${a * 3}  
+        ${a}*4=${a * 4}  
+        ${a}*5=${a * 5}  
+        ${a}*6=${a * 6}  
+        ${a}*7=${a * 7}  
+        ${a}*8=${a * 8}  
+        ${a}*9=${a * 9} 
+        `)
+    }
+    return 'введите число от 2 до 9'
+}
+
+console.log(ShowTimesTableForNum(2))
+console.log(ShowTimesTableForNum(3))
+console.log(ShowTimesTableForNum(4))
+console.log(ShowTimesTableForNum(5))
+console.log(ShowTimesTableForNum(6))
+console.log(ShowTimesTableForNum(7))
+console.log(ShowTimesTableForNum(8))
+console.log(ShowTimesTableForNum(9))
+console.log(ShowTimesTableForNum(360))
+
+// задание 6
+// Написать функцию, которая реализует работу оператора %.
+// Функция принимает 2 параметра и возвращает остаток от
+// деления первого параметра на второй. В функции исполь-
+// зовать только + - * /, оператор % не использовать.
+function getRemaiderOfNum(a: number, b: number) {
+    return a - b * Math.floor(a / b)
+}
+console.log(getRemaiderOfNum(11, 3))
+
+// задание 7
+// Написать функцию, которая принимает от 1 до 5 чисел и
+// возвращает их сумму.
+
+
