@@ -619,11 +619,16 @@ console.log(getMin(3, 5))
 // задание 2
 // Написать функцию, которая возводит переданное число
 // в указанную степень.
-function getDegreeOfNum(a: number, b: number) {
-    return a ** b
+function pow(x: number, n: number): number {
+    if (n != 1) {
+        return x *= pow(x, n - 1)
+    } else {
+        return x
+    }
 }
+console.log((pow(2, 4)))
 
-console.log(getDegreeOfNum(2, 8))
+
 
 // задание 3
 // Написать функцию, которая принимает 2 числа и знак
@@ -716,10 +721,6 @@ function sumNumbers(n1: number, n2 = 0, n3 = 0, n4 = 0, n5 = 0) {
 }
 console.log(sumNumbers(8, 9, 7, 9, 8))
 
-// задание 8
-// Написать функцию, которая принимает от 1 до 5 чисел и
-// возвращает большее из них.
-
 
 
 //практика 5 РЕКУРСИИ
@@ -744,7 +745,7 @@ function showAllNum(start: number, end: number): void {
         return
     }
     console.log(start)
-    showAllNum(start+1, end)
+    showAllNum(start + 1, end)
 }
 showAllNum(1, 5)
 
@@ -754,7 +755,7 @@ function showAllNumBack(start: number, end: number): void {
         return
     }
     console.log(start)
-    showAllNumBack(start-1, end)
+    showAllNumBack(start - 1, end)
 }
 showAllNumBack(5, 1)
 
@@ -800,4 +801,76 @@ function getBracketsPairsByNum(n: number): string {
 // return '(' + getBracketsPairsByNum(2) +')' = return '(' + getBracketsPairsByNum(1) +')' =(())
 // return '(' + getBracketsPairsByNum(1) +')'= return '(' + getBracketsPairsByNum(0) +')' =()
 
-console.log(getBracketsPairsByNum(4)) 
+console.log(getBracketsPairsByNum(4))
+
+//дз РЕКУРСИИ
+// Написать функцию возведения числа в степень.
+function pow2(x: number, n: number): number {
+    if (n != 1) {
+        return x *= pow2(x, n - 1)
+    } else {
+        return x
+    }
+}
+console.log((pow2(2, 4)))
+
+// Написать функцию поиска наибольшего общего делителя.
+function getLardestDivisor(a: number, b: number): number {
+    if (b == 0)
+        return a
+    if (a > b)
+        return getLardestDivisor(b, a % b)
+    else
+        return getLardestDivisor(a, b % a)
+}
+console.log(getLardestDivisor(4, 6))
+
+// Написать функцию для поиска максимальной цифры в числе.
+function getMinDigitInNum(a: number, b = 0): number {
+    if (a % 10 > b) {
+        b = a % 10
+    }
+    if (n > 10) {
+        getMinDigitInNum(a / 10)
+    }
+    return b
+}
+console.log(getMinDigitInNum(348379))
+
+
+// Написать функцию, которая определяет простое ли пере-
+// данное число.
+function isPrime(n: number, divisor = 2): boolean {
+    if (n < 2) {
+        return false;
+    } else if (divisor >= Math.sqrt(n)) {
+        return true;
+    } else if (n % divisor === 0) {
+        return false;
+    } else {
+        return isPrime(n, divisor + 1);
+    }
+}
+console.log(isPrime(17))
+
+// Написать функцию для вывода всех множителей передан-
+// ного числа в возрастающем порядке.
+// Например: число 18 – множители 2 * 3 * 3
+
+
+
+// Написать функцию, которая возвращает число Фибоначчи
+// по переданному порядковому номеру.
+// Числа Фибоначчи: 1, 1, 2, 3, 5, 8, 13… Ряд основывается на
+// том, что каждое число равно сумме двух предыдущих чисел.
+// Например: порядковый номер 3 – число 2, порядковый
+// номер 6 – число 8
+// function getFibonacci(n: number): number {
+//     if (n == 1 && n == 2) {
+//         return 1
+//     } else {
+//         return getFibonacci(n - 1) + getFibonacci(n - 2)
+//     }
+// }
+// console.log(getFibonacci(10)) ОШИБКА
+
