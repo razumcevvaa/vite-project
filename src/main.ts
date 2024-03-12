@@ -874,3 +874,4 @@ console.log(isPrime(17))
 // }
 // console.log(getFibonacci(10)) ОШИБКА
 
+//практика 6 ОБЬЕКТЫ
