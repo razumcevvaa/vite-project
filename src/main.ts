@@ -890,7 +890,7 @@ const car = {
     brand: 'porsche',
     model: 911,
     year: 2018,
-    speed: 80
+    speed: 200
 }
 
 //     1 Функция для вывода на экран информации об автомобиле.
@@ -905,12 +905,12 @@ console.log(showInfoAboutCar())
 //     димо делать перерыв на 1 час.
 function getTimeOfWay(S: number) {
     let time = S / car.speed
-    time = Math.floor(time / 60)
-    return time
-
+    let breaks = Math.floor(time / 4)
+    time += breaks
+    console.log(`To cover a distance of ${S} km, it will take ${time} hours, considering breaks`)
 }
-
-console.log(getTimeOfWay(30))
+// сделать перевод час в минуты
+getTimeOfWay(90)
 
 
 // Создать объект, хранящий в себе отдельно числитель и знаменатель дроби, 
@@ -1012,3 +1012,7 @@ function getReductedFraction(fr: Fraction) {
     }
     return fr
 }
+
+// Создать объект, описывающий прямоугольник (хранит коор-
+// динаты левой верхней и правой нижней точек), и написать следу-
+// ющие функции для работы с таким объектом.
