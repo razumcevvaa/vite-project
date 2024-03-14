@@ -894,10 +894,10 @@ const car = {
 }
 
 //     1 Функция для вывода на экран информации об автомобиле.
-function showInfoAboutCar() {
-    return car
+function showInfoAboutCar(car: Car) {
+    console.log(car)
 }
-console.log(showInfoAboutCar())
+showInfoAboutCar(car)
 
 // 2 Функция для подсчета необходимого времени для пре-
 //     одоления переданного расстояния со средней скоростью.
@@ -952,14 +952,12 @@ function getSumOfFractions(fr1: Fraction, fr2: Fraction) {
         denominator: commonFractions.fr1.denominator
     }
 }
-
 console.log(getSumOfFractions(fraction1, fraction2))
 
 function getRedusedSumOfFractions(fr1: Fraction, fr2: Fraction) {
     const result = getSumOfFractions(fr1, fr2)
     return getReductedFraction(result)
 }
-
 console.log(getRedusedSumOfFractions(fraction1, fraction2))
 
 // 2 Функция вычитания 2 - х объектов - дробей.
@@ -972,7 +970,6 @@ function getSubtrOfFractions(fr1: Fraction, fr2: Fraction) {
     }
     return getReductedFraction(result)
 }
-
 console.log(getSubtrOfFractions(fraction1, fraction2))
 
 // 3 Функция умножения 2 - х объектов - дробей.
@@ -984,7 +981,6 @@ function getMulOfFractions(fr1: Fraction, fr2: Fraction) {
     }
     return getReductedFraction(result)
 }
-
 console.log(getMulOfFractions(fraction1, fraction2))
 
 // 4 Функция деления 2 - х объектов - дробей.
@@ -1016,3 +1012,57 @@ function getReductedFraction(fr: Fraction) {
 // Создать объект, описывающий прямоугольник (хранит коор-
 // динаты левой верхней и правой нижней точек), и написать следу-
 // ющие функции для работы с таким объектом.
+type Rect = {
+    topLeft: {
+        x: number,
+        y: number
+    },
+    bottomRigth: {
+        x: number,
+        y: number
+    }
+}
+
+const rectangle = {
+    topLeft: {
+        x: 3,
+        y: 6
+    },
+    bottomRigth: {
+        x: 10,
+        y: 2
+    }
+}
+//1 Функция принимает объект-прямоугольник и выводит
+// информацию о нем (где какая точка расположена).
+function showCoordinat(rect: Rect) {
+    console.log(rect)
+}
+showCoordinat(rectangle)
+
+// 2 Функция принимает объект-прямоугольник и возвращает его ширину.
+function getWidthOfRect(rect: Rect) {
+    return rect.bottomRigth.x - rect.topLeft.x
+}
+console.log(getWidthOfRect(rectangle))
+
+// 3 Функция принимает объект-прямоугольник и возвращает его высоту.
+function getHeightOfRect(rect: Rect) {
+    return rect.topLeft.y - rect.bottomRigth.y
+}
+console.log(getHeightOfRect(rectangle))
+
+// 4 Функция принимает объект-прямоугольник и возвращает его площадь.
+function getSquareOfRect(rect: Rect) {
+    return getWidthOfRect(rect) * getHeightOfRect(rect)
+}
+console.log(getSquareOfRect(rectangle))
+
+//5 Функция принимает объект-прямоугольник и возвращает его периметр.
+function getPerimetrOfRest(rect:Rect) {
+    return (getWidthOfRect(rect) + getHeightOfRect(rect)) * 2
+}
+console.log(getPerimetrOfRest(rectangle))
+
+// 6 Функция изменения ширины прямоугольника. Она прини-
+// мает объект-прямоугольник и на сколько единиц изменить ширину.
