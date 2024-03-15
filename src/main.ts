@@ -1074,3 +1074,15 @@ console.log(changeWidth(rectangle))
 // 7 Функция изменения высоты прямоугольника. Она прини-
 // мает объект-прямоугольник и на сколько единиц изменить
 // высоту.
+function changeHeight(rect: Rect) {
+    return rect.bottomRigth.y += 10
+ }
+ console.log(changeHeight(rectangle))
+
+// 8 Функция изменения ширины и высоты прямоугольника.
+// Она принимает объект-прямоугольник и два значения –
+// для изменения ширины и высоты.
+function changeWidthAndHeight (rect:Rect){
+   return changeWidth(rect)+  changeHeight(rect)
+}
+console.log(changeWidthAndHeight(rectangle))
