@@ -1066,3 +1066,11 @@ console.log(getPerimetrOfRest(rectangle))
 
 // 6 Функция изменения ширины прямоугольника. Она прини-
 // мает объект-прямоугольник и на сколько единиц изменить ширину.
+function changeWidth(rect: Rect) {
+   return rect.bottomRigth.x += 10
+}
+console.log(changeWidth(rectangle))
+
+// 7 Функция изменения высоты прямоугольника. Она прини-
+// мает объект-прямоугольник и на сколько единиц изменить
+// высоту.
