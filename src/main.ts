@@ -1059,7 +1059,7 @@ function getSquareOfRect(rect: Rect) {
 console.log(getSquareOfRect(rectangle))
 
 //5 Функция принимает объект-прямоугольник и возвращает его периметр.
-function getPerimetrOfRest(rect:Rect) {
+function getPerimetrOfRest(rect: Rect) {
     return (getWidthOfRect(rect) + getHeightOfRect(rect)) * 2
 }
 console.log(getPerimetrOfRest(rectangle))
@@ -1067,7 +1067,7 @@ console.log(getPerimetrOfRest(rectangle))
 // 6 Функция изменения ширины прямоугольника. Она прини-
 // мает объект-прямоугольник и на сколько единиц изменить ширину.
 function changeWidth(rect: Rect) {
-   return rect.bottomRigth.x += 10
+    return getWidthOfRect(rect) + 20
 }
 console.log(changeWidth(rectangle))
 
@@ -1075,14 +1075,91 @@ console.log(changeWidth(rectangle))
 // мает объект-прямоугольник и на сколько единиц изменить
 // высоту.
 function changeHeight(rect: Rect) {
-    return rect.bottomRigth.y += 10
- }
- console.log(changeHeight(rectangle))
+    return getHeightOfRect(rect) + 10
+}
+console.log(changeHeight(rectangle))
 
 // 8 Функция изменения ширины и высоты прямоугольника.
 // Она принимает объект-прямоугольник и два значения –
 // для изменения ширины и высоты.
-function changeWidthAndHeight (rect:Rect){
-   return changeWidth(rect)+  changeHeight(rect)
+function changeWidthAndHeight(rect: Rect) {
+    return changeWidth(rect) + changeHeight(rect)
 }
 console.log(changeWidthAndHeight(rectangle))
+
+//9 Функция смещения прямоугольника по оси X. Она при-
+// нимает объект-прямоугольник и на сколько единиц его сдвинуть.
+function moveX(rect: Rect) {
+    return rect.topLeft.x + 10
+}
+console.log(moveX(rectangle))
+
+function moveY(rect: Rect) {
+    return rect.topLeft.y + 10
+}
+console.log(moveY(rectangle))
+
+// 11 Функция смещения прямоугольника и по оси X и по
+// оси Y. Она принимает объект-прямоугольник и два значе-
+// ния: сдвиг по оси X и сдвиг по оси Y.
+function moveXY(rect: Rect) {
+    return `сдвиг по оси х: ${moveX(rect)}, сдвиг по оси у: ${moveY(rect)}`
+}
+console.log(moveXY(rectangle))
+
+//12 Функция для проверки, находится ли точка внутри пря-
+// моугольника. Она принимает объект-прямоугольник и
+// координаты точки.
+function isPointInside(rect: Rect, point: { x: number, y: number }): boolean {
+    return point.x >= rect.topLeft.x && point.x <= rect.bottomRigth.x && point.y >= rect.topLeft.y && point.y <= rect.bottomRigth.y;
+}
+console.log("Точка (3, 3) находится внутри прямоугольника?", isPointInside(rectangle, { x: 3, y: 3 }))
+
+// Задание 3
+// Создать объект, описывающий время (часы, минуты, секун-
+// ды), и следующие функции для работы с этим объектом.
+type Time = {
+    hour: number,
+    minutes: number,
+    seconds: number
+}
+const time: Time = {
+    hour: 10,
+    minutes: 34,
+    seconds: 22
+}
+// 1 Функция вывода времени на экран.
+function showTime(time:Time) {
+    return `${time.hour}:${time.minutes}:${time.seconds}`
+}
+
+// 2 Функция изменения времени на переданное количество секунд.
+function changeSeconds(seconds: number) {
+    time.seconds += seconds
+    if (time.seconds >= 60) {
+        let extraMinutes = Math.floor(time.seconds / 60);
+        time.seconds %= 60;
+        changeMinutes(extraMinutes)
+    }
+}
+// 3 Функция изменения времени на переданное количество минут.
+function changeMinutes(minutes: number) {
+    time.minutes += minutes
+    if (time.minutes >= 60) {
+        let extraHours = Math.floor(time.minutes / 60);
+        time.minutes %= 60;
+        changeHours(extraHours)
+    }
+}
+// 4 Функция изменения времени на переданное количество часов.
+function changeHours(hours: number) {
+ time.hour = (time.hour + hours) % 24
+}
+console.log(showTime(time))
+changeSeconds(60)
+console.log(showTime(time))
+changeMinutes(45)
+console.log(showTime(time))
+changeHours(5)
+console.log(showTime(time))
+
