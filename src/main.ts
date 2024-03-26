@@ -1171,16 +1171,68 @@ console.log(showTime(time))
 //МАССИВЫ
 // ПРАКТИКА
 // з1 Создать массив из 10 случайных чисел и написать несколько
-// функций для работы с ним.
+// функций для работы с ним
+const arrNumb: number[] = [4, 3, 4, 8, 0, 5, 7, 2, 5, 7]
 
 // 1 Функция принимает массив и выводит его на экран.
+function getArray(array: number[]) {
+    for (let el of array) {
+        console.log(el)
+    }
+}
+getArray(arrNumb)
+
 // 2 Функция принимает массив и выводит только четные
 // элементы.
+function showEvenNum(array: number[]) {
+    for (i = 0; i < array.length; i++) {
+        if ((array[i] % 2) == 0) {
+            console.log(array[i])
+        }
+    }
+}
+showEvenNum(arrNumb)
 // 3 Функция принимает массив и возвращает сумму всех
 // элементов массива.
+function getSummNumOfArr(array: number[]) {
+    for (i = 0; i < array.length; i++) {
+        sum += array[i]
+    }
+    console.log(sum)
+}
+getSummNumOfArr(arrNumb)
+
 // 4 Функция принимает массив и возвращает его максималь-
 // ный элемент.
 // 5 Функция добавления нового элемента в массив по ука-
 // занному индексу.
 // 6 Функция удаления элемента из массива по указанному
 // индексу.
+
+//ДЗ
+// Создать массив css-стилей (цвет, размер шрифта, выравнива-
+//     ние, подчеркивание и т. д.). Каждый элемент массива – это объ-
+//     ект, состоящий из двух свойств: название стиля и значение стиля.
+//     Написать функцию, которая принимает массив стилей и
+//     текст, и выводит этот текст с помощью document.write() в тегах
+//     <p></p>, добавив в открывающий тег атрибут style со всеми сти-
+//     лями, перечисленными в массиве.
+
+// const renderTextDiv= document.getElementById('renderText') as HTMLDivElement
+
+const styles = [
+    { color: 'red' },
+    { 'font-size': '20px' },
+    { 'text-align': 'center' },
+]
+function renderText(styles: any[], text: string) {
+    let styleText = ''
+    for (let el of styles) {
+        for (let key in el) {
+            styleText += `${key}:${el[key]};`
+        }
+    }
+    const tagString = `<p style="${styleText}"> ${text}</p>`
+    document.body.insertAdjacentHTML('afterbegin', tagString)
+}
+renderText(styles, 'text1')
