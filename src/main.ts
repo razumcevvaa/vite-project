@@ -1168,8 +1168,7 @@ console.log(showTime(time))
 changeHours(5)
 console.log(showTime(time))
 
-//МАССИВЫ
-// ПРАКТИКА
+//МАССИВЫ ПРАКТИКА
 // з1 Создать массив из 10 случайных чисел и написать несколько
 // функций для работы с ним
 const arrNumb: number[] = [4, 3, 4, 8, 0, 5, 7, 2, 5, 7]
@@ -1204,12 +1203,109 @@ getSummNumOfArr(arrNumb)
 
 // 4 Функция принимает массив и возвращает его максималь-
 // ный элемент.
+function getMaxOfArr(numbers: number[]) {
+    let maxValue = Math.max(...numbers)
+    console.log(maxValue)
+}
+getMaxOfArr(arrNumb)
 // 5 Функция добавления нового элемента в массив по ука-
 // занному индексу.
+function addNewElInArr(array: number[], index: number, newEl: number) {
+    array.splice(index, 0, newEl)
+    return array
+}
+console.log(arrNumb)
+console.log(addNewElInArr(arrNumb, 1, 7))
+
 // 6 Функция удаления элемента из массива по указанному
 // индексу.
+function deleteElInArr(array: number[], index: number) {
+    array.splice(index, 1)
+    return array
+}
+console.log(arrNumb)
+console.log(deleteElInArr(arrNumb, 10))
 
-//ДЗ
+// з2 Создать еще один массив из 5 случайных чисел и написать
+// следующие функции.
+// const arrNumb: number[] = [4, 3, 4, 8, 0, 5, 7, 2, 5, 7]
+const arr2: number[] = [5, 8, 1, 9, 3]
+
+// 1 Функция принимает 2 массива и возвращает новый мас-
+// сив, в котором собраны все элементы из двух массивов
+// без повторений.
+function getUnionArray(arrNumb: number[], arr2: number[]) {
+    const arr: number[] = []
+    for (let el of arrNumb) {
+        if (!arr.includes(el)) {
+            arr.push(el)
+        }
+    }
+    for (let el of arr2) {
+        if (!arr.includes(el)) {
+            arr.push(el)
+        }
+    }
+    return arr
+}
+console.log(getUnionArray(arrNumb, arr2))
+
+// 2 Функция принимает 2 массива и возвращает новый массив,
+// в котором собраны общие элементы (то есть элементы,
+// которые встречаются и в первом и во втором массивах)
+// без повторений.
+function getCommonUnionArray(arrNumb: number[], arr2: number[]) {
+    const arr: number[] = []
+    for (let el of arrNumb) {
+        if (arrNumb.includes(el) && arr2.includes(el)) {
+            if (!arr.includes(el)) {
+                arr.push(el)
+            }
+        }
+    }
+    return arr
+}
+console.log(getCommonUnionArray(arrNumb, arr2))
+
+// 3 Функция принимает 2 массива и возвращает новый мас-
+// сив, в котором собраны все элементы из первого массива,
+// которых нет во втором массиве.
+function getNotCommonUnionArray(arr1: number[], arr2: number[]) {
+    const arr: number[] = []
+    for (let el of arr1) {
+        if (!arr2.includes(el)) {
+            if (!arr.includes(el)) {
+                arr.push(el)
+            }
+        }
+    }
+    return arr
+}
+console.log(getNotCommonUnionArray(arrNumb, arr2))
+
+// з3 Создать массив фруктов и отсортировать его по алфавиту.
+// Написать следующие функции.
+// 1 Вывод на экран с помощью document.write() в виде списка
+// (с помощью тегов ul и li).
+// 2 Поиск фрукта в массиве. Функция принимает название
+// фрукта и возвращает индекс найденного элемента или -1,
+// если не найден. Поиск должен быть нерегистрозависимым.
+
+//ДЗ МАССИВЫ
+// Задание 1 Создать массив «Список покупок». Каждый элемент массива
+// является объектом, который содержит название продукта, необ-
+// ходимое количество и куплен или нет. Написать несколько функ-
+// ций для работы с таким массивом.
+
+// 1 Вывод всего списка на экран таким образом, чтобы сначала
+// шли некупленные продукты, а потом – купленные.
+
+// 2 Добавление покупки в список. Учтите, что при добавлении
+// покупки с уже существующим в списке продуктом, необ-
+// ходимо увеличивать количество в существующей покупке,
+// а не добавлять новую.
+// 3 Покупка продукта. Функция принимает название продукта
+// и отмечает его как купленный.
 // Создать массив css-стилей (цвет, размер шрифта, выравнива-
 //     ние, подчеркивание и т. д.). Каждый элемент массива – это объ-
 //     ект, состоящий из двух свойств: название стиля и значение стиля.
