@@ -1168,7 +1168,7 @@ console.log(showTime(time))
 changeHours(5)
 console.log(showTime(time))
 
-//МАССИВЫ ПРАКТИКА
+//!МАССИВЫ ПРАКТИКА
 // з1 Создать массив из 10 случайных чисел и написать несколько
 // функций для работы с ним
 const arrNumb: number[] = [4, 3, 4, 8, 0, 5, 7, 2, 5, 7]
@@ -1291,15 +1291,39 @@ console.log(getNotCommonUnionArray(arrNumb, arr2))
 // фрукта и возвращает индекс найденного элемента или -1,
 // если не найден. Поиск должен быть нерегистрозависимым.
 
-//ДЗ МАССИВЫ
+//!ДЗ МАССИВЫ
 // Задание 1 Создать массив «Список покупок». Каждый элемент массива
 // является объектом, который содержит название продукта, необ-
 // ходимое количество и куплен или нет. Написать несколько функ-
 // ций для работы с таким массивом.
+type product = {
+    name: string,
+    count: number,
+    isBuyed: boolean,
+}
 
+const shopList: product[] = [
+    { name: 'сыр', count: 1, isBuyed: true },
+    { name: 'бекон', count: 1, isBuyed: false },
+    { name: 'сливки', count: 1, isBuyed: false },
+    { name: 'паста', count: 1, isBuyed: true },
+    { name: 'яйца', count: 1, isBuyed: false },
+]
 // 1 Вывод всего списка на экран таким образом, чтобы сначала
 // шли некупленные продукты, а потом – купленные.
+{
+    const shopListOL = document.getElementById('toBuyList') as HTMLOListElement
+    let html = ''
+    shopList.sort((a, b) => +a.isBuyed - +b.isBuyed).forEach(el => {
 
+    html += `<li style="color:red">${el.name} ${el.count} <button data-name="${el.name}">Отметить купленным</button></li>`
+
+    // `<li style="color:green">${el.name} ${el.count}</li>`
+
+    })
+    shopListOL.innerHTML = html
+    // renderBuyList(shopList)
+}
 // 2 Добавление покупки в список. Учтите, что при добавлении
 // покупки с уже существующим в списке продуктом, необ-
 // ходимо увеличивать количество в существующей покупке,

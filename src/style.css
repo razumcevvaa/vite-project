@@ -1,0 +1,18 @@
+body {
+  background-color: rgb(33, 33, 33);
+}
+
+.shop-list button, input {
+  border-radius: 20px;
+  border: none;
+  background-color: aliceblue;
+  padding: 10px;
+  margin: 5px;
+  transition: 0.7s ease-in-out;
+  text-align: center;
+  cursor: pointer;
+}
+.shop-list button:hover {
+  background-color: rgb(200, 229, 255);
+  padding: 10px 15px;
+}
