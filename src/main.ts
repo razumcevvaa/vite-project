@@ -1313,24 +1313,31 @@ const shopList: product[] = [
 // шли некупленные продукты, а потом – купленные.
 {
     const shopListOL = document.getElementById('toBuyList') as HTMLOListElement
-    let html = ''
-    shopList.sort((a, b) => +a.isBuyed - +b.isBuyed).forEach(el => {
+    function renderBuyList(shopList:product[]) {
 
-    html += `<li style="color:red">${el.name} ${el.count} <button data-name="${el.name}">Отметить купленным</button></li>`
-
-    // `<li style="color:green">${el.name} ${el.count}</li>`
-
-    })
-    shopListOL.innerHTML = html
-    // renderBuyList(shopList)
+        let html = ''
+        shopList.sort((a, b) => +a.isBuyed - +b.isBuyed).forEach(el => {
+            
+            html += `<li style="color:${el.isBuyed ? 'green' : 'red'}">${el.name} ${el.count} <button data-name="${el.name}">Отметить купленным</button></li>`
+            
+            // `<li style="color:green">${el.name} ${el.count}</li>`
+            
+        })
+        shopListOL.innerHTML = html
+    }
+    
+    renderBuyList(shopList)
 }
 // 2 Добавление покупки в список. Учтите, что при добавлении
 // покупки с уже существующим в списке продуктом, необ-
 // ходимо увеличивать количество в существующей покупке,
 // а не добавлять новую.
+
 // 3 Покупка продукта. Функция принимает название продукта
 // и отмечает его как купленный.
-// Создать массив css-стилей (цвет, размер шрифта, выравнива-
+
+
+// з3 Создать массив css-стилей (цвет, размер шрифта, выравнива-
 //     ние, подчеркивание и т. д.). Каждый элемент массива – это объ-
 //     ект, состоящий из двух свойств: название стиля и значение стиля.
 //     Написать функцию, которая принимает массив стилей и
