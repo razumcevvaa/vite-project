@@ -1285,11 +1285,18 @@ console.log(getNotCommonUnionArray(arrNumb, arr2))
 
 // з3 Создать массив фруктов и отсортировать его по алфавиту.
 // Написать следующие функции.
+const fruits: string[] = ['банан', 'яблоко', 'киви', 'груша', 'апельсин']
+fruits.sort()
+console.log(fruits)
+
 // 1 Вывод на экран с помощью document.write() в виде списка
 // (с помощью тегов ul и li).
+const tagString = `<p style="color:${'white'}; margin:${'20px'}"> ${fruits}</p>`
+document.body.insertAdjacentHTML('beforeend', tagString)
 // 2 Поиск фрукта в массиве. Функция принимает название
 // фрукта и возвращает индекс найденного элемента или -1,
 // если не найден. Поиск должен быть нерегистрозависимым.
+console.log(fruits.indexOf('яблоко'))
 
 //!ДЗ МАССИВЫ
 // Задание 1 Создать массив «Список покупок». Каждый элемент массива
@@ -1311,30 +1318,89 @@ const shopList: product[] = [
 ]
 // 1 Вывод всего списка на экран таким образом, чтобы сначала
 // шли некупленные продукты, а потом – купленные.
-{
-    const shopListOL = document.getElementById('toBuyList') as HTMLOListElement
-    function renderBuyList(shopList:product[]) {
+const shopListOL = document.getElementById('toBuyList') as HTMLOListElement
+function renderBuyList(shopList: product[]) {
+    let html = ''
+    shopList.sort((a, b) => +a.isBuyed - +b.isBuyed).forEach(el => {
 
-        let html = ''
-        shopList.sort((a, b) => +a.isBuyed - +b.isBuyed).forEach(el => {
-            
-            html += `<li style="color:${el.isBuyed ? 'green' : 'red'}">${el.name} ${el.count} <button data-name="${el.name}">Отметить купленным</button></li>`
-            
-            // `<li style="color:green">${el.name} ${el.count}</li>`
-            
-        })
-        shopListOL.innerHTML = html
-    }
-    
-    renderBuyList(shopList)
+        html += `<li style="color:${el.isBuyed ? 'green' : 'red'}">${el.name} ${el.count} <button data-name="${el.name}">Отметить купленным</button></li>`
+
+    })
+    shopListOL.innerHTML = html
 }
+
+renderBuyList(shopList)
+
 // 2 Добавление покупки в список. Учтите, что при добавлении
 // покупки с уже существующим в списке продуктом, необ-
 // ходимо увеличивать количество в существующей покупке,
 // а не добавлять новую.
+//? shopList.reduce((count, currentValue) => {
+// ?  return +count + +currentValue
+// ?}) reduce
+
+const productNameInput = document.getElementById('productName') as HTMLInputElement
+const productCountInput = document.getElementById('productCount') as HTMLInputElement
+const addProductButton = document.getElementById('addProduct') as HTMLButtonElement
+
+function addToShopList(arr: product[], name: string, count: number) {
+    let inList = false
+    for (let el of arr) {
+        if (el.name == name && !el.isBuyed || el.name == name && el.isBuyed) {
+            el.count += count
+            inList = true
+        }
+    }
+    if (!inList) {
+        arr.push({ name, count, isBuyed: false })
+    } else {
+        alert('Введите продукт и количество')
+    }
+    renderBuyList(arr)
+
+}
+// ! как сделать чтобы если ничего не вводили выходила ошибка (или что то одно) ПОЧЕМУ СНАЧАЛА ОДИН РАЗ НАН А ПОТОМ ТОЛЬКО ВЫВОДИТСЯ 
+// !и если это куплено загоралось красным + колво
+
+addProductButton.addEventListener('click', function () {
+    const count = parseFloat(productCountInput.value.replace(',', '.'))
+    addToShopList(shopList, productNameInput.value, count)
+    productNameInput.value = ''
+    productCountInput.value = ''
+})
 
 // 3 Покупка продукта. Функция принимает название продукта
 // и отмечает его как купленный.
+const setBuyedButton = document.getElementById('setBuyed') as HTMLButtonElement
+
+function setBuyed(arr: product[], name: string) {
+    for (let el of arr) {
+        if (el.name == name) {
+            el.isBuyed = true
+        }
+    }
+    renderBuyList(arr)
+}
+setBuyedButton.addEventListener('click', function () {
+    setBuyed(shopList, productNameInput.value)
+    productNameInput.value = ''
+    productCountInput.value = ''
+})
+shopListOL.addEventListener('click', function (e) {
+    const target = e.target as HTMLElement
+    if (target.tagName == 'BUTTON' && target.dataset.name) {
+        setBuyed(shopList, target.dataset.name)
+    }
+})
+// !как убрать кнопку после покупки
+
+// з2 Создать массив, описывающий чек в магазине. Каждый эле-
+// мент массива состоит из названия товара, количества и цены за
+// единицу товара. Написать следующие функции.
+// 1 Распечатка чека на экран.
+// 2 Подсчет общей суммы покупки.
+// 3 Получение самой дорогой покупки в чеке.
+// 4 Подсчет средней стоимости одного товара в чеке.
 
 
 // з3 Создать массив css-стилей (цвет, размер шрифта, выравнива-
@@ -1344,13 +1410,11 @@ const shopList: product[] = [
 //     текст, и выводит этот текст с помощью document.write() в тегах
 //     <p></p>, добавив в открывающий тег атрибут style со всеми сти-
 //     лями, перечисленными в массиве.
-
-// const renderTextDiv= document.getElementById('renderText') as HTMLDivElement
-
 const styles = [
     { color: 'red' },
     { 'font-size': '20px' },
-    { 'text-align': 'center' },
+    { 'text-align': 'left' },
+    { 'margin': '20px' },
 ]
 function renderText(styles: any[], text: string) {
     let styleText = ''
@@ -1360,6 +1424,19 @@ function renderText(styles: any[], text: string) {
         }
     }
     const tagString = `<p style="${styleText}"> ${text}</p>`
-    document.body.insertAdjacentHTML('afterbegin', tagString)
+    document.body.insertAdjacentHTML('beforeend', tagString)
 }
 renderText(styles, 'text1')
+
+// з4 Создать массив аудиторий академии. Объект-аудитория со-
+// стоит из названия, количества посадочных мест (от 10 до 20) и
+// названия факультета, для которого она предназначена.
+// Написать несколько функций для работы с ним.
+// 1 Вывод на экран всех аудиторий.
+// 2 Вывод на экран аудиторий для указанного факультета.
+// 3 Вывод на экран только тех аудиторий, которые подходят для
+// переданной группы. Объект-группа состоит из названия,
+// количества студентов и названия факультета.
+// 4 Функция сортировки аудиторий по количеству мест.
+// 5 Функция сортировки аудиторий по названию (по алфа-
+// виту).
