@@ -1397,6 +1397,11 @@ shopListOL.addEventListener('click', function (e) {
 // з2 Создать массив, описывающий чек в магазине. Каждый эле-
 // мент массива состоит из названия товара, количества и цены за
 // единицу товара. Написать следующие функции.
+type Tovar = {
+    name: string,
+    count: number,
+    price: number,
+}
 const chequeShop = [
     { name: 'диван' },
     { count: 2 },
