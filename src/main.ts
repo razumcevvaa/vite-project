@@ -1323,7 +1323,7 @@ function renderBuyList(shopList: product[]) {
     let html = ''
     shopList.sort((a, b) => +a.isBuyed - +b.isBuyed).forEach(el => {
 
-        html += `<li style="color:${el.isBuyed ? 'green' : 'red'}">${el.name} ${el.count} <button data-name="${el.name}">Отметить купленным</button></li>`
+        html += `<li style="color:${el.isBuyed ? 'green' : 'red'}">${el.name} ${el.count} ${!el.isBuyed ? `<button data-name="${el.name}">Отметить купленным</button>` : ''}</li>`
 
     })
     shopListOL.innerHTML = html
@@ -1344,23 +1344,22 @@ const productCountInput = document.getElementById('productCount') as HTMLInputEl
 const addProductButton = document.getElementById('addProduct') as HTMLButtonElement
 
 function addToShopList(arr: product[], name: string, count: number) {
+    if (!name || !count) {
+        alert('Введите продукт и количество')
+        return
+    }
     let inList = false
     for (let el of arr) {
-        if (el.name == name && !el.isBuyed || el.name == name && el.isBuyed) {
+        if (el.name == name && !el.isBuyed) {
             el.count += count
             inList = true
         }
     }
     if (!inList) {
         arr.push({ name, count, isBuyed: false })
-    } else {
-        alert('Введите продукт и количество')
     }
     renderBuyList(arr)
-
 }
-// ! как сделать чтобы если ничего не вводили выходила ошибка (или что то одно) ПОЧЕМУ СНАЧАЛА ОДИН РАЗ НАН А ПОТОМ ТОЛЬКО ВЫВОДИТСЯ 
-// !и если это куплено загоралось красным + колво
 
 addProductButton.addEventListener('click', function () {
     const count = parseFloat(productCountInput.value.replace(',', '.'))
@@ -1392,7 +1391,6 @@ shopListOL.addEventListener('click', function (e) {
         setBuyed(shopList, target.dataset.name)
     }
 })
-// !как убрать кнопку после покупки
 
 // з2 Создать массив, описывающий чек в магазине. Каждый эле-
 // мент массива состоит из названия товара, количества и цены за
@@ -1402,15 +1400,23 @@ type Tovar = {
     count: number,
     price: number,
 }
-const chequeShop = [
-    { name: 'диван' },
-    { count: 2 },
-    { price: 20000 }
+const chequeShop: Tovar[] = [
+    { name: 'диван', count: 2, price: 40000 },
+    { name: 'стол', count: 1, price: 10000 },
+    { name: 'студ', count: 4, price: 7000 },
+    { name: 'кровать', count: 1, price: 45000 },
+    { name: 'телевизор', count: 1, price: 97000 },
 ]
 // 1 Распечатка чека на экран.
+const chequeShopOL = document.getElementById('cheque_shop') as HTMLOListElement
+function showChequeShop(arr: Tovar[]) {
+
+}
+console.log(showChequeShop(chequeShop))
 
 // 2 Подсчет общей суммы покупки.
 // 3 Получение самой дорогой покупки в чеке.
+
 // 4 Подсчет средней стоимости одного товара в чеке.
 
 
@@ -1459,11 +1465,11 @@ renderText(styles, 'text1')
 // Есть массив объектов
 type Employees = {
     name: string,
-    departament: string,
+    department: string,
     salary: number,
 }
 
-const employees = [
+const employees: Employees[] = [
     { name: 'Федотова Арина Глебовна', department: 'ads', salary: 2100 },
     { name: 'Голикова Мария Филипповна', department: 'prog', salary: 3500 },
     { name: 'Панин Александр Германович', department: 'ads', salary: 2100 },
@@ -1507,9 +1513,74 @@ const llllDIV = document.getElementById("llll") as HTMLDivElement
 // 2.3. Вывесли в полученный div текст, "Привет, пользователь"
 llllDIV.innerHTML = 'Привет, пользователь'
 // 2.4. Написать функцию, которая возвращает текст "Привет, пользователь" или "Привет, <имяПользователя>" в зависимости от переданных параметров и использовать её в задании 2.3.
-function showEmployees(arr:Employees, name: string) {
-    return name ? `Привет, ${name}` : 'Привет, пользователь'
+function showEmployees(arr: Employees[], i = -1) {
+    if (i > -1 && i < arr.length) {
+        llllDIV.innerHTML = 'Привет, ' + arr[i].name
+    } else {
+        llllDIV.innerHTML = 'Привет, пользователь'
+    }
 }
-// showEmployees(employees, 3)
+showEmployees(employees, 3)
 
+function showElements(arr: Employees[]) {
+    console.log(arr)
+    console.log(arr[0])
+    console.log(arr[0].name)
+    console.log(arr[0].department)
+    console.log(arr[0].salary)
+    for (let i = 0; i < arr.length; i++) {
+        console.log(arr[i].name)
+    }
+    for (let empl of arr) {
+        console.log(empl.name)
+    }
+    const newArr = [4, 45, 6]
+    return newArr
+}
+const вернулаФункция = showElements(employees)
+console.log(вернулаФункция)
 
+// Все функции вызывать несколько раз с разными параметрами
+// 3.1. Создать функцию, принимающую массив работников, и возвращающую массив уникальных отделов (department)
+// deps.includes
+// [ads, prog, disign]
+
+function unicDeps(arr:Employees[]) {
+    const unic:string[] = []
+    arr.forEach(el=>{
+       if (!unic.includes(el.department)) {
+        unic.push(el.department)
+       }
+    })
+    return unic
+}
+
+console.log(unicDeps(employees))
+
+// 3.2. Написать функцию, принимающую массив работников и ключ объекта, по которому сделать сортировку массива
+// Учесть, что строковые параметры сортируются при помощи метода localeCompare, а числовые,- вычитанием
+// function sortEmpl(arr, key: 'name' | 'department' |'salary') {
+    // }
+    // 3.3. Написать функцию, аналогичную описанной в задании 3.2., но сортирующую в обратном порядке
+    // 3.4. Написать функцию, принимающую массив работников и имя, и возвращающую объект сотрудника или undefined
+    // 3.5. Написать функцию, принимающую массив работников и название отдела, и возвращающую новый массив, содержащий только сотрудников переданного отдела
+    function getEmployee(arr: Employees[], department: string) {
+       return arr.filter(( el ) => el.department == department)
+    }
+    getEmployee(employees,'prog')
+    console.log(getEmployee(employees,'prog'))
+    // 3.6. Написать функцию, принимающую массив работников и возвращающую сумму зарплат. Вызвать функцию по каждому отделу и по общему массиву
+
+// 3.7. В HTML создать div для кнопок, задать ему id и получить объект div'a в js, аналогично заданию 2.2.
+// 3.8. Так же как в 3.7 создать ul (as HTMLUListElement) для вывода списка и div для вывода суммы зарплат
+
+// 3.9. Используя массив, полученный в 3.1. Вывести кнопки с названиями отделов + кнопку "Все отделы"
+//      использовать data-атрибут (data-dep), в который поместить название отдела. Для кнопки "Все отделы" data-dep="all"
+// 3.10. Используя div, полученный в задании 3.7
+// div37.addEventListener('click', function (e) {
+//   const target = e.target as HTMLElement
+//   if (target.tagName == 'BUTTON' && target.dataset.dep) {
+//      в зависимости от значения dep выводить в список (ul 3.8) тех сотрудников, которые работают в данном отделе, либо всех, если target.dataset.dep=='all'. Используем логическое ветвление и уже написанные функции
+//      в div (3.8) выводить сумму зарплат
+//   }
+// })
