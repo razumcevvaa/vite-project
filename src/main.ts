@@ -1457,6 +1457,12 @@ renderText(styles, 'text1')
 
 // 02.04.24
 // Есть массив объектов
+type Employees = {
+    name: string,
+    departament: string,
+    salary: number,
+}
+
 const employees = [
     { name: 'Федотова Арина Глебовна', department: 'ads', salary: 2100 },
     { name: 'Голикова Мария Филипповна', department: 'prog', salary: 3500 },
@@ -1497,11 +1503,13 @@ console.log(getRandomArr(6))
 
 // 2.1. В файле html создать пустой div с произвольным id
 // 2.2. Получить объект div'а в js при помощи метода document.getElementById(ваш id) as HTMLDivElement
-const llllDIV= document.getElementById("llll") as HTMLDivElement
+const llllDIV = document.getElementById("llll") as HTMLDivElement
 // 2.3. Вывесли в полученный div текст, "Привет, пользователь"
 llllDIV.innerHTML = 'Привет, пользователь'
 // 2.4. Написать функцию, которая возвращает текст "Привет, пользователь" или "Привет, <имяПользователя>" в зависимости от переданных параметров и использовать её в задании 2.3.
-function showEmployees (name: string){
-    llllDIV.innerHTML = 'Привет, пользователь'
+function showEmployees(arr:Employees, name: string) {
+    return name ? `Привет, ${name}` : 'Привет, пользователь'
 }
+// showEmployees(employees, 3)
+
 
