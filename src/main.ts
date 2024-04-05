@@ -1545,12 +1545,12 @@ console.log(вернулаФункция)
 // deps.includes
 // [ads, prog, disign]
 
-function unicDeps(arr:Employees[]) {
-    const unic:string[] = []
-    arr.forEach(el=>{
-       if (!unic.includes(el.department)) {
-        unic.push(el.department)
-       }
+function unicDeps(arr: Employees[]) {
+    const unic: string[] = []
+    arr.forEach(el => {
+        if (!unic.includes(el.department)) {
+            unic.push(el.department)
+        }
     })
     return unic
 }
@@ -1558,19 +1558,51 @@ function unicDeps(arr:Employees[]) {
 console.log(unicDeps(employees))
 
 // 3.2. Написать функцию, принимающую массив работников и ключ объекта, по которому сделать сортировку массива
+function sortEmpl(arr: Employees[], key: 'name' | 'department' | 'salary') {
+    return arr.sort((a, b) => {
+        if (a[key] > b[key]) return 1
+        if (a[key] < b[key]) return -1
+        return 0
+    })
+}
+console.log(sortEmpl(employees, 'name'))
+console.log(sortEmpl(employees, 'department'))
+console.log(sortEmpl(employees, 'salary'))
 // Учесть, что строковые параметры сортируются при помощи метода localeCompare, а числовые,- вычитанием
-// function sortEmpl(arr, key: 'name' | 'department' |'salary') {
-    // }
-    // 3.3. Написать функцию, аналогичную описанной в задании 3.2., но сортирующую в обратном порядке
-    // 3.4. Написать функцию, принимающую массив работников и имя, и возвращающую объект сотрудника или undefined
-    // 3.5. Написать функцию, принимающую массив работников и название отдела, и возвращающую новый массив, содержащий только сотрудников переданного отдела
-    function getEmployee(arr: Employees[], department: string) {
-       return arr.filter(( el ) => el.department == department)
+// 3.3. Написать функцию, аналогичную описанной в задании 3.2., но сортирующую в обратном порядке
+function sortEmplReturn(arr: Employees[], key: 'name' | 'department' | 'salary') {
+    return arr.sort((a, b) => {
+        if (a[key] < b[key]) return 1
+        if (a[key] > b[key]) return -1
+        return 0
+    })
+}
+console.log(sortEmplReturn(employees, 'name'))
+console.log(sortEmplReturn(employees, 'department'))
+console.log(sortEmplReturn(employees, 'salary'))
+// 3.4. Написать функцию, принимающую массив работников и имя, и возвращающую объект сотрудника или undefined
+function findEmplByName(arr: Employees[], name: string) {
+    for (let el of arr) {
+        if (el.name == name) {
+            return el
+        }
     }
-    getEmployee(employees,'prog')
-    console.log(getEmployee(employees,'prog'))
-    // 3.6. Написать функцию, принимающую массив работников и возвращающую сумму зарплат. Вызвать функцию по каждому отделу и по общему массиву
+    return undefined
+}
+console.log(findEmplByName(employees, 'Романов Эмиль Макарович'))
+console.log(findEmplByName(employees, 'Илья'))
 
+// 3.5. Написать функцию, принимающую массив работников и название отдела, и возвращающую новый массив, содержащий только сотрудников переданного отдела
+function getEmployee(arr: Employees[], department: string) {
+    return arr.filter((el) => el.department == department)
+}
+getEmployee(employees, 'prog')
+console.log(getEmployee(employees, 'prog'))
+console.log(getEmployee(employees, 'disign'))
+// 3.6. Написать функцию, принимающую массив работников и возвращающую сумму зарплат. Вызвать функцию по каждому отделу и по общему массиву
+// function getEmployeeSalary(arr: Employees[], salary: number, department: string) {
+
+// }
 // 3.7. В HTML создать div для кнопок, задать ему id и получить объект div'a в js, аналогично заданию 2.2.
 // 3.8. Так же как в 3.7 создать ul (as HTMLUListElement) для вывода списка и div для вывода суммы зарплат
 
