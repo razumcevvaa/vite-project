@@ -1408,17 +1408,81 @@ const chequeShop: Tovar[] = [
     { name: 'телевизор', count: 1, price: 97000 },
 ]
 // 1 Распечатка чека на экран.
-const chequeShopOL = document.getElementById('cheque_shop') as HTMLOListElement
-function showChequeShop(arr: Tovar[]) {
 
+const chequeShopDiv = document.getElementById('cheque_shop') as HTMLDivElement
+
+function showChequeShop(arr: Tovar[]) {
+    let html = '<h3>check №2342342</h3>'
+    html += '<p>IP Razumtceva</p>'
+    html += `<table><tr>
+    <th>  
+    name
+    </th>
+    <th>  
+    count
+    </th>
+    <th>  
+price
+    </th>
+    </tr>`
+    for (let el of arr) {
+        html += `<tr>
+            <td>  
+            ${el.name}
+            </td>
+            <td>  
+            ${el.count} 
+            </td>
+            <td>  
+            ${el.price}
+            </td>
+        </tr>`
+    }
+    html += '</table>'
+    chequeShopDiv.innerHTML = html
 }
-console.log(showChequeShop(chequeShop))
+
+
+showChequeShop(chequeShop)
 
 // 2 Подсчет общей суммы покупки.
+function sumCheck(arr: Tovar[]) {
+    let sum = 0
+    for (let el of arr) {
+        sum += el.price * el.count
+    }
+    return sum
+}
+console.log(sumCheck(chequeShop))
+
+function sumCheckg(arr: Tovar[]) {
+    let html = ''
+    for (let el of arr) {
+        html += `<h1>
+        ${el.price * el.count}
+        </h1>`
+    }
+    chequeShopDiv.innerHTML = html
+}
+sumCheckg(chequeShop)
+
 // 3 Получение самой дорогой покупки в чеке.
+function maxCheck(arr: Tovar[]) {
+    let max = 0
+    for (i = 0; i < arr.length; i++) {
+        if (arr[i].count * arr[i].price > max) {
+            max = arr[i].count * arr[i].price
+        }
+    }
+    return max
+}
+console.log(maxCheck(chequeShop))
 
 // 4 Подсчет средней стоимости одного товара в чеке.
-
+function averageCheck(arr: Tovar[]) {
+    return sumCheck(arr) / arr.length
+}
+console.log(averageCheck(chequeShop))
 
 
 // з3 Создать массив css-стилей (цвет, размер шрифта, выравнива-
@@ -1604,6 +1668,7 @@ console.log(getEmployee(employees, 'disign'))
 
 // }
 // 3.7. В HTML создать div для кнопок, задать ему id и получить объект div'a в js, аналогично заданию 2.2.
+
 // 3.8. Так же как в 3.7 создать ul (as HTMLUListElement) для вывода списка и div для вывода суммы зарплат
 
 // 3.9. Используя массив, полученный в 3.1. Вывести кнопки с названиями отделов + кнопку "Все отделы"

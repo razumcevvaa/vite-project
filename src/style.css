@@ -2,7 +2,8 @@ body {
   background-color: rgb(33, 33, 33);
 }
 
-.shop-list button, input {
+.shop-list button,
+input {
   border-radius: 20px;
   border: none;
   background-color: aliceblue;
@@ -12,7 +13,45 @@ body {
   text-align: center;
   cursor: pointer;
 }
+
 .shop-list button:hover {
   background-color: rgb(200, 229, 255);
   padding: 10px 15px;
+}
+
+#cheque_shop table th {
+  width: 80px;
+}
+
+#cheque_shop table tr {
+  text-align: right;
+}
+
+#cheque_shop table tr td:first-child {
+  text-align: left;
+}
+#cheque_shop table tr th:first-child {
+  text-align: left;
+}
+#cheque_shop h1 {
+  text-align: right;
+  font-size: 20px;
+  margin-top: 50px;
+}
+
+.check {
+  width: 250px;
+  background-color: aliceblue;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
+  height: 400px;
+}
+#cheque_shop h3 {
+  text-align: center;
+}
+#cheque_shop p {
+  margin: 0;
+  padding-bottom: 30px;
 }
