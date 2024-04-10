@@ -1455,16 +1455,16 @@ function sumCheck(arr: Tovar[]) {
 }
 console.log(sumCheck(chequeShop))
 
-function sumCheckg(arr: Tovar[]) {
-    let html = ''
-    for (let el of arr) {
-        html += `<h1>
-        ${el.price * el.count}
-        </h1>`
-    }
-    chequeShopDiv.innerHTML = html
-}
-sumCheckg(chequeShop)
+// function sumCheckg(arr: Tovar[]) {
+//     let html = ''
+//     for (let el of arr) {
+//         html += `<h1>
+//         ${el.price * el.count}
+//         </h1>`
+//     }
+//     chequeShopDiv.innerHTML = html
+// }
+// sumCheckg(chequeShop)
 
 // 3 Получение самой дорогой покупки в чеке.
 function maxCheck(arr: Tovar[]) {
@@ -1586,6 +1586,13 @@ function showEmployees(arr: Employees[], i = -1) {
 }
 showEmployees(employees, 3)
 
+// 2.5. Написать функцию, принимающую массив работников и название отдела, и возвращающую новый массив, содержащий только сотрудников переданного отдела
+function newArr(arr: Employees[], department: string) {
+    return arr.filter((el) => el.department == department)
+  }
+  newArr(employees, 'ads')
+  console.log(newArr(employees, 'ads'))
+
 function showElements(arr: Employees[]) {
     console.log(arr)
     console.log(arr[0])
@@ -1664,13 +1671,30 @@ getEmployee(employees, 'prog')
 console.log(getEmployee(employees, 'prog'))
 console.log(getEmployee(employees, 'disign'))
 // 3.6. Написать функцию, принимающую массив работников и возвращающую сумму зарплат. Вызвать функцию по каждому отделу и по общему массиву
-// function getEmployeeSalary(arr: Employees[], salary: number, department: string) {
+function getEmployeeSalary(arr: Employees[]) {
+    let sum = 0
+    for (let el of arr) {
+        sum += el.salary
+    }
+    return sum
+}
+console.log( getEmployeeSalary(employees))
+console.log( getEmployeeSalary(newArr(employees, 'prog')))
+console.log( getEmployeeSalary(newArr(employees, 'ads')))
+console.log( getEmployeeSalary(newArr(employees, 'disign')))
 
-// }
 // 3.7. В HTML создать div для кнопок, задать ему id и получить объект div'a в js, аналогично заданию 2.2.
-
+const ButtonForEml = document.getElementById('button-for-empl') as HTMLDivElement
 // 3.8. Так же как в 3.7 создать ul (as HTMLUListElement) для вывода списка и div для вывода суммы зарплат
-
+const sumSalary = document.getElementById('sum_sal') as HTMLDivElement
+function conclusionList(arr:Employees[]){
+    let html ='<ul>'
+    for (let el of arr){
+        html +=`<li>${el.name} ${el.department} ${el.salary}</li>`
+    }
+    sumSalary.innerHTML = `${html}</ul><div>Sum ${getEmployeeSalary(arr)}</div>`
+}
+console.log(conclusionList(employees))
 // 3.9. Используя массив, полученный в 3.1. Вывести кнопки с названиями отделов + кнопку "Все отделы"
 //      использовать data-атрибут (data-dep), в который поместить название отдела. Для кнопки "Все отделы" data-dep="all"
 // 3.10. Используя div, полученный в задании 3.7
