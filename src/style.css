@@ -59,3 +59,19 @@ input {
   color: white;
   margin: 20px;
 }
+#button-for-empl button {
+  margin: 5px;
+  border-radius: 30px;
+  border: none;
+  background-color: aliceblue;
+  padding: 20px 40px;
+  font-size: 14px;
+  transition: 1s ease-in-out;
+  cursor: pointer;
+}
+#button-for-empl button:hover {
+  background-color: rgb(184, 241, 255);
+}
+#button-for-empl {
+  margin-left: 50px;
+}

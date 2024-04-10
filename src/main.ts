@@ -1589,9 +1589,9 @@ showEmployees(employees, 3)
 // 2.5. Написать функцию, принимающую массив работников и название отдела, и возвращающую новый массив, содержащий только сотрудников переданного отдела
 function newArr(arr: Employees[], department: string) {
     return arr.filter((el) => el.department == department)
-  }
-  newArr(employees, 'ads')
-  console.log(newArr(employees, 'ads'))
+}
+newArr(employees, 'ads')
+console.log(newArr(employees, 'ads'))
 
 function showElements(arr: Employees[]) {
     console.log(arr)
@@ -1678,25 +1678,35 @@ function getEmployeeSalary(arr: Employees[]) {
     }
     return sum
 }
-console.log( getEmployeeSalary(employees))
-console.log( getEmployeeSalary(newArr(employees, 'prog')))
-console.log( getEmployeeSalary(newArr(employees, 'ads')))
-console.log( getEmployeeSalary(newArr(employees, 'disign')))
+console.log(getEmployeeSalary(employees))
+console.log(getEmployeeSalary(newArr(employees, 'prog')))
+console.log(getEmployeeSalary(newArr(employees, 'ads')))
+console.log(getEmployeeSalary(newArr(employees, 'disign')))
 
 // 3.7. В HTML создать div для кнопок, задать ему id и получить объект div'a в js, аналогично заданию 2.2.
 const ButtonForEml = document.getElementById('button-for-empl') as HTMLDivElement
 // 3.8. Так же как в 3.7 создать ul (as HTMLUListElement) для вывода списка и div для вывода суммы зарплат
 const sumSalary = document.getElementById('sum_sal') as HTMLDivElement
-function conclusionList(arr:Employees[]){
-    let html ='<ul>'
-    for (let el of arr){
-        html +=`<li>${el.name} ${el.department} ${el.salary}</li>`
+function conclusionList(arr: Employees[]) {
+    let html = '<ul>'
+    for (let el of arr) {
+        html += `<li>${el.name} ${el.department} ${el.salary}</li>`
     }
     sumSalary.innerHTML = `${html}</ul><div>Sum ${getEmployeeSalary(arr)}</div>`
 }
 console.log(conclusionList(employees))
 // 3.9. Используя массив, полученный в 3.1. Вывести кнопки с названиями отделов + кнопку "Все отделы"
 //      использовать data-атрибут (data-dep), в который поместить название отдела. Для кнопки "Все отделы" data-dep="all"
+
+function renderButtons(arr: string[]) {
+    let html = ''
+    for (let dep of arr) {
+        html += `<button data-dep="${dep}">${dep.toUpperCase()}</button>`
+    }
+    html += `<button data-dep="all">ALL</button>`
+    ButtonForEml.innerHTML = html
+}
+renderButtons(unicDeps(employees))
 // 3.10. Используя div, полученный в задании 3.7
 // div37.addEventListener('click', function (e) {
 //   const target = e.target as HTMLElement
@@ -1705,3 +1715,13 @@ console.log(conclusionList(employees))
 //      в div (3.8) выводить сумму зарплат
 //   }
 // })
+ButtonForEml.addEventListener('click', function (e) {
+    const target = e.target as HTMLElement
+    if (target.tagName == 'BUTTON' && target.dataset.dep) {
+        if (target.dataset.dep == 'all') {
+            conclusionList(employees)
+        } else {
+            conclusionList(getEmployee(employees, target.dataset.dep))
+        }
+    }
+})
