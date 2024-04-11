@@ -1439,6 +1439,8 @@ price
         </tr>`
     }
     html += '</table>'
+    html += `<h1>TO PAY:   ${sumCheck(arr)}$</h1>`
+
     chequeShopDiv.innerHTML = html
 }
 
@@ -1457,12 +1459,16 @@ console.log(sumCheck(chequeShop))
 
 // function sumCheckg(arr: Tovar[]) {
 //     let html = ''
+//     let sum = 0
 //     for (let el of arr) {
-//         html += `<h1>
-//         ${el.price * el.count}
-//         </h1>`
+//         sum+=el.price * el.count
 //     }
-//     chequeShopDiv.innerHTML = html
+//     html += `<h1>${sum}</h1>`
+//     // const htmlArr = chequeShopDiv.innerHTML.split('</p>')
+//     // htmlArr[1] = html + htmlArr[1]
+//     // chequeShopDiv.innerHTML = htmlArr.join('</p>')
+
+//     chequeShopDiv.innerHTML += html
 // }
 // sumCheckg(chequeShop)
 
@@ -1512,7 +1518,7 @@ renderText(styles, 'text1')
 
 // з4 Создать массив аудиторий академии. Объект-аудитория со-
 // стоит из названия, количества посадочных мест (от 10 до 20) и
-// названия факультета, для которого она предназначена.
+// названия факультета, для которого она педназначена.
 // Написать несколько функций для работы с ним.
 // 1 Вывод на экран всех аудиторий.
 // 2 Вывод на экран аудиторий для указанного факультета.
@@ -1692,7 +1698,7 @@ function conclusionList(arr: Employees[]) {
     for (let el of arr) {
         html += `<li>${el.name} ${el.department} ${el.salary}</li>`
     }
-    sumSalary.innerHTML = `${html}</ul><div>Sum ${getEmployeeSalary(arr)}</div>`
+    sumSalary.innerHTML = `${html}</ul><h3>Sum ${getEmployeeSalary(arr)}</h3>`
 }
 console.log(conclusionList(employees))
 // 3.9. Используя массив, полученный в 3.1. Вывести кнопки с названиями отделов + кнопку "Все отделы"
@@ -1725,3 +1731,80 @@ ButtonForEml.addEventListener('click', function (e) {
         }
     }
 })
+
+
+// ! СТРОКИ ПРАКТИКА
+// 1 Написать функцию, которая принимает 2 строки и срав-
+// нивает их длину. Функция возвращает 1, если в первой
+// строке больше символов, чем во второй; -1 – если во вто-
+// рой больше символов, чем в первой; или 0 – если строки
+// одинаковой длины.
+function findMoreLength(str1: string, str2: string) {
+    if (str1.length > str2.length) return 1
+    if (str1.length < str2.length) return -1
+    else return 0
+}
+console.log(findMoreLength('lololo', 'lololo'))
+console.log(findMoreLength('lololrgro', 'lololo'))
+console.log(findMoreLength('lololo', 'lololerero'))
+
+// 2 Написать функцию, которая переводит в верхний регистр
+// первый символ переданной строки.
+function doUpperCase(str: string) {
+    if (!str) return str
+    return str[0].toUpperCase() + str.slice(1)
+}
+console.log(doUpperCase('fuehueihfi'))
+
+// 3 Написать функцию, которая считает количество гласных
+// букв в переданной строке.
+function countNumOfLow(str: string) {
+    const gl = 'уеыаоэяиюёeayuio'
+    let count = 0
+    for (let char of str) {
+        count += gl.includes(char) ? 1 : 0
+    }
+    return count
+}
+console.log(countNumOfLow('kgoigjereee'))
+
+// 4 Написать функцию для проверки спама в переданной
+// строке. Функция возвращает true, если строка содержит
+// спам. Спамом считать следующие слова: 100% бесплатно,
+// увеличение продаж, только сегодня, не удаляйте, ххх.
+// Функция должна быть нечувствительна к регистру.
+const spams = [
+    '100%',
+    '100% бесплатно',
+    'увеличение продаж',
+    'только сегодня',
+    'не удаляйте',
+    'ххх',
+]
+function checkSpam(str: string) {
+    let lowerStr = str.toLowerCase()
+    for (let spam of spams) {
+        if (lowerStr.includes(spam)) return true
+    }
+    return false
+}
+console.log(checkSpam('100%'))
+
+// 5 Написать функцию сокращения строки. Функция прини-
+// мает строку и ее максимальную длину. Если длина строки
+// больше, чем максимальная, то необходимо отбросить
+// лишние символы, добавив вместо них троеточие.
+// Например: truncate(“Hello, world!”, 8) должна вернуть
+// “Hello...”.
+function reduceToMaxValue(str: string, maxleng: number) {
+    if (str.length > maxleng) {
+        let maxStr = str.slice(0, maxleng - 1) + '...'
+        return maxStr
+    }
+}
+console.log(reduceToMaxValue('Добро пожаловать!', 6))
+
+// Написать функцию, которая проверяет, является ли переданная строка палиндромом.
+
+
+

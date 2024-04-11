@@ -75,3 +75,9 @@ input {
 #button-for-empl {
   margin-left: 50px;
 }
+#sum_sal h3 {
+  color: rgb(0, 255, 17);
+  font-size: 20px;
+  transition: 1s ease-in-out;
+  transform: scale(0.7s);
+}
