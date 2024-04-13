@@ -1804,7 +1804,61 @@ function reduceToMaxValue(str: string, maxleng: number) {
 }
 console.log(reduceToMaxValue('Добро пожаловать!', 6))
 
-// Написать функцию, которая проверяет, является ли переданная строка палиндромом.
+// 6 Написать функцию, которая проверяет, является ли переданная строка палиндромом.
+function checkPalindrom(str: string) {
+    str = str.toLowerCase()
+    return str == str.split('').reverse().join('')
+}
+console.log(checkPalindrom('папа'))
+console.log(checkPalindrom('АллА'))
 
+// 7 Написать функцию, которая считает количество слов в предложении.
+function countNumOfWords(str: string) {
+    return str.split(' ').length
+}
+console.log(countNumOfWords('здесь три слова'))
 
+// 8 Написать функцию, которая возвращает самое длинное слово из предложения.
+function getLongestWord(str: string) {
+    let strSplit = str.split(' ')
+    let longestWord = 0
+    for (let i = 0; i < strSplit.length; i++) {
+        if (strSplit[i].length > longestWord) {
+            longestWord = strSplit[i].length
+        }
+    }
+    return longestWord
+}
+console.log(getLongestWord('The quick brown fox jumpedhhh over the lazy dog'))
 
+// 9 Написать функцию, которая считает среднюю длину слова в предложении.
+function getSrednLengWord(str: string) {
+    let words = str.split(' ')
+    let totalLength = 0
+
+    for (let word of words) {
+        totalLength += word.length
+    }
+    return totalLength / words.length
+}
+console.log(getSrednLengWord('The quick brown fox jumpedhhh over the lazy dog'))
+
+// 10 Написать функцию, которая принимает строку и символ
+// и выводит индексы, по которым находится этот символ в
+// строке. Также вывести, сколько всего раз встречается этот
+// символ в строке.
+function findIndexWord(str: string, symbol: string) {
+    let indexes = []
+    let count = 0
+    for (let i = 0; i < str.length; i++) {
+        const index = str.indexOf(symbol)
+        if (index === -1)
+            indexes.push(index)
+        count++
+        str = str.substring(index + 1)
+    }
+    console.log(`Символ: ${symbol} встречается в строке ${count} раза.`)
+    console.log("Индексы встречаемости символа:", indexes)
+}
+
+findIndexWord("hello world", 'o')
