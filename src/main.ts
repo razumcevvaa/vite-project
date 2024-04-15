@@ -1860,5 +1860,4 @@ function findIndexWord(str: string, symbol: string) {
     console.log(`Символ: ${symbol} встречается в строке ${count} раза.`)
     console.log("Индексы встречаемости символа:", indexes)
 }
-
 findIndexWord("hello world", 'o')
