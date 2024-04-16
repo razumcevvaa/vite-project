@@ -1835,7 +1835,6 @@ console.log(getLongestWord('The quick brown fox jumpedhhh over the lazy dog'))
 function getSrednLengWord(str: string) {
     let words = str.split(' ')
     let totalLength = 0
-
     for (let word of words) {
         totalLength += word.length
     }
@@ -1848,16 +1847,34 @@ console.log(getSrednLengWord('The quick brown fox jumpedhhh over the lazy dog'))
 // строке. Также вывести, сколько всего раз встречается этот
 // символ в строке.
 function findIndexWord(str: string, symbol: string) {
-    let indexes = []
-    let count = 0
-    for (let i = 0; i < str.length; i++) {
-        const index = str.indexOf(symbol)
-        if (index === -1)
-            indexes.push(index)
-        count++
-        str = str.substring(index + 1)
+    const info = {
+        position: [] as number[],
+        kolvo: 0,
     }
-    console.log(`Символ: ${symbol} встречается в строке ${count} раза.`)
-    console.log("Индексы встречаемости символа:", indexes)
+    for (let i = 0; i < str.length; i++) {
+        if (symbol == str[i]) {
+            info.position.push(i)
+            info.kolvo++
+        }
+    }
+    return info
 }
-findIndexWord("hello world", 'o')
+console.log(findIndexWord('hello world', 'h'))
+
+// !СТРОКИ ДЗ
+// 1 Написать функцию, которая принимает строку и выводит
+// статистику о ней: количество букв, количество цифр и
+// количество других знаков.
+function getStatisticStr(str: string) {
+    const info = {
+        letter: 0,
+        numb: 0,
+        symb: 0,
+    }
+    for (let char of str){
+       
+    }
+    return info
+}
+console.log(getStatisticStr('orofjoijr33'))
+
