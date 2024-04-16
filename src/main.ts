@@ -1871,10 +1871,83 @@ function getStatisticStr(str: string) {
         numb: 0,
         symb: 0,
     }
-    for (let char of str){
-       
+    const letter = 'абвгдеёжзийклмнопрстуфхцчшщъыьэюяqwertyuiopasdfghjklzxcvbnm'
+    const allletters = letter + letter.toUpperCase()
+    console.log(allletters)
+    const numbers = '0123456789'
+    const simbols = '?/,.;:!#$%^&*()-+=~'
+    for (let char of str) {
+        if (allletters.includes(char)) {
+            info.letter++
+        }
+        if (numbers.includes(char)) {
+            info.numb++
+        }
+        if (simbols.includes(char)) {
+            info.symb++
+        }
     }
     return info
 }
-console.log(getStatisticStr('orofjoijr33'))
+console.log(getStatisticStr('o  %^% 7kjoi ,, 33'))
+
+// 2 Написать функцию, которая принимает двузначное число
+// и возвращает его в текстовом виде.
+// Например: 35 – тридцать пять, 89 – восемьдесят девять,
+// 12 – двенадцать.
+function getTextNumb(number: number) {
+    let first = ['ноль', 'Один', 'Два', 'Три', 'Четыре', 'Пять', 'Шесть', 'Семь', 'Восемь', 'Девять']
+    let second = ['Десять', 'Одинадцать', 'Двенадцать', 'Тринадцать', 'Четырнадцать', 'Пятнадцать', 'Шестнадцать', 'Семьнадцать', 'Восемьнадцать', 'Девяднадцать']
+    let third = ['', '', 'Двадцать', 'Тридцать', 'Сорок', 'Пятьдесят', 'Шестьдесят', 'Семьдесят', 'Восемьдесят', 'Девяносто']
+    if (number >= 0 && number <= 9) {
+        return first[number]
+    }
+    if (number >= 10 && number < 20) {
+        return second[number - 10]
+    }
+    if (number >= 20 && number <= 99) {
+        if (number % 10 == 0) {
+            return third[number / 10]
+        }
+        return third[Math.trunc(number / 10)] + ' ' + first[number % 10]
+    }
+    else {
+        return 'Введите двузначное число'
+    }
+}
+console.log(getTextNumb(19))
+
+//3 Написать функцию, которая заменяет в полученной строке
+// большие буквы на маленькие, маленькие – на большие, а
+// цифры – на знак нижнего подчеркивания.
+function changeStr(str: string) {
+    let num = '1234567890'
+    let chars = str.toUpperCase().split('')
+    for (let i = 0; i < chars.length; i++) {
+        if (chars[i] == str[i])
+            chars[i] = chars[i].toLowerCase()
+        if (num.includes(chars[i])) {
+            chars[i] = '_'
+        }
+    }
+    return chars.join('')
+}
+console.log(changeStr('FMrs53'))
+
+// 4 Написать функцию, которая преобразует названия css-
+// стилей с дефисом в название в СamelСase стиле: font-size
+// в fontSize, background-color в backgroundColor, text-
+// align в textAlign.
+function transformTextStyle(str: string) {
+
+    const strArr = str.split('-')
+    for (let i = 1; i < strArr.length; i++) {
+        strArr[i] = strArr[i][0].toUpperCase() + strArr[i].slice(1)
+    }
+    return strArr.join('')
+    // return str.split('-').map((el,i)=> i?el[0].toUpperCase()+el.slice(1):el).join('')
+
+}
+console.log(transformTextStyle('background-color'))
+console.log(transformTextStyle('-moz-background-color'))
 
