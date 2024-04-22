@@ -1951,3 +1951,84 @@ function transformTextStyle(str: string) {
 console.log(transformTextStyle('background-color'))
 console.log(transformTextStyle('-moz-background-color'))
 
+// 5 Написать функцию, которая принимает словосочетание
+// и превращает его в аббревиатуру.
+// Например: cascading style sheets в CSS, объектно-
+// ориентированное программирование в ООП.
+function transformAbbreviation(str: string) {
+    let words = str.split(' ')
+    let abb = ''
+    words.forEach(word => {
+        abb += word[0].toUpperCase()
+    })
+    return abb
+}
+console.log(transformAbbreviation('cascading style sheets'))
+console.log(transformAbbreviation('объектно- ориентированное программирование'))
+
+// 6 Написать функцию, которая принимает любое коли-
+// чество строк, объединяет их в одну длинную строку и
+// возвращает ее.
+function combineStrings(...str: any) {
+    return str.join('')
+}
+console.log(combineStrings('mom', ',', 'gog', 'ookok'))
+
+// 7 Написать функцию – калькулятор. Функция принимает
+// строку с примером, определяет, какое действие необходимо
+// выполнить (+ - * /), переводит операнды в числа, решает
+// пример и возвращает результат.
+// function calculator(expression:string) {
+//     const operator = expression.match(/[\+\-\*\/]/)[0]
+//     const operands = expression.split(operator).map(num => parseFloat(num))
+
+//     switch (operator) {
+//         case '+':
+//             return operands[0] + operands[1]
+//         case '-':
+//             return operands[0] - operands[1]
+//         case '*':
+//             return operands[0] * operands[1]
+//         case '/':
+//             if (operands[1] === 0) {
+//                 return 'Error: Division by zero'
+//             }
+//             return operands[0] / operands[1]
+//         default:
+//             return 'Error: Invalid operator'
+//     }
+// }
+
+// console.log(calculator('2 + 89'))
+// console.log(calculator('5 * 4'))
+// console.log(calculator('100 / 8'))
+// console.log(calculator('8 - 556'))
+
+// 8 Написать функцию, которая получает url и выводит под-
+// робную информацию о нем.
+// Например: url “https://itstep.org/ua/about”, информация
+// “протокол: https, домен: itstep.org, путь: /ua/about”.
+function getInfoUrl(str: string) {
+    const protocol = str.split('://')[0]
+    const domain = str.split('://')[1].split('/')[0]
+    const path = str.split(domain)[1]
+    return `протокол: ${protocol}, домен: ${domain}, путь: ${path}`
+}
+console.log(getInfoUrl('https://itstep.org/ua/about'))
+
+// 9 Написать функцию, которая принимает строку и раздели-
+// тель и возвращает массив подстрок, разбитых с помощью
+// указанного разделителя.
+// Например: строка “10/08/2020”, разделитель “/”, результат:
+// “10”, “08”, “2020”.
+// Выполняя задание, не используйте функцию split().
+
+//10 Написать функцию вывода текста по заданному шаблону.
+// Функция принимает первым параметром шаблон, в тексте
+// которого может использоваться %, после символа % ука-
+// зывается индекс входного параметра. При выводе вместо
+// %индекс необходимо вывести значение соответствующего
+// входного параметра.
+// Например: print(“Today is %1 %2.%3.%4”, “Monday”, 10,
+// 8, 2020) должна вывести “Today is Monday 10.8.2020”. 
+
