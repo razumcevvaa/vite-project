@@ -1978,31 +1978,30 @@ console.log(combineStrings('mom', ',', 'gog', 'ookok'))
 // строку с примером, определяет, какое действие необходимо
 // выполнить (+ - * /), переводит операнды в числа, решает
 // пример и возвращает результат.
-// function calculator(expression:string) {
-//     const operator = expression.match(/[\+\-\*\/]/)[0]
-//     const operands = expression.split(operator).map(num => parseFloat(num))
+function calculator(primer: string) {
+    primer = primer.replaceAll(' ', '')
+    if (primer.includes('+')) {
+        const arr = primer.split('+')
+        return +arr[0] + (+arr[1])
+    }
+    else if (primer.includes('-')) {
+        const arr = primer.split('-')
+        return +arr[0] - (+arr[1])
+    }
+    else if (primer.includes('*')) {
+        const arr = primer.split('*')
+        return +arr[0] * (+arr[1])
+    }
+    else if (primer.includes('/')) {
+        const arr = primer.split('/')
+        return +arr[0] / (+arr[1])
+    }
+}
 
-//     switch (operator) {
-//         case '+':
-//             return operands[0] + operands[1]
-//         case '-':
-//             return operands[0] - operands[1]
-//         case '*':
-//             return operands[0] * operands[1]
-//         case '/':
-//             if (operands[1] === 0) {
-//                 return 'Error: Division by zero'
-//             }
-//             return operands[0] / operands[1]
-//         default:
-//             return 'Error: Invalid operator'
-//     }
-// }
-
-// console.log(calculator('2 + 89'))
-// console.log(calculator('5 * 4'))
-// console.log(calculator('100 / 8'))
-// console.log(calculator('8 - 556'))
+console.log(calculator('2 + 89'))
+console.log(calculator('5 * 4'))
+console.log(calculator('100 / 8'))
+console.log(calculator('8 - 556'))
 
 // 8 Написать функцию, которая получает url и выводит под-
 // робную информацию о нем.
