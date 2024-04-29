@@ -2031,3 +2031,52 @@ console.log(getInfoUrl('https://itstep.org/ua/about'))
 // Например: print(“Today is %1 %2.%3.%4”, “Monday”, 10,
 // 8, 2020) должна вывести “Today is Monday 10.8.2020”. 
 
+// !КЛАССЫ
+//1 Реализовать класс, которой состоит из:
+// ■ размера шрифта;
+// ■ цвета шрифта;
+// ■ семейства шрифта, метода print(), который принимает текст и печатает его
+// соответствующим шрифтом с помощью
+// Создать объект такого класса и продемонстрировать работу метода.
+const printMachDIV = document.getElementById('print-machin') as HTMLDivElement
+class PrintMachine {
+    fontSize = 20
+    color = 'red'
+    fontFamily = 'verdana'
+    constructor(fontSize: number, color: string, fontFamily: string) {
+        this.fontSize = fontSize
+        this.color = color
+        this.fontFamily = fontFamily
+    }
+    print(text: string) {
+        printMachDIV.innerHTML = `${text}`
+    }
+}
+const mee = new PrintMachine(200, 'red', 'verdana')
+mee.print('Hellpp(this is written by a printing machine)')
+// let mee2 = new PrintMachine(200, 'red', 'verdana')
+// mee2.print('как сделать второй текст')
+
+// 2 Реализовать класс, описывающий новость (заголовок, текст,
+// массив тегов, дата публикации). В классе необходимо реализовать
+// один метод print, который выводит всю информацию в таком
+// виде, как на рисунке 1
+const newsDIV = document.getElementById('news-news') as HTMLDivElement
+class News {
+    heading
+    date
+    text
+    hashtag
+    constructor(heading: string, text: string, hashtag: string, date: string) {
+        this.heading = heading
+        this.date = date
+        this.text = text
+        this.hashtag = hashtag
+    }
+    print() {
+        newsDIV.innerHTML = (`${this.heading} ekrnf ${this.date} krfnrinrinire${this.text} ${this.hashtag}`)
+    }
+}
+const newNews = new News('Music Is More Than Just Sound','','Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...','#music #song #TheNYT')
+// https://www.nytimes.com/2024/04/25/arts/design/san-francisco-museum-sound.html
+newNews.print()
