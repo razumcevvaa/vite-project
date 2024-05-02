@@ -30,9 +30,11 @@ input {
 #cheque_shop table tr td:first-child {
   text-align: left;
 }
+
 #cheque_shop table tr th:first-child {
   text-align: left;
 }
+
 #cheque_shop h1 {
   text-align: right;
   font-size: 20px;
@@ -48,16 +50,20 @@ input {
   padding: 0 20px;
   height: 400px;
 }
+
 #cheque_shop h3 {
   text-align: center;
 }
+
 #cheque_shop p {
   margin: 0;
   padding-bottom: 30px;
 }
+
 #sum_sal {
   color: white;
 }
+
 #button-for-empl button {
   margin: 5px;
   border-radius: 30px;
@@ -68,23 +74,49 @@ input {
   transition: 1s ease-in-out;
   cursor: pointer;
 }
+
 #button-for-empl button:hover {
   background-color: rgb(184, 241, 255);
 }
+
 #button-for-empl {
   margin-left: 50px;
 }
+
 #sum_sal h3 {
   color: rgb(0, 255, 17);
   font-size: 20px;
   transition: 1s ease-in-out;
   transform: scale(0.7s);
 }
+
 .container {
   margin: 20px;
 }
+
 #print-machin {
   font-size: 20px;
   color: red;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#secondsToTomorrow,
+#time-tom {
+  display: flex;
+  justify-content: center;
+  color: rgb(249, 201, 255);
+  font-size: 40px;
+  font-weight: bold;
+  border-radius: 4px;
+}
+#secondsToTomorrow{
+  color: rgb(243, 156, 255);
+}
+.lol {
+  display: flex;
+  justify-content: center;
+  color: rgb(249, 201, 255);
+  font-size: 30px;
+  margin: 0;
+  margin-top: 20px;
 }

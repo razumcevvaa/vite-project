@@ -2181,3 +2181,73 @@ newNews.print()
 }
 let now = new Date()
 console.log(now)
+let date = new Date(2012, 1, 20, 3, 12)
+console.log(date.toLocaleString())
+
+function getWeekDay(date: Date) {
+    let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ']
+    return days[date.getDay()]
+}
+date = new Date(2012, 0, 3)
+console.log(getWeekDay(date))
+
+function getLocalDay(date: Date) {
+    let day = date.getDay()
+    if (day == 0) {
+        day = 7
+    }
+    return day
+}
+date = new Date(2012, 0, 3)
+console.log(getLocalDay(date))
+
+function getDateAgo(date: Date, days: number) {
+    let dateCopy = new Date(date)
+    dateCopy.setDate(date.getDate() - days)
+
+    return dateCopy.getDate()
+}
+date = new Date(2015, 0, 2)
+console.log(getDateAgo(date, 1))
+console.log(getDateAgo(date, 2))
+console.log(getDateAgo(date, 365))
+
+function getLastDayOfMonth(year: number, month: number) {
+    let date = new Date(year, month + 1, 0)
+    return date.getDate()
+}
+console.log((getLastDayOfMonth(2012, 0)))
+console.log((getLastDayOfMonth(2012, 1)))
+
+function getSecondsToday() {
+    let date = new Date()
+    return date.getHours() * 3600 + date.getMinutes() * 60 + date.getSeconds()
+}
+date = new Date(2012, 0, 3, 10)
+console.log(getSecondsToday())
+
+function getSecondsToTomorrow() {
+    let now = new Date()
+    let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
+    let diff = tomorrow.getTime() - now.getTime()
+    return Math.floor(diff / 1000)
+}
+console.log(getSecondsToTomorrow())
+
+const timeNodeDIV = document.getElementById('secondsToTomorrow') as HTMLDivElement
+function getCurrentTimeString() {
+    return new Date().toTimeString().replace(/ .*/, '')
+}
+setInterval(
+    () => timeNodeDIV.innerHTML = getCurrentTimeString(),
+    1000
+)
+const timeTomDIV = document.getElementById('time-tom') as HTMLDivElement
+
+function timeTomorr() {
+    setInterval(
+        () => timeTomDIV.innerHTML = getSecondsToTomorrow().toString(),1000
+    )
+}
+timeTomorr()
+
