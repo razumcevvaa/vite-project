@@ -2031,7 +2031,7 @@ console.log(getInfoUrl('https://itstep.org/ua/about'))
 // Например: print(“Today is %1 %2.%3.%4”, “Monday”, 10,
 // 8, 2020) должна вывести “Today is Monday 10.8.2020”. 
 
-// !КЛАССЫ
+// !ПЗ КЛАССЫ
 //1 Реализовать класс, которой состоит из:
 // ■ размера шрифта;
 // ■ цвета шрифта;
@@ -2077,6 +2077,85 @@ class News {
         newsDIV.innerHTML = (`${this.heading} ekrnf ${this.date} krfnrinrinire${this.text} ${this.hashtag}`)
     }
 }
-const newNews = new News('Music Is More Than Just Sound','','Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...','#music #song #TheNYT')
+const newNews = new News('Music Is More Than Just Sound', '', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT')
 // https://www.nytimes.com/2024/04/25/arts/design/san-francisco-museum-sound.html
 newNews.print()
+//!ДЗ КЛАССЫ
+// 1 Реализовать класс, описывающий окружность. В классе долж-
+// ны быть следующие компоненты:
+// ■ поле, хранящее радиус окружности;
+// ■ get-свойство, возвращающее радиус окружности;
+// ■ set-свойство, устанавливающее радиус окружности;
+// ■ get-свойство, возвращающее диаметр окружности;
+// ■ метод, вычисляющий площадь окружности;
+// ■ метод, вычисляющий длину окружности.
+// Продемонстрировать работу свойств и методов.
+{
+    class HtmlElement {
+        tag: string
+        isSingle: boolean
+        text: string
+        atributes = [] as any[]
+        styles = [] as any[]
+        elements = [] as HtmlElement[]
+        constructor(tag: string, text = '') {
+            const singleArr = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
+            this.tag = tag
+            this.text = text
+            this.isSingle = singleArr.includes(tag) ? true : false
+        }
+        setAtribute(name: string, value: string) {
+            this.atributes.push({ name, value })
+        }
+        setStyle(name: string, value: string) {
+            this.styles.push({ name, value })
+        }
+        prepend(el: HtmlElement) {
+            this.elements.unshift(el)
+        }
+        append(el: HtmlElement) {
+            this.elements.push(el)
+        }
+        getHtml(): string {
+            const styles = this.styles.map(el => el.name + ':' + el.value).join(';')
+            const attrCopy = [...this.atributes]
+            if (this.styles.length) {
+                attrCopy.push({ name: 'style', value: styles })
+            }
+            if (this.isSingle) {
+                if (this.text) {
+                    attrCopy.push({ name: 'area-label', value: this.text })
+                }
+                const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
+                return `<${this.tag} ${atributes}>`
+            } else {
+                const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
+                return `<${this.tag} ${atributes}>${this.text}${this.elements.map(el => el.getHtml()).join('\n')}</${this.tag}>`
+            }
+        }
+    }
+    const wrapper = new HtmlElement('div')
+    wrapper.setAtribute('id', 'wrapper')
+    wrapper.setStyle('display', 'flex')
+    const div = new HtmlElement('div')
+    div.setStyle('width', '300px')
+    div.setStyle('margin', '10px')
+    const h3 = new HtmlElement('h3', 'Lorem')
+    const img = new HtmlElement('img')
+    img.setStyle('width', '100%')
+    img.setAtribute('src', '1.gif')
+    img.setAtribute('alt', 'Lorem')
+    const p = new HtmlElement('p', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla assumenda inventore voluptas natus obcaecati mollitia ad eos adipisci delectus quia odit, earum culpa sunt, molestiae doloribus in explicabo! Illo, harum!')
+    p.setStyle('text-align', 'justify')
+    const a = new HtmlElement('a', 'More...')
+    a.setAtribute('href', 'https://www.lipsum.com/')
+    a.setAtribute('target', '_blank')
+    p.append(a)
+    div.append(img)
+    div.append(p)
+    div.prepend(h3)
+    wrapper.append(div)
+    wrapper.append(div)
+    const heDiv = document.getElementById('he') as HTMLDivElement
+    heDiv.innerHTML = wrapper.getHtml()
+}
