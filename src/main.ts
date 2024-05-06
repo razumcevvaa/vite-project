@@ -2015,22 +2015,6 @@ function getInfoUrl(str: string) {
 }
 console.log(getInfoUrl('https://itstep.org/ua/about'))
 
-// 9 Написать функцию, которая принимает строку и раздели-
-// тель и возвращает массив подстрок, разбитых с помощью
-// указанного разделителя.
-// Например: строка “10/08/2020”, разделитель “/”, результат:
-// “10”, “08”, “2020”.
-// Выполняя задание, не используйте функцию split().
-
-//10 Написать функцию вывода текста по заданному шаблону.
-// Функция принимает первым параметром шаблон, в тексте
-// которого может использоваться %, после символа % ука-
-// зывается индекс входного параметра. При выводе вместо
-// %индекс необходимо вывести значение соответствующего
-// входного параметра.
-// Например: print(“Today is %1 %2.%3.%4”, “Monday”, 10,
-// 8, 2020) должна вывести “Today is Monday 10.8.2020”. 
-
 // !ПЗ КЛАССЫ
 //1 Реализовать класс, которой состоит из:
 // ■ размера шрифта;
@@ -2040,19 +2024,22 @@ console.log(getInfoUrl('https://itstep.org/ua/about'))
 // Создать объект такого класса и продемонстрировать работу метода.
 const printMachDIV = document.getElementById('print-machin') as HTMLDivElement
 class PrintMachine {
+    tag: string
     fontSize = 20
     color = 'red'
     fontFamily = 'verdana'
-    constructor(fontSize: number, color: string, fontFamily: string) {
+    constructor(fontSize: number, color: string, fontFamily: string, tag = 'p') {
         this.fontSize = fontSize
         this.color = color
         this.fontFamily = fontFamily
+        this.tag = tag
     }
     print(text: string) {
-        printMachDIV.innerHTML = `${text}`
+        printMachDIV.innerHTML += `<${this.tag} style="font-size:${this.fontSize};font-family:${this.fontFamily}; color: ${this.color}">${text}</${this.tag}>`
     }
 }
-const mee = new PrintMachine(200, 'red', 'verdana')
+
+const mee = new PrintMachine(400, 'yellow', 'verdana')
 mee.print('Hellpp(this is written by a printing machine)')
 // let mee2 = new PrintMachine(200, 'red', 'verdana')
 // mee2.print('как сделать второй текст')
@@ -2067,19 +2054,31 @@ class News {
     date
     text
     hashtag
-    constructor(heading: string, text: string, hashtag: string, date: string) {
+    constructor(heading: string, text: string, hashtag: string, date: Date) {
         this.heading = heading
-        this.date = date
         this.text = text
         this.hashtag = hashtag
+        this.date = new Date(date)
     }
+    // getDate() {
+    //     let today = new Date()
+    //     let diffTime = Math.abs(today- this.date)
+    //     let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+    //     if (diffDays < 1) {
+    //         return 'Today'
+    //     } else if (diffDays < 7) {
+    //        return `${diffDays} дней назад`
+    //     } else {
+    //        return`${this.date.getDate()}.${this.date.getMonth() + 1}.${this.date.getFullYear()}`
+    //     }
+    // }
     print() {
-        newsDIV.innerHTML = (`${this.heading} ekrnf ${this.date} krfnrinrinire${this.text} ${this.hashtag}`)
+        newsDIV.innerHTML = (`${this.heading}${this.date}${this.text} ${this.hashtag}`)
     }
 }
-const newNews = new News('Music Is More Than Just Sound', '', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT')
+// const newNews = new News('Music Is More Than Just Sound','', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT')
 // https://www.nytimes.com/2024/04/25/arts/design/san-francisco-museum-sound.html
-newNews.print()
+// newNews.print()
 //!ДЗ КЛАССЫ
 // 1 Реализовать класс, описывающий окружность. В классе долж-
 // ны быть следующие компоненты:
@@ -2179,6 +2178,7 @@ newNews.print()
     const heDiv = document.getElementById('he') as HTMLDivElement
     heDiv.innerHTML = wrapper.getHtml()
 }
+
 let now = new Date()
 console.log(now)
 let date = new Date(2012, 1, 20, 3, 12)
@@ -2246,7 +2246,7 @@ const timeTomDIV = document.getElementById('time-tom') as HTMLDivElement
 
 function timeTomorr() {
     setInterval(
-        () => timeTomDIV.innerHTML = getSecondsToTomorrow().toString(),1000
+        () => timeTomDIV.innerHTML = getSecondsToTomorrow().toString(), 1000
     )
 }
 timeTomorr()
