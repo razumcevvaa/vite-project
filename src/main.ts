@@ -2079,6 +2079,19 @@ class News {
 // const newNews = new News('Music Is More Than Just Sound','', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT')
 // https://www.nytimes.com/2024/04/25/arts/design/san-francisco-museum-sound.html
 // newNews.print()
+
+// 3 Реализовать класс, описывающий новостную ленту.
+// Класс должен содержать:
+// ■ массив новостей;
+// ■ свойство, которое возвращает количество новостей;
+// ■ метод для вывода на экран всех новостей;
+// ■ метод для добавления новости;
+// ■ метод для удаления новости;
+// ■ метод для сортировки новостей по дате (от последних новостей до старых);
+// ■ метод для поиска новостей по тегу (возвращает массив
+// новостей, в которых указан переданный в метод тег).
+// Продемонстрировать работу написанных методов.
+
 //!ДЗ КЛАССЫ
 // 1 Реализовать класс, описывающий окружность. В классе долж-
 // ны быть следующие компоненты:
@@ -2089,7 +2102,37 @@ class News {
 // ■ метод, вычисляющий площадь окружности;
 // ■ метод, вычисляющий длину окружности.
 // Продемонстрировать работу свойств и методов.
-
+class Circle {
+    #radius
+    constructor(radius: number) {
+        this.#radius = radius
+    }
+    get radius() {
+        return this.#radius
+    }
+    set radius(n: number) {
+        if (n <= 0) {
+            console.log('ошибка блин')
+        }
+        this.#radius = n
+    }
+    getDiametr() {
+        return this.#radius * 2
+    }
+    squareCircle() {
+        return Math.PI * this.#radius ** 2
+    }
+    lengthCircle(){
+        return 2*Math.PI*this.#radius
+    }
+}
+const abc = new Circle (15)
+console.log(abc.radius)
+abc.radius = 20
+console.log(abc.radius)
+console.log(abc.getDiametr())
+console.log(abc.squareCircle())
+console.log(abc.lengthCircle())
 
 // 2 Реализовать класс, описывающий html элемент.
 // Класс HtmlElement должен содержать внутри себя:
