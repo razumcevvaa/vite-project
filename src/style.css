@@ -79,6 +79,15 @@ input {
   background-color: rgb(184, 241, 255);
 }
 
+#news-news {
+  background-color: #fff;
+  width: 600px;
+  padding: 5px 30px;
+}
+#news-news p {
+text-align: justify;
+}
+
 #button-for-empl {
   margin-left: 50px;
 }

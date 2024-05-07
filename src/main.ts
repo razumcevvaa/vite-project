@@ -1299,10 +1299,7 @@ document.body.insertAdjacentHTML('beforeend', tagString)
 console.log(fruits.indexOf('яблоко'))
 
 //!ДЗ МАССИВЫ
-// Задание 1 Создать массив «Список покупок». Каждый элемент массива
-// является объектом, который содержит название продукта, необ-
-// ходимое количество и куплен или нет. Написать несколько функ-
-// ций для работы с таким массивом.
+// Задание 1
 type product = {
     name: string,
     count: number,
@@ -1331,14 +1328,7 @@ function renderBuyList(shopList: product[]) {
 
 renderBuyList(shopList)
 
-// 2 Добавление покупки в список. Учтите, что при добавлении
-// покупки с уже существующим в списке продуктом, необ-
-// ходимо увеличивать количество в существующей покупке,
-// а не добавлять новую.
-//? shopList.reduce((count, currentValue) => {
-// ?  return +count + +currentValue
-// ?}) reduce
-
+// 2 
 const productNameInput = document.getElementById('productName') as HTMLInputElement
 const productCountInput = document.getElementById('productCount') as HTMLInputElement
 const addProductButton = document.getElementById('addProduct') as HTMLButtonElement
@@ -1392,9 +1382,7 @@ shopListOL.addEventListener('click', function (e) {
     }
 })
 
-// з2 Создать массив, описывающий чек в магазине. Каждый эле-
-// мент массива состоит из названия товара, количества и цены за
-// единицу товара. Написать следующие функции.
+// з2 
 type Tovar = {
     name: string,
     count: number,
@@ -1491,13 +1479,7 @@ function averageCheck(arr: Tovar[]) {
 console.log(averageCheck(chequeShop))
 
 
-// з3 Создать массив css-стилей (цвет, размер шрифта, выравнива-
-//     ние, подчеркивание и т. д.). Каждый элемент массива – это объ-
-//     ект, состоящий из двух свойств: название стиля и значение стиля.
-//     Написать функцию, которая принимает массив стилей и
-//     текст, и выводит этот текст с помощью document.write() в тегах
-//     <p></p>, добавив в открывающий тег атрибут style со всеми сти-
-//     лями, перечисленными в массиве.
+// з3 
 const styles = [
     { color: 'red' },
     { 'font-size': '20px' },
@@ -1515,20 +1497,6 @@ function renderText(styles: any[], text: string) {
     document.body.insertAdjacentHTML('beforeend', tagString)
 }
 renderText(styles, 'text1')
-
-// з4 Создать массив аудиторий академии. Объект-аудитория со-
-// стоит из названия, количества посадочных мест (от 10 до 20) и
-// названия факультета, для которого она педназначена.
-// Написать несколько функций для работы с ним.
-// 1 Вывод на экран всех аудиторий.
-// 2 Вывод на экран аудиторий для указанного факультета.
-// 3 Вывод на экран только тех аудиторий, которые подходят для
-// переданной группы. Объект-группа состоит из названия,
-// количества студентов и названия факультета.
-// 4 Функция сортировки аудиторий по количеству мест.
-// 5 Функция сортировки аудиторий по названию (по алфа-
-// виту).
-
 
 
 // 02.04.24
@@ -2016,12 +1984,7 @@ function getInfoUrl(str: string) {
 console.log(getInfoUrl('https://itstep.org/ua/about'))
 
 // !ПЗ КЛАССЫ
-//1 Реализовать класс, которой состоит из:
-// ■ размера шрифта;
-// ■ цвета шрифта;
-// ■ семейства шрифта, метода print(), который принимает текст и печатает его
-// соответствующим шрифтом с помощью
-// Создать объект такого класса и продемонстрировать работу метода.
+//1
 const printMachDIV = document.getElementById('print-machin') as HTMLDivElement
 class PrintMachine {
     tag: string
@@ -2046,39 +2009,44 @@ mee.print('Hellpp(this is written by a printing machine)')
 
 // 2 Реализовать класс, описывающий новость (заголовок, текст,
 // массив тегов, дата публикации). В классе необходимо реализовать
-// один метод print, который выводит всю информацию в таком
-// виде, как на рисунке 1
+// один метод print
 const newsDIV = document.getElementById('news-news') as HTMLDivElement
 class News {
     heading
     date
     text
     hashtag
-    constructor(heading: string, text: string, hashtag: string, date: Date) {
+    a
+    constructor(heading: string, text: string, hashtag: string, date: string,a:string) {
         this.heading = heading
         this.text = text
         this.hashtag = hashtag
         this.date = new Date(date)
+        this.a = a
     }
-    // getDate() {
-    //     let today = new Date()
-    //     let diffTime = Math.abs(today- this.date)
-    //     let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
-    //     if (diffDays < 1) {
-    //         return 'Today'
-    //     } else if (diffDays < 7) {
-    //        return `${diffDays} дней назад`
-    //     } else {
-    //        return`${this.date.getDate()}.${this.date.getMonth() + 1}.${this.date.getFullYear()}`
-    //     }
-    // }
+    getDate() {
+        let today = new Date()
+        let diffTime = Math.abs(today.getTime() - this.date.getTime())
+        let diffDays = diffTime / (1000 * 60 * 60 * 24)
+        if (diffDays < 1) {
+            return 'Today'
+        } else if (diffDays < 7) {
+           return `${diffDays} дней назад`
+        } else {
+           return this.date.toLocaleDateString()
+        }
+    }
     print() {
-        newsDIV.innerHTML = (`${this.heading}${this.date}${this.text} ${this.hashtag}`)
+        newsDIV.innerHTML = `<h1>${this.heading}</h1>
+        <p class="">${this.getDate()}</p>
+        <p>${this.text}</p>
+        <a href=" https://www.nytimes.com/2024/04/25/arts/design/san-francisco-museum-sound.html">${this.a}</a>
+        <p>${this.hashtag}</p>`
     }
 }
-// const newNews = new News('Music Is More Than Just Sound','', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT')
-// https://www.nytimes.com/2024/04/25/arts/design/san-francisco-museum-sound.html
-// newNews.print()
+const newNews = new News('Music Is More Than Just Sound','Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT', '2024-04-07T18:50:20',' More')
+
+newNews.print()
 
 // 3 Реализовать класс, описывающий новостную ленту.
 // Класс должен содержать:
@@ -2093,15 +2061,7 @@ class News {
 // Продемонстрировать работу написанных методов.
 
 //!ДЗ КЛАССЫ
-// 1 Реализовать класс, описывающий окружность. В классе долж-
-// ны быть следующие компоненты:
-// ■ поле, хранящее радиус окружности;
-// ■ get-свойство, возвращающее радиус окружности;
-// ■ set-свойство, устанавливающее радиус окружности;
-// ■ get-свойство, возвращающее диаметр окружности;
-// ■ метод, вычисляющий площадь окружности;
-// ■ метод, вычисляющий длину окружности.
-// Продемонстрировать работу свойств и методов.
+// 1 
 class Circle {
     #radius
     constructor(radius: number) {
@@ -2134,24 +2094,7 @@ console.log(abc.getDiametr())
 console.log(abc.squareCircle())
 console.log(abc.lengthCircle())
 
-// 2 Реализовать класс, описывающий html элемент.
-// Класс HtmlElement должен содержать внутри себя:
-// ■ название тега;
-// ■ самозакрывающийся тег или нет;
-// ■ текстовое содержимое;
-// ■ массив атрибутов;
-// ■ массив стилей;
-// ■ массив вложенных таких же тегов;
-// ■ метод для установки атрибута;
-// ■ метод для установки стиля;
-// ■ метод для добавления вложенного элемента в конец теку-
-// щего элемента;
-// ■ метод для добавления вложенного элемента в начало те-
-// кущего элемента;
-// ■ метод getHtml(), который возвращает html код в виде
-// строки, включая html код вложенных элементов.
-// С помощью написанного класса реализовать следующий блок
-// и добавить его на страницу с помощью document.write().
+// 2
 {
     class HtmlElement {
         tag: string
