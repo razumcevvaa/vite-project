@@ -2017,7 +2017,7 @@ class News {
     text
     hashtag
     a
-    constructor(heading: string, text: string, hashtag: string, date: string,a:string) {
+    constructor(heading: string, text: string, hashtag: string, date: string, a: string) {
         this.heading = heading
         this.text = text
         this.hashtag = hashtag
@@ -2031,9 +2031,9 @@ class News {
         if (diffDays < 1) {
             return 'Today'
         } else if (diffDays < 7) {
-           return `${diffDays} дней назад`
+            return `${diffDays} дней назад`
         } else {
-           return this.date.toLocaleDateString()
+            return this.date.toLocaleDateString()
         }
     }
     print() {
@@ -2044,7 +2044,7 @@ class News {
         <p>${this.hashtag}</p>`
     }
 }
-const newNews = new News('Music Is More Than Just Sound','Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT', '2024-04-07T18:50:20',' More')
+const newNews = new News('Music Is More Than Just Sound', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT', '2024-04-07T18:50:20', ' More')
 
 newNews.print()
 
@@ -2059,6 +2059,22 @@ newNews.print()
 // ■ метод для поиска новостей по тегу (возвращает массив
 // новостей, в которых указан переданный в метод тег).
 // Продемонстрировать работу написанных методов.
+
+class NewsFeed {
+    news
+    constructor(text: string) {
+        const news = ['news1', 'news2', 'news3']
+        this.news = news
+    }
+    get count() {
+        return this.news.length
+    }
+    showAllNews() {
+        
+    }
+
+
+}
 
 //!ДЗ КЛАССЫ
 // 1 
@@ -2082,11 +2098,11 @@ class Circle {
     squareCircle() {
         return Math.PI * this.#radius ** 2
     }
-    lengthCircle(){
-        return 2*Math.PI*this.#radius
+    lengthCircle() {
+        return 2 * Math.PI * this.#radius
     }
 }
-const abc = new Circle (15)
+const abc = new Circle(15)
 console.log(abc.radius)
 abc.radius = 20
 console.log(abc.radius)
