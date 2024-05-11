@@ -2088,13 +2088,13 @@ class NewsFeed {
         // let c = [new Date(a), new Date(b)]
         // c.sort((a: number, b: number) => b - a)
     }
-    searchNewsByTag(tag: string) {
-        const newsTag = this.news.filter((item) => item.includes(tag))
-        if (newsTag.length === 0) {
-            return 'Ничего не найдено'
-        }
-        return newsTag
-    }
+    // searchNewsByTag(tag: string) {
+    //     const newsTag = this.news.filter((item) => item.includes(tag))
+    //     if (newsTag.length === 0) {
+    //         return 'Ничего не найдено'
+    //     }
+    //     return newsTag
+    // }
 }
 const newsF = new NewsFeed()
 
