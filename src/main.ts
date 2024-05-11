@@ -2007,9 +2007,7 @@ mee.print('Hellpp(this is written by a printing machine)')
 // let mee2 = new PrintMachine(200, 'red', 'verdana')
 // mee2.print('как сделать второй текст')
 
-// 2 Реализовать класс, описывающий новость (заголовок, текст,
-// массив тегов, дата публикации). В классе необходимо реализовать
-// один метод print
+// 2 Реализовать класс, описывающий новость 
 const newsDIV = document.getElementById('news-news') as HTMLDivElement
 class News {
     heading
@@ -2059,22 +2057,55 @@ newNews.print()
 // ■ метод для поиска новостей по тегу (возвращает массив
 // новостей, в которых указан переданный в метод тег).
 // Продемонстрировать работу написанных методов.
-
+const allNewsDIV = document.getElementById('all-news') as HTMLDivElement
 class NewsFeed {
     news
-    constructor(text: string) {
-        const news = ['news1', 'news2', 'news3']
+    constructor() {
+        const news = [{ newNews }, ' news2', ' news3',]
         this.news = news
     }
     get count() {
         return this.news.length
     }
     showAllNews() {
-        
+        if (this.count == 0) {
+            console.log('Новостей пока нет')
+        }
+        allNewsDIV.innerHTML = `<h1>${this.news}</h1>`
+        console.log(this.news)
     }
-
-
+    addNews(heading: string, text: string, hashtag: string, date: string, a: string) {
+        this.news.push(heading, text, hashtag, date, a)
+    }
+    deleteNews(index: number) {
+        if (index > 0 && index < this.count) {
+            this.news.splice(index - 1, 1)
+        } else {
+            console.log('Под таким номером нет новости')
+        }
+    }
+    sortNewsDate() {
+        // let c = [new Date(a), new Date(b)]
+        // c.sort((a: number, b: number) => b - a)
+    }
+    searchNewsByTag(tag: string) {
+        const newsTag = this.news.filter((item) => item.includes(tag))
+        if (newsTag.length === 0) {
+            return 'Ничего не найдено'
+        }
+        return newsTag
+    }
 }
+const newsF = new NewsFeed()
+
+newsF.showAllNews()
+newsF.addNews('Music Is More Than Just Sound', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT', '2024-04-07T18:50:20', ' More')
+newsF.showAllNews()
+newsF.deleteNews(5)
+console.log(newsF.searchNewsByTag('pol'))
+newsF.showAllNews()
+
+//?!!!
 
 //!ДЗ КЛАССЫ
 // 1 
@@ -2252,4 +2283,47 @@ function timeTomorr() {
     )
 }
 timeTomorr()
+
+// 3пз Реализовать класс, который описывает css класс.
+// Класс CssClass должен содержать внутри себя:
+// ■ название css класса;
+// ■ массив стилей;
+// ■ метод для установки стиля;
+// ■ метод для удаления стиля;
+// ■ метод getCss(), который возвращает css код в виде строки.
+
+class CssClass {
+    styles = [] as any
+    name: string
+    constructor(name: string) {
+        this.name = name
+    }
+    setStyle(name: any, value: any) {
+        this.styles.push({ name, value })
+    }
+    removeProperty(name: string) {
+        // const index = this.styles.findIndex(el = el.name == name)
+        // if (index !== 1) this.styles.splice(index, 1)
+    }
+
+    getCss() {
+        const styles = this.styles.map((el: { name: string; value: string }) => el.name + ':' + el.value).join(';')
+        return `.${this.name}{${styles}}`
+    }
+}
+
+const descCss = document.getElementById('st') as HTMLDivElement
+const bigRed = new CssClass('bigRed')
+bigRed.setStyle("color", "red")
+bigRed.setStyle("color", "green")
+bigRed.setStyle("font-size", "30px")
+bigRed.setStyle("font-family", "Arial")
+console.log(bigRed.getCss())
+bigRed.removeProperty("font-family")
+bigRed.removeProperty("color")
+console.log(bigRed.getCss())
+
+descCss.innerHTML += bigRed.getCss()
+
+
 
