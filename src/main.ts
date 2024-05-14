@@ -2102,7 +2102,6 @@ newsF.showAllNews()
 newsF.addNews('Music Is More Than Just Sound', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT', '2024-04-07T18:50:20', ' More')
 newsF.showAllNews()
 newsF.deleteNews(5)
-console.log(newsF.searchNewsByTag('pol'))
 newsF.showAllNews()
 
 //?!!!
@@ -2142,7 +2141,7 @@ console.log(abc.squareCircle())
 console.log(abc.lengthCircle())
 
 // 2
-{
+
     class HtmlElement {
         tag: string
         isSingle: boolean
@@ -2199,10 +2198,10 @@ console.log(abc.lengthCircle())
     img.setAtribute('alt', 'Lorem')
     const p = new HtmlElement('p', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla assumenda inventore voluptas natus obcaecati mollitia ad eos adipisci delectus quia odit, earum culpa sunt, molestiae doloribus in explicabo! Illo, harum!')
     p.setStyle('text-align', 'justify')
-    const a = new HtmlElement('a', 'More...')
-    a.setAtribute('href', 'https://www.lipsum.com/')
-    a.setAtribute('target', '_blank')
-    p.append(a)
+    const ala = new HtmlElement('a', ' More...')
+    ala.setAtribute('href', 'https://www.lipsum.com/')
+    ala.setAtribute('target', '_blank')
+    p.append(ala)
     div.append(img)
     div.append(p)
     div.prepend(h3)
@@ -2210,7 +2209,7 @@ console.log(abc.lengthCircle())
     wrapper.append(div)
     const heDiv = document.getElementById('he') as HTMLDivElement
     heDiv.innerHTML = wrapper.getHtml()
-}
+
 
 let now = new Date()
 console.log(now)
@@ -2324,6 +2323,42 @@ bigRed.removeProperty("color")
 console.log(bigRed.getCss())
 
 descCss.innerHTML += bigRed.getCss()
+// 4 Реализовать класс, описывающий блок html документ.
+// Класс HtmlBlock должен содержать внутри себя:
+// ■ коллекцию стилей, описанных с помощью класса CssClass;
+// ■ корневой элемент,описанный с помощью класса HtmlElement;
+// ■ метод getCode(), который возвращает строку с html ко-
+// дом (сначала теги style с описанием всех классов, а потом
+// все html содержимое из корневого тега и его вложенных
+// элементов).
+class HtmlBlock {
+    styles = [] as CssClass[]
+    element: HtmlElement
+    constructor(styles: CssClass[], element: HtmlElement) {
+      this.styles = styles
+      this.element = element
+    }
+   
+  
+    getCode() {
+      
+    }
+  }
+  
+  const docCss = document.getElementById('st') as HTMLDivElement
+  const bigGreen = new CssClass('bigGreen')
+  const docDiv = document.getElementById('he') as HTMLDivElement
+  bigGreen.setStyle("color", "pink")
+  bigGreen.setStyle("color", "white")
+  bigGreen.setStyle("font-size", "40px")
+  bigGreen.setStyle("font-family", "Times New Roman")
+  console.log(bigGreen.getCss())
+  bigGreen.removeProperty("font-family")
+  bigGreen.removeProperty("color")
+  
+  const block = new HtmlBlock([bigGreen,],wrapper)
+  docCss.innerHTML += bigGreen.getCss()
+  docDiv.innerHTML = wrapper.getHtml()
 
 
 
