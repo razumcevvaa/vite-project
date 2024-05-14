@@ -2009,6 +2009,22 @@ mee.print('Hellpp(this is written by a printing machine)')
 
 // 2 Реализовать класс, описывающий новость 
 const newsDIV = document.getElementById('news-news') as HTMLDivElement
+const newsTitleInput = document.getElementById('nttitle') as HTMLInputElement
+const newsTextInput = document.getElementById('nttext') as HTMLInputElement
+const newsTagInput = document.getElementById('nttag') as HTMLInputElement
+const newsAInput = document.getElementById('nta') as HTMLInputElement
+const newsDateInput = document.getElementById('ntd') as HTMLInputElement
+const newsAddInput = document.getElementById('ntadd') as HTMLInputElement
+
+newsAddInput.addEventListener('click', () => {
+    newsF.addNews(newsTitleInput.value, newsTextInput.value, newsTagInput.value, newsDateInput.value, newsAInput.value)
+})
+const newsFindInput = document.getElementById('numNew') as HTMLInputElement
+const newsDelInput = document.getElementById('delNew') as HTMLInputElement
+newsDelInput.addEventListener('click', () => {
+    newsF.deleteNews(newsFindInput.valueAsNumber)
+})
+
 class News {
     heading
     date
@@ -2035,7 +2051,7 @@ class News {
         }
     }
     print() {
-        newsDIV.innerHTML = `<h1>${this.heading}</h1>
+        return `<h1>${this.heading}</h1>
         <p class="">${this.getDate()}</p>
         <p>${this.text}</p>
         <a href=" https://www.nytimes.com/2024/04/25/arts/design/san-francisco-museum-sound.html">${this.a}</a>
@@ -2057,54 +2073,41 @@ newNews.print()
 // ■ метод для поиска новостей по тегу (возвращает массив
 // новостей, в которых указан переданный в метод тег).
 // Продемонстрировать работу написанных методов.
-const allNewsDIV = document.getElementById('all-news') as HTMLDivElement
 class NewsFeed {
-    news
-    constructor() {
-        const news = [{ newNews }, ' news2', ' news3',]
+    news: News[]
+    constructor(news: News[]) {
         this.news = news
     }
-    get count() {
-        return this.news.length
-    }
-    showAllNews() {
-        if (this.count == 0) {
-            console.log('Новостей пока нет')
+    showAllNews(text = 'Новостей пока нет', news = this.news) {
+        if (news.length == 0) {
+            newsDIV.innerHTML = text
+        } else {
+            newsDIV.innerHTML = this.news.map(el => el.print()).join('<br>')
         }
-        allNewsDIV.innerHTML = `<h1>${this.news}</h1>`
-        console.log(this.news)
     }
     addNews(heading: string, text: string, hashtag: string, date: string, a: string) {
-        this.news.push(heading, text, hashtag, date, a)
+        this.news.push(new News(heading, text, hashtag, date, a))
+        this.showAllNews()
     }
     deleteNews(index: number) {
-        if (index > 0 && index < this.count) {
+        if (index > 0 && index < this.news.length) {
             this.news.splice(index - 1, 1)
         } else {
             console.log('Под таким номером нет новости')
         }
+        this.showAllNews()
     }
     sortNewsDate() {
-        // let c = [new Date(a), new Date(b)]
-        // c.sort((a: number, b: number) => b - a)
+        this.news.sort((a, b) => b.date.getTime() - a.date.getTime())
+        this.showAllNews()
     }
-    // searchNewsByTag(tag: string) {
-    //     const newsTag = this.news.filter((item) => item.includes(tag))
-    //     if (newsTag.length === 0) {
-    //         return 'Ничего не найдено'
-    //     }
-    //     return newsTag
-    // }
+    searchNewsByTag(tag: string) {
+        this.showAllNews('Ничего не найденo', this.news.filter((item) => item.hashtag.includes(tag)))
+    }
 }
-const newsF = new NewsFeed()
+const newsF = new NewsFeed([newNews])
 
-newsF.showAllNews()
-newsF.addNews('Music Is More Than Just Sound', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT', '2024-04-07T18:50:20', ' More')
-newsF.showAllNews()
-newsF.deleteNews(5)
-newsF.showAllNews()
-
-//?!!!
+newsF.addNews('Music !!!!!', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT', '2024-04-07T18:50:20', ' More')
 
 //!ДЗ КЛАССЫ
 // 1 
@@ -2142,73 +2145,73 @@ console.log(abc.lengthCircle())
 
 // 2
 
-    class HtmlElement {
-        tag: string
-        isSingle: boolean
-        text: string
-        atributes = [] as any[]
-        styles = [] as any[]
-        elements = [] as HtmlElement[]
-        constructor(tag: string, text = '') {
-            const singleArr = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
-            this.tag = tag
-            this.text = text
-            this.isSingle = singleArr.includes(tag) ? true : false
+class HtmlElement {
+    tag: string
+    isSingle: boolean
+    text: string
+    atributes = [] as any[]
+    styles = [] as any[]
+    elements = [] as HtmlElement[]
+    constructor(tag: string, text = '') {
+        const singleArr = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
+        this.tag = tag
+        this.text = text
+        this.isSingle = singleArr.includes(tag) ? true : false
+    }
+    setAtribute(name: string, value: string) {
+        this.atributes.push({ name, value })
+    }
+    setStyle(name: string, value: string) {
+        this.styles.push({ name, value })
+    }
+    prepend(el: HtmlElement) {
+        this.elements.unshift(el)
+    }
+    append(el: HtmlElement) {
+        this.elements.push(el)
+    }
+    getHtml(): string {
+        const styles = this.styles.map(el => el.name + ':' + el.value).join(';')
+        const attrCopy = [...this.atributes]
+        if (this.styles.length) {
+            attrCopy.push({ name: 'style', value: styles })
         }
-        setAtribute(name: string, value: string) {
-            this.atributes.push({ name, value })
-        }
-        setStyle(name: string, value: string) {
-            this.styles.push({ name, value })
-        }
-        prepend(el: HtmlElement) {
-            this.elements.unshift(el)
-        }
-        append(el: HtmlElement) {
-            this.elements.push(el)
-        }
-        getHtml(): string {
-            const styles = this.styles.map(el => el.name + ':' + el.value).join(';')
-            const attrCopy = [...this.atributes]
-            if (this.styles.length) {
-                attrCopy.push({ name: 'style', value: styles })
+        if (this.isSingle) {
+            if (this.text) {
+                attrCopy.push({ name: 'area-label', value: this.text })
             }
-            if (this.isSingle) {
-                if (this.text) {
-                    attrCopy.push({ name: 'area-label', value: this.text })
-                }
-                const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
-                return `<${this.tag} ${atributes}>`
-            } else {
-                const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
-                return `<${this.tag} ${atributes}>${this.text}${this.elements.map(el => el.getHtml()).join('\n')}</${this.tag}>`
-            }
+            const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
+            return `<${this.tag} ${atributes}>`
+        } else {
+            const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
+            return `<${this.tag} ${atributes}>${this.text}${this.elements.map(el => el.getHtml()).join('\n')}</${this.tag}>`
         }
     }
-    const wrapper = new HtmlElement('div')
-    wrapper.setAtribute('id', 'wrapper')
-    wrapper.setStyle('display', 'flex')
-    const div = new HtmlElement('div')
-    div.setStyle('width', '300px')
-    div.setStyle('margin', '10px')
-    const h3 = new HtmlElement('h3', 'Lorem')
-    const img = new HtmlElement('img')
-    img.setStyle('width', '100%')
-    img.setAtribute('src', '1.gif')
-    img.setAtribute('alt', 'Lorem')
-    const p = new HtmlElement('p', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla assumenda inventore voluptas natus obcaecati mollitia ad eos adipisci delectus quia odit, earum culpa sunt, molestiae doloribus in explicabo! Illo, harum!')
-    p.setStyle('text-align', 'justify')
-    const ala = new HtmlElement('a', ' More...')
-    ala.setAtribute('href', 'https://www.lipsum.com/')
-    ala.setAtribute('target', '_blank')
-    p.append(ala)
-    div.append(img)
-    div.append(p)
-    div.prepend(h3)
-    wrapper.append(div)
-    wrapper.append(div)
-    const heDiv = document.getElementById('he') as HTMLDivElement
-    heDiv.innerHTML = wrapper.getHtml()
+}
+const wrapper = new HtmlElement('div')
+wrapper.setAtribute('id', 'wrapper')
+wrapper.setStyle('display', 'flex')
+const div = new HtmlElement('div')
+div.setStyle('width', '300px')
+div.setStyle('margin', '10px')
+const h3 = new HtmlElement('h3', 'Lorem')
+const img = new HtmlElement('img')
+img.setStyle('width', '100%')
+img.setAtribute('src', '1.gif')
+img.setAtribute('alt', 'Lorem')
+const p = new HtmlElement('p', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla assumenda inventore voluptas natus obcaecati mollitia ad eos adipisci delectus quia odit, earum culpa sunt, molestiae doloribus in explicabo! Illo, harum!')
+p.setStyle('text-align', 'justify')
+const ala = new HtmlElement('a', ' More...')
+ala.setAtribute('href', 'https://www.lipsum.com/')
+ala.setAtribute('target', '_blank')
+p.append(ala)
+div.append(img)
+div.append(p)
+div.prepend(h3)
+wrapper.append(div)
+wrapper.append(div)
+const heDiv = document.getElementById('he') as HTMLDivElement
+heDiv.innerHTML = wrapper.getHtml()
 
 
 let now = new Date()
@@ -2292,21 +2295,21 @@ timeTomorr()
 // ■ метод getCss(), который возвращает css код в виде строки.
 
 class CssClass {
-    styles = [] as any
+    styles = [] as Record<string, string>[]
     name: string
     constructor(name: string) {
         this.name = name
     }
-    setStyle(name: any, value: any) {
+    setStyle(name: string, value: string) {
         this.styles.push({ name, value })
     }
     removeProperty(name: string) {
-        // const index = this.styles.findIndex(el = el.name == name)
-        // if (index !== 1) this.styles.splice(index, 1)
+        const index = this.styles.findIndex(el => el.name == name)
+        if (index !== 1) this.styles.splice(index, 1)
     }
 
     getCss() {
-        const styles = this.styles.map((el: { name: string; value: string }) => el.name + ':' + el.value).join(';')
+        const styles = this.styles.map((el) => el.name + ':' + el.value).join(';')
         return `.${this.name}{${styles}}`
     }
 }
@@ -2335,30 +2338,30 @@ class HtmlBlock {
     styles = [] as CssClass[]
     element: HtmlElement
     constructor(styles: CssClass[], element: HtmlElement) {
-      this.styles = styles
-      this.element = element
+        this.styles = styles
+        this.element = element
     }
-   
-  
+
+
     getCode() {
-      
+
     }
-  }
-  
-  const docCss = document.getElementById('st') as HTMLDivElement
-  const bigGreen = new CssClass('bigGreen')
-  const docDiv = document.getElementById('he') as HTMLDivElement
-  bigGreen.setStyle("color", "pink")
-  bigGreen.setStyle("color", "white")
-  bigGreen.setStyle("font-size", "40px")
-  bigGreen.setStyle("font-family", "Times New Roman")
-  console.log(bigGreen.getCss())
-  bigGreen.removeProperty("font-family")
-  bigGreen.removeProperty("color")
-  
-  const block = new HtmlBlock([bigGreen,],wrapper)
-  docCss.innerHTML += bigGreen.getCss()
-  docDiv.innerHTML = wrapper.getHtml()
+}
+
+const docCss = document.getElementById('st') as HTMLDivElement
+const bigGreen = new CssClass('bigGreen')
+const docDiv = document.getElementById('he') as HTMLDivElement
+bigGreen.setStyle("color", "pink")
+bigGreen.setStyle("color", "white")
+bigGreen.setStyle("font-size", "40px")
+bigGreen.setStyle("font-family", "Times New Roman")
+console.log(bigGreen.getCss())
+bigGreen.removeProperty("font-family")
+bigGreen.removeProperty("color")
+
+const block = new HtmlBlock([bigGreen,], wrapper)
+docCss.innerHTML += bigGreen.getCss()
+docDiv.innerHTML = wrapper.getHtml()
 
 
 
