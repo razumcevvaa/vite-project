@@ -2019,11 +2019,18 @@ const newsAddInput = document.getElementById('ntadd') as HTMLInputElement
 newsAddInput.addEventListener('click', () => {
     newsF.addNews(newsTitleInput.value, newsTextInput.value, newsTagInput.value, newsDateInput.value, newsAInput.value)
 })
+//удалить новость не нахлдитт другие новости
 const newsFindInput = document.getElementById('numNew') as HTMLInputElement
 const newsDelInput = document.getElementById('delNew') as HTMLInputElement
 newsDelInput.addEventListener('click', () => {
     newsF.deleteNews(newsFindInput.valueAsNumber)
 })
+// найти по тегу
+// const findNInput = document.getElementById('findN') as HTMLInputElement
+// const finddidInput = document.getElementById('findid') as HTMLInputElement
+// finddidInput.addEventListener('click',()=>{
+//     newsF.searchNewsByTag(findNInput)
+// })
 
 class News {
     heading
