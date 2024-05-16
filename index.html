@@ -10,63 +10,66 @@
 
 <body>
   <script type="module" src="/src/main.ts"></script>
-<div class="container">
-  <div id="secondsToTomorrow"></div>
-  <p class="lol">Секунд до завтра:</p>
-  <div id="time-tom"></div>
+  <div class="container">
+    <div id="secondsToTomorrow"></div>
+    <p class="lol">Секунд до завтра:</p>
+    <div id="time-tom"></div>
 
-  <div class="shop-list" id="PZ22z2" style="display: flex;">
-    <ol id="toBuyList"></ol>
-    <div>
-      <input type="text" id="productName" placeholder="название продукта">
-      <br>
-      <input type="text" id="productCount" placeholder="количество">
-      <br>
-      <button id="addProduct">Добавить</button>
-      <br>
-      <button id="setBuyed">Отметить купленным</button>
-    </div>
-  </div>
-  <div id="renderTextDiv"></div>
-  <div class="check" id="cheque_shop">
-  </div>
-  <div style="color: aliceblue;" id="llll"></div>
-  <div id="button-for-empl"></div>
-  <div id="sum_sal"></div>
-
-  <div id="print-machin"></div>
-
-  <div style="display: flex;">
-
-    <div id="news-news"></div>
-    <div class="newsFunc">
+    <div class="shop-list" id="PZ22z2" style="display: flex;">
+      <ol id="toBuyList"></ol>
       <div>
-        <h4 style="text-align: center;">Добавить новость</h4>
+        <input type="text" id="productName" placeholder="название продукта">
+        <br>
+        <input type="text" id="productCount" placeholder="количество">
+        <br>
+        <button id="addProduct">Добавить</button>
+        <br>
+        <button id="setBuyed">Отметить купленным</button>
+      </div>
+    </div>
+    <div id="renderTextDiv"></div>
+    <div class="check" id="cheque_shop">
+    </div>
+    <div style="color: aliceblue;" id="llll"></div>
+    <div id="button-for-empl"></div>
+    <div id="sum_sal"></div>
+
+    <div id="print-machin"></div>
+
+    <div style="display: flex;">
+
+      <div id="news-news"></div>
+      <div class="newsFunc">
+        <div>
+          <h4 style="text-align: center;">Добавить новость</h4>
           <input id="nttitle" type="text" placeholder="title">
           <input id="nttext" type="text" placeholder="text">
           <input id="nttag" type="text" placeholder="#tag #tag2 ...">
           <input id="nta" type="text" placeholder="https://...">
           <input id="ntd" type="datetime-local">
           <input id="ntadd" type="sunmit" value="add">
+        </div>
+        <div>
+          <h4 style="text-align: center;">Удалить новость</h4>
+          <input id="numNew" type="number" placeholder="Номер новости">
+          <input type="sunmit" id="delNew" value="delete">
+        </div>
+        <div>
+          <h4>Поиск по тегу</h4>
+          <input type="text" id="findN" placeholder="Введите тег">
+          <input type="sunmit" id="findid" value="find">
+        </div>
       </div>
-      <div>
-        <h4 style="text-align: center;">Удалить новость</h4>
-        <input id="numNew" type="number" placeholder="Номер новости">
-        <input type="sunmit" id="delNew" value="delete">
-      </div>
-      <div>
-        <h4>Поиск по тегу</h4>
-        <input type="text" id="findN" placeholder="Введите тег">
-        <input type="sunmit" id="findid" value="find">
-      </div>
+
     </div>
-    
+
+    <div id="pm"></div>
+    <div style="color: aliceblue;" id="he"></div>
+    <div id="st"></div>
+    <div id="he"></div>
   </div>
 
-  <div id="pm"></div>
-  <div style="color: aliceblue;" id="he"></div>
-  <div id="st"></div>
-  <div id="he"></div>
-</div>
+  <div id="marker"></div>
 </body>
+
 </html>

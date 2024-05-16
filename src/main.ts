@@ -2028,7 +2028,7 @@ newsDelInput.addEventListener('click', () => {
 // найти по тегу
 const findNInput = document.getElementById('findN') as HTMLInputElement
 const finddidInput = document.getElementById('findid') as HTMLInputElement
-finddidInput.addEventListener('click',()=>{
+finddidInput.addEventListener('click', () => {
     newsF.searchNewsByTag(findNInput.value)
 })
 
@@ -2081,14 +2081,14 @@ newNews.print()
 // новостей, в которых указан переданный в метод тег).
 // Продемонстрировать работу написанных методов.
 
-const makeNewsArr = ()=>{
+const makeNewsArr = () => {
     const arr = [] as News[]
-    if (localStorage.news=='undefined' || !localStorage.news) {
+    if (localStorage.news == 'undefined' || !localStorage.news) {
         return [newNews]
     }
     const rawArr = JSON.parse(localStorage.news) as any[]
-    rawArr.forEach(el=>{
-      arr.push(new News(el.heading,el.text,el.hashtag,el.date,el.a))  
+    rawArr.forEach(el => {
+        arr.push(new News(el.heading, el.text, el.hashtag, el.date, el.a))
     })
     return arr
 }
@@ -2386,5 +2386,56 @@ const block = new HtmlBlock([bigGreen,], wrapper)
 docCss.innerHTML += bigGreen.getCss()
 docDiv.innerHTML = wrapper.getHtml()
 
-
-
+// Реализовать класс, описывающий простой маркер. В классе
+// должны быть следующие компоненты:
+// ■ поле, которое хранит цвет маркера;
+// ■ поле, которое хранит количество чернил в маркере (в про-
+// центах);
+// ■ метод для печати (метод принимает строку и выводит
+// текст соответствующим цветом; текст выводится до тех
+// пор, пока в маркере есть чернила; один не пробельный
+// символ – это 0,5% чернил в маркере).
+// Реализовать класс, описывающий заправляющийся маркер,
+// унаследовав его от простого маркера и добавив метод для заправки
+// маркера.
+// Продемонстрировать работу написанных методов.
+const markText = document.getElementById('marker') as HTMLDivElement
+class Marker {
+    color
+    ink
+    constructor(color: string, ink: number) {
+        this.color = color
+        this.ink = ink
+    }
+    get markerProps() {
+        return [this.color, this.ink]
+    }
+    print(text: string) {
+        for (let i = 0; i < text.length; i++) {
+            if (this.ink != 0) {
+                if (text[i] == ' ') {
+                    this.ink += 0.5
+                }
+                markText.innerHTML += text[i]
+                markText.style.color = this.color
+                this.ink -= 0.5
+            } else if(this.ink == 0) {
+                markText.innerHTML += ' Marker is over'
+                break
+            }
+        }
+    }
+}
+class FilledMarker extends Marker {
+    fill(ink: number) {
+        if (ink > 100) {
+            ink = 100
+        }
+        else {
+            this.ink += ink
+        }
+    }
+}
+let marker = new FilledMarker('red', 2)
+const textMar = 'создана для удобства. Она может получить доступ к внешним переменным и, значит, вывести полное имя. В JavaScript вложенные функции используются очень часто. Что ещё интереснее, вложенная функция может быть возвращена: либо в качестве свойства нового объекта (если внеш khkhjkkjjkjdfjdslkjfkldsjflksdjflkjsdkl'
+marker.print(textMar)
