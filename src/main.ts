@@ -2023,14 +2023,14 @@ newsAddInput.addEventListener('click', () => {
 const newsFindInput = document.getElementById('numNew') as HTMLInputElement
 const newsDelInput = document.getElementById('delNew') as HTMLInputElement
 newsDelInput.addEventListener('click', () => {
-    newsF.deleteNews(newsFindInput.valueAsNumber)
+    newsF.deleteNews(+newsFindInput.value)
 })
 // найти по тегу
-// const findNInput = document.getElementById('findN') as HTMLInputElement
-// const finddidInput = document.getElementById('findid') as HTMLInputElement
-// finddidInput.addEventListener('click',()=>{
-//     newsF.searchNewsByTag(findNInput)
-// })
+const findNInput = document.getElementById('findN') as HTMLInputElement
+const finddidInput = document.getElementById('findid') as HTMLInputElement
+finddidInput.addEventListener('click',()=>{
+    newsF.searchNewsByTag(findNInput.value)
+})
 
 class News {
     heading
@@ -2080,25 +2080,41 @@ newNews.print()
 // ■ метод для поиска новостей по тегу (возвращает массив
 // новостей, в которых указан переданный в метод тег).
 // Продемонстрировать работу написанных методов.
+
+const makeNewsArr = ()=>{
+    const arr = [] as News[]
+    if (localStorage.news=='undefined' || !localStorage.news) {
+        return [newNews]
+    }
+    const rawArr = JSON.parse(localStorage.news) as any[]
+    rawArr.forEach(el=>{
+      arr.push(new News(el.heading,el.text,el.hashtag,el.date,el.a))  
+    })
+    return arr
+}
+
 class NewsFeed {
     news: News[]
-    constructor(news: News[]) {
-        this.news = news
+    constructor() {
+        this.news = makeNewsArr()
+        this.showAllNews()
     }
     showAllNews(text = 'Новостей пока нет', news = this.news) {
         if (news.length == 0) {
             newsDIV.innerHTML = text
         } else {
-            newsDIV.innerHTML = this.news.map(el => el.print()).join('<br>')
+            newsDIV.innerHTML = news.map(el => el.print()).join('<br>')
         }
     }
     addNews(heading: string, text: string, hashtag: string, date: string, a: string) {
         this.news.push(new News(heading, text, hashtag, date, a))
         this.showAllNews()
+        localStorage.news = JSON.stringify(this.news)
     }
     deleteNews(index: number) {
-        if (index > 0 && index < this.news.length) {
+        if (index > 0 && index <= this.news.length) {
             this.news.splice(index - 1, 1)
+            localStorage.news = JSON.stringify(this.news)
         } else {
             console.log('Под таким номером нет новости')
         }
@@ -2112,9 +2128,9 @@ class NewsFeed {
         this.showAllNews('Ничего не найденo', this.news.filter((item) => item.hashtag.includes(tag)))
     }
 }
-const newsF = new NewsFeed([newNews])
-
-newsF.addNews('Music !!!!!', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT', '2024-04-07T18:50:20', ' More')
+const newsF = new NewsFeed()
+// console.log('dfgfdgd',newsF.news)
+// newsF.addNews('Music !!!!!', 'Music is music. But music is also the stuff surrounding the music.Beethoven`s Fifth Symphony, “The White Album,” Coltrane live at Birdland: On their own, these are but air molecules vibrating across our eardrums. Music becomes sacred partly through the material culture it inspires.And just as music shapes design — think jazz album cover versus metal album cover — design also codes how we hear music. In an old Xeroxed flyer for a punk show was information on how to absorb those songs; in an iconic ad for Maxell cassette  tapes lurked signals about the spirit of rock...', '#music #song #TheNYT #mmm', '2024-04-07T18:50:20', ' More')
 
 //!ДЗ КЛАССЫ
 // 1 
