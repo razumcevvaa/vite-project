@@ -2019,7 +2019,7 @@ const newsAddInput = document.getElementById('ntadd') as HTMLInputElement
 newsAddInput.addEventListener('click', () => {
     newsF.addNews(newsTitleInput.value, newsTextInput.value, newsTagInput.value, newsDateInput.value, newsAInput.value)
 })
-//удалить новость не нахлдитт другие новости
+//удалить новость
 const newsFindInput = document.getElementById('numNew') as HTMLInputElement
 const newsDelInput = document.getElementById('delNew') as HTMLInputElement
 newsDelInput.addEventListener('click', () => {
@@ -2399,7 +2399,8 @@ docDiv.innerHTML = wrapper.getHtml()
 // унаследовав его от простого маркера и добавив метод для заправки
 // маркера.
 // Продемонстрировать работу написанных методов.
-const markText = document.getElementById('marker') as HTMLDivElement
+const markText = document.getElementById('marker') as HTMLDivElement 
+const fillM = document.getElementById('fillM') as HTMLButtonElement
 class Marker {
     color
     ink
@@ -2439,3 +2440,6 @@ class FilledMarker extends Marker {
 let marker = new FilledMarker('red', 2)
 const textMar = 'создана для удобства. Она может получить доступ к внешним переменным и, значит, вывести полное имя. В JavaScript вложенные функции используются очень часто. Что ещё интереснее, вложенная функция может быть возвращена: либо в качестве свойства нового объекта (если внеш khkhjkkjjkjdfjdslkjfkldsjflksdjflkjsdkl'
 marker.print(textMar)
+// fillM.addEventListener('click', ()=>{
+//     textMar.fill(text) 
+// })
