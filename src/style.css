@@ -139,3 +139,10 @@ align-items: center;
 .newsFunc input{
   margin: 10;
 }
+#marker {
+  width: 500px;
+  text-align: justify;
+font-style: italic;
+background-color: rgb(226, 226, 226);
+padding: 30px 10px
+}
