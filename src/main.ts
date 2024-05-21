@@ -60,7 +60,7 @@ import './style.css'
 // }
 // console.log(message)
 
-// // переменная = (условие) ? значение, которое присвоится в случае истинности условия : Значение, которое присвоится в случае ложности условия
+// переменная = (условие) ? значение, которое присвоится в случае истинности условия : Значение, которое присвоится в случае ложности условия
 // message = age > 16 ? 'hello' : 'too yang'
 
 // const isThursday = new Date().getDate() == 22 ? true : false
@@ -1285,18 +1285,18 @@ console.log(getNotCommonUnionArray(arrNumb, arr2))
 
 // з3 Создать массив фруктов и отсортировать его по алфавиту.
 // Написать следующие функции.
-const fruits: string[] = ['банан', 'яблоко', 'киви', 'груша', 'апельсин']
-fruits.sort()
-console.log(fruits)
+// const fruits: string[] = ['банан', 'яблоко', 'киви', 'груша', 'апельсин']
+// fruits.sort()
+// console.log(fruits)
 
 // 1 Вывод на экран с помощью document.write() в виде списка
 // (с помощью тегов ul и li).
-const tagString = `<p style="color:${'white'}; margin:${'20px'}"> ${fruits}</p>`
-document.body.insertAdjacentHTML('beforeend', tagString)
+// const tagString = `<p style="color:${'white'}; margin:${'20px'}"> ${fruits}</p>`
+// document.body.insertAdjacentHTML('beforeend', tagString)
 // 2 Поиск фрукта в массиве. Функция принимает название
 // фрукта и возвращает индекс найденного элемента или -1,
 // если не найден. Поиск должен быть нерегистрозависимым.
-console.log(fruits.indexOf('яблоко'))
+// console.log(fruits.indexOf('яблоко'))
 
 //!ДЗ МАССИВЫ
 // Задание 1
@@ -1480,23 +1480,23 @@ console.log(averageCheck(chequeShop))
 
 
 // з3 
-const styles = [
-    { color: 'red' },
-    { 'font-size': '20px' },
-    { 'text-align': 'left' },
-    { 'margin': '20px' },
-]
-function renderText(styles: any[], text: string) {
-    let styleText = ''
-    for (let el of styles) {
-        for (let key in el) {
-            styleText += `${key}:${el[key]};`
-        }
-    }
-    const tagString = `<p style="${styleText}"> ${text}</p>`
-    document.body.insertAdjacentHTML('beforeend', tagString)
-}
-renderText(styles, 'text1')
+// const styles = [
+//     { color: 'red' },
+//     { 'font-size': '20px' },
+//     { 'text-align': 'left' },
+//     { 'margin': '20px' },
+// ]
+// function renderText(styles: any[], text: string) {
+//     let styleText = ''
+//     for (let el of styles) {
+//         for (let key in el) {
+//             styleText += `${key}:${el[key]};`
+//         }
+//     }
+//     const tagString = `<p style="${styleText}"> ${text}</p>`
+//     document.body.insertAdjacentHTML('beforeend', tagString)
+// }
+// renderText(styles, 'text1')
 
 
 // 02.04.24
@@ -1547,18 +1547,18 @@ console.log(getRandomArr(6))
 
 // 2.1. В файле html создать пустой div с произвольным id
 // 2.2. Получить объект div'а в js при помощи метода document.getElementById(ваш id) as HTMLDivElement
-const llllDIV = document.getElementById("llll") as HTMLDivElement
+// const llllDIV = document.getElementById("llll") as HTMLDivElement
 // 2.3. Вывесли в полученный div текст, "Привет, пользователь"
-llllDIV.innerHTML = 'Привет, пользователь'
+// llllDIV.innerHTML = 'Привет, пользователь'
 // 2.4. Написать функцию, которая возвращает текст "Привет, пользователь" или "Привет, <имяПользователя>" в зависимости от переданных параметров и использовать её в задании 2.3.
-function showEmployees(arr: Employees[], i = -1) {
-    if (i > -1 && i < arr.length) {
-        llllDIV.innerHTML = 'Привет, ' + arr[i].name
-    } else {
-        llllDIV.innerHTML = 'Привет, пользователь'
-    }
-}
-showEmployees(employees, 3)
+// function showEmployees(arr: Employees[], i = -1) {
+//     if (i > -1 && i < arr.length) {
+//         llllDIV.innerHTML = 'Привет, ' + arr[i].name
+//     } else {
+//         llllDIV.innerHTML = 'Привет, пользователь'
+//     }
+// }
+// showEmployees(employees, 3)
 
 // 2.5. Написать функцию, принимающую массив работников и название отдела, и возвращающую новый массив, содержащий только сотрудников переданного отдела
 function newArr(arr: Employees[], department: string) {
@@ -2382,23 +2382,11 @@ console.log(bigGreen.getCss())
 bigGreen.removeProperty("font-family")
 bigGreen.removeProperty("color")
 
-const block = new HtmlBlock([bigGreen,], wrapper)
+// const block = new HtmlBlock([bigGreen,], wrapper)
 docCss.innerHTML += bigGreen.getCss()
 docDiv.innerHTML = wrapper.getHtml()
 
-// Реализовать класс, описывающий простой маркер. В классе
-// должны быть следующие компоненты:
-// ■ поле, которое хранит цвет маркера;
-// ■ поле, которое хранит количество чернил в маркере (в про-
-// центах);
-// ■ метод для печати (метод принимает строку и выводит
-// текст соответствующим цветом; текст выводится до тех
-// пор, пока в маркере есть чернила; один не пробельный
-// символ – это 0,5% чернил в маркере).
-// Реализовать класс, описывающий заправляющийся маркер,
-// унаследовав его от простого маркера и добавив метод для заправки
-// маркера.
-// Продемонстрировать работу написанных методов.
+// ДЗ5 Реализовать класс, описывающий простой маркер. 
 const markText = document.getElementById('marker') as HTMLDivElement 
 const fillM = document.getElementById('fillM') as HTMLButtonElement
 class Marker {
@@ -2443,3 +2431,16 @@ fillM.addEventListener('click', ()=>{
     marker.print(textMar)
     fillM.innerHTML = 'Fill'
 })
+// Реализуйте класс ExtendedDate, унаследовав его от стандарт-
+// ного класса Date и добавив следующие возможности:
+// ■ метод для вывода даты (числа и месяца) текстом;
+// ■ метод для проверки – это прошедшая дата или будущая
+// (если прошедшая, то метод возвращает false; если буду-
+// щая или текущая, то true);
+// ■ метод для проверки – високосный год или нет;
+// ■ метод, возвращающий следующую дату.
+// Создайте объект класса ExtendedDate и выведите на экран
+// результаты работы новых методов.
+class ExtendedDate extends Date {
+
+}

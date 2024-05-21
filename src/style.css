@@ -84,8 +84,9 @@ input {
   width: 600px;
   padding: 5px 30px;
 }
+
 #news-news p {
-text-align: justify;
+  text-align: justify;
 }
 
 #button-for-empl {
@@ -118,9 +119,11 @@ text-align: justify;
   font-weight: bold;
   border-radius: 4px;
 }
-#secondsToTomorrow{
+
+#secondsToTomorrow {
   color: rgb(243, 156, 255);
 }
+
 .lol {
   display: flex;
   justify-content: center;
@@ -129,20 +132,29 @@ text-align: justify;
   margin: 0;
   margin-top: 20px;
 }
+
 .newsFunc {
   padding: 20px;
   color: aliceblue;
   display: flex;
   flex-direction: column;
-align-items: center;
+  align-items: center;
 }
-.newsFunc input{
+
+.newsFunc input {
   margin: 10;
 }
+
 #marker {
   width: 500px;
   text-align: justify;
-font-style: italic;
-background-color: rgb(226, 226, 226);
-padding: 30px 10px
+  font-style: italic;
+  background-color: rgb(255, 226, 226);
+  padding: 30px 10px;
+  margin: 0 30px;
+  margin-bottom: 50px;
+}
+#fillM {
+  border-radius: 100px;
+  margin-bottom: 50px;
 }
