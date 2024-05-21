@@ -2412,16 +2412,14 @@ class Marker {
         return [this.color, this.ink]
     }
     print(text: string) {
+        markText.style.color = this.color
         for (let i = 0; i < text.length; i++) {
             if (this.ink != 0) {
-                if (text[i] == ' ') {
-                    this.ink += 0.5
-                }
                 markText.innerHTML += text[i]
-                markText.style.color = this.color
+                if (text[i] == ' ') continue
                 this.ink -= 0.5
             } else if(this.ink == 0) {
-                markText.innerHTML += ' Marker is over'
+                fillM.innerHTML = 'Marker is over. Fill?'
                 break
             }
         }
@@ -2440,6 +2438,8 @@ class FilledMarker extends Marker {
 let marker = new FilledMarker('red', 2)
 const textMar = 'создана для удобства. Она может получить доступ к внешним переменным и, значит, вывести полное имя. В JavaScript вложенные функции используются очень часто. Что ещё интереснее, вложенная функция может быть возвращена: либо в качестве свойства нового объекта (если внеш khkhjkkjjkjdfjdslkjfkldsjflksdjflkjsdkl'
 marker.print(textMar)
-// fillM.addEventListener('click', ()=>{
-//     textMar.fill(text) 
-// })
+fillM.addEventListener('click', ()=>{
+    marker.fill(100) 
+    marker.print(textMar)
+    fillM.innerHTML = 'Fill'
+})
