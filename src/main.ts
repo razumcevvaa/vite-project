@@ -2435,27 +2435,19 @@ fillM.addEventListener('click', () => {
 // ного класса Date и добавив следующие возможности:
 // ■ метод для вывода даты (числа и месяца) текстом;
 // ■ метод для проверки – это прошедшая дата или будущая
-// (если прошедшая, то метод возвращает false; если буду-
-// щая или текущая, то true);
+// (если прошедшая, то метод возвращает false; если будущая или текущая, то true);
 // ■ метод для проверки – високосный год или нет;
 // ■ метод, возвращающий следующую дату.
-// Создайте объект класса ExtendedDate и выведите на экран
-// результаты работы новых методов.
+// Создайте объект класса ExtendedDate и выведите на экран результаты работы новых методов.
 class ExtendedDate extends Date {
     constructor() {
-        // return `${this.getDate()} ${this.getMonth() + 1}`
         super()
     }
     toText() {
-        function getMonth(month:number){
-            const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
-            if (month >= 1 && month < 12){
-                return months[month]
-            }
-        }
-        // return `${this.getDate()} + ${getMonth(this.getMonth)}`
+        const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
+        return `${this.getDate()} ${months[this.getMonth()]}`
     }
 }
 const extendedDate = new ExtendedDate()
-// console.log(extendedDate.toText())
+console.log(extendedDate.toText())
 
