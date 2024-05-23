@@ -2387,7 +2387,7 @@ docCss.innerHTML += bigGreen.getCss()
 docDiv.innerHTML = wrapper.getHtml()
 
 // ДЗ5 Реализовать класс, описывающий простой маркер. 
-const markText = document.getElementById('marker') as HTMLDivElement 
+const markText = document.getElementById('marker') as HTMLDivElement
 const fillM = document.getElementById('fillM') as HTMLButtonElement
 class Marker {
     color
@@ -2406,7 +2406,7 @@ class Marker {
                 markText.innerHTML += text[i]
                 if (text[i] == ' ') continue
                 this.ink -= 0.5
-            } else if(this.ink == 0) {
+            } else if (this.ink == 0) {
                 fillM.innerHTML = 'Marker is over. Fill?'
                 break
             }
@@ -2426,8 +2426,8 @@ class FilledMarker extends Marker {
 let marker = new FilledMarker('red', 5)
 const textMar = 'Класс — это шаблон или чертеж, по которому можно создавать объекты одного типа. Он определяет общие свойства и методы для всех объектов, которые будут созданы на его основе. Класс содержит в себе конструктор — метод, который вызывается при создании нового объекта и инициализирует его свойства.  Класс также содержит в себе другие методы (функции), которые определяют поведение объекта. Методы класса хранятся в специальном свойстве prototype, которое является прототипом для всех объектов, созданных на основе класса.'
 marker.print(textMar)
-fillM.addEventListener('click', ()=>{
-    marker.fill(100) 
+fillM.addEventListener('click', () => {
+    marker.fill(100)
     marker.print(textMar)
     fillM.innerHTML = 'Fill'
 })
@@ -2443,4 +2443,11 @@ fillM.addEventListener('click', ()=>{
 // результаты работы новых методов.
 class ExtendedDate extends Date {
 
+    toText() {
+        return `${this.getDate()} ${this.getMonth() + 1}`
+    }
 }
+const extendedDate = new ExtendedDate()
+console.log(extendedDate.toText())
+
+
