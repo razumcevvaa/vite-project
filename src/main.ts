@@ -2442,12 +2442,20 @@ fillM.addEventListener('click', () => {
 // Создайте объект класса ExtendedDate и выведите на экран
 // результаты работы новых методов.
 class ExtendedDate extends Date {
-
+    constructor() {
+        // return `${this.getDate()} ${this.getMonth() + 1}`
+        super()
+    }
     toText() {
-        return `${this.getDate()} ${this.getMonth() + 1}`
+        function getMonth(month:number){
+            const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
+            if (month >= 1 && month < 12){
+                return months[month]
+            }
+        }
+        // return `${this.getDate()} + ${getMonth(this.getMonth)}`
     }
 }
 const extendedDate = new ExtendedDate()
-console.log(extendedDate.toText())
-
+// console.log(extendedDate.toText())
 
