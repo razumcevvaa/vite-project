@@ -1883,7 +1883,7 @@ function getTextNumb(number: number) {
         return 'Введите двузначное число'
     }
 }
-console.log(getTextNumb(19))
+console.log(getTextNumb(86))
 
 //3 Написать функцию, которая заменяет в полученной строке
 // большие буквы на маленькие, маленькие – на большие, а
@@ -2364,13 +2364,13 @@ class HtmlBlock {
         this.styles = styles
         this.element = element
     }
-
-
     getCode() {
-
+        return {
+            styles: this.styles.map(el => el.getCss()).join('\n'),
+            html: this.element.getHtml()
+        }
     }
 }
-
 const docCss = document.getElementById('st') as HTMLDivElement
 const bigGreen = new CssClass('bigGreen')
 const docDiv = document.getElementById('he') as HTMLDivElement
@@ -2381,6 +2381,28 @@ bigGreen.setStyle("font-family", "Times New Roman")
 console.log(bigGreen.getCss())
 bigGreen.removeProperty("font-family")
 bigGreen.removeProperty("color")
+
+const wrapClass = new CssClass('wrap')
+wrapClass.setStyle("display", "flex")
+
+const blockClass = new CssClass('block')
+blockClass.setStyle("width", "300px")
+blockClass.setStyle("margin", "10px")
+
+const imgClass = new CssClass('img')
+imgClass.setStyle("width", "100%")
+imgClass.setStyle("color", "blueviolet")
+
+const textClass = new CssClass('text')
+textClass.setStyle("text-align", "justify")
+
+const block = new HtmlBlock([wrapClass, blockClass, imgClass, textClass], wrapper)
+
+docCss.innerHTML += bigGreen.getCss()
+docDiv.innerHTML = wrapper.getHtml()
+const blockCode = block.getCode()
+docCss.innerHTML += blockCode.styles
+docDiv.innerHTML = blockCode.html
 
 // const block = new HtmlBlock([bigGreen,], wrapper)
 docCss.innerHTML += bigGreen.getCss()
@@ -2444,10 +2466,47 @@ class ExtendedDate extends Date {
         super()
     }
     toText() {
-        const months = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря']
-        return `${this.getDate()} ${months[this.getMonth()]}`
+        const months = ['января', 'февраля', 'марта', 'апреля', 'мая', 'июня', 'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря']
+        const day = [
+            'первое', 'второе', 'третье', 'четвертое', 'пятое', 'шестое', 'седьмое', 'восьмое', 'девятое', 'десятое',
+            'одинадцатое', 'двенадцатое', 'тринадцатое', 'четырнадцатое', 'пятнадцатое', 'шестнадцатое', 'семнадцатое', 'восемнадцатое', 'девятнадцатое', 'двадцатое',
+            'двадцать первое', 'двадцать второе', 'двадцать трете', 'двадцать четвертое', 'двадцать пятое', 'двадцать шестое', 'двадцать седьмое', 'двадцать восьмое',
+            'двадцать девятое', 'тридцатое', 'тридцать первое'
+        ]
+        return `${day[this.getDate() - 1]} ${months[this.getMonth()]}`
+    }
+    checkDate() {
+        let date = new Date
+        if (date < this) {
+            return false
+        }
+        return true
+    }
+    leapYear() {
+        let year = new Date
+        if (year.getDate() % 4 == 0 && year.getDate() % 100 !== 0) {
+            return 'год високосный'
+        }
+        return 'год невисокосный'
+    }
+    nextDate() {
+        return `${this.getDate()} ${this.getMonth()}`
     }
 }
 const extendedDate = new ExtendedDate()
 console.log(extendedDate.toText())
+console.log(extendedDate.checkDate())
+console.log(extendedDate.leapYear())
+console.log(extendedDate.nextDate())
+
+// Реализовать класс Employee, описывающий работника, и создать массив работников банка.
+// Реализовать класс EmpTable для генерации html кода таблицы
+// со списком работников банка. Массив работников необходимо
+// передавать через конструктор, а получать html код с помощью
+// метода getHtml().
+// Создать объект класса EmpTable и вывести на экран результат
+// работы метода getHtml().
+
+
+
 
