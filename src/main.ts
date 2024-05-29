@@ -2508,5 +2508,14 @@ console.log(extendedDate.nextDate())
 // работы метода getHtml().
 
 
+// Напишите код, который выведет каждый элемент списка <li>:
+// Какой в нём текст (без поддерева) ?
+// Какое число потомков – всех вложенных <li> (включая глубоко вложенные) ?
+// function textInLi(){
+//     for (let li of document.querySelectorAll('li')){
+//         let text = li.firstChild.data
+//     }
+// }
+
 
 
