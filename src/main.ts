@@ -2506,16 +2506,65 @@ console.log(extendedDate.nextDate())
 // метода getHtml().
 // Создать объект класса EmpTable и вывести на экран результат
 // работы метода getHtml().
-
+class Employee {
+    name: string | undefined
+    departament: string | undefined
+    age: number | undefined
+    salary: number | undefined
+    constructor(name: string, departament: string, age: number, salary: number) {
+        this.name = name
+        this.departament = departament
+        this.age = age
+        this.salary = salary
+    }
+}
+const employeesNew = [
+    new Employee('Федотова Арина Глебовна', 'ads', 20, 2100),
+    new Employee('Голикова Мария Филипповна', 'prog', 22, 3500),
+    new Employee('Панин Александр Германович', 'ads', 27, 2100),
+    new Employee('Романов Эмиль Макарович', 'prog', 30, 3100),
+    new Employee('Смирнов Никита Александрович', 'prog', 28, 3800),
+    new Employee('Александрова Майя Вячеславовна', 'ads', 25, 2900),
+    new Employee('Крылов Богдан Максимович', 'disign', 27, 2500),
+    new Employee('Мухина Айша Константиновна', 'disign', 30, 2100),
+    new Employee('Кошкин Богдан Максимович', 'buh', 29, 2200),
+    new Employee('Муразова Айша Константиновна', 'buh', 30, 2300),
+]
+class EmpTable {
+    arr: Employee[]
+    constructor(arr: Employee[]) {
+        this.arr = arr
+    }
+    getHtml() {
+        let html = `<table> <thead>`
+        html += `<tr><th>Имя</th><th>Отдел<th/><th>Возраст<th/><th>ЗП<th/><tr/><thead/><tbody>`
+        for (let el of this.arr) {
+            html += `<tr><td>${el.name}<td/><td>${el.departament}<td/><td>${el.age}<td/><td>${el.salary}<td/><tr/>`
+        }
+        html += `<tbody/><table/>`
+        return html
+    }
+}
+const emp = new EmpTable(employeesNew)
+const empTableDiv = document.querySelector('#empTable') as HTMLDivElement
+empTableDiv.innerHTML = emp.getHtml()
 
 // Напишите код, который выведет каждый элемент списка <li>:
 // Какой в нём текст (без поддерева) ?
 // Какое число потомков – всех вложенных <li> (включая глубоко вложенные) ?
-// function textInLi(){
-//     for (let li of document.querySelectorAll('li')){
-//         let text = li.firstChild.data
-//     }
+// for (let li of document.querySelectorAll('li')) {
+//     let text = li.firstChild.data
+//     text = text.trim()
+//     let count = li.getElementsByTagName('li').length
+//     console.log(text + count)
 // }
+
+//! ниче не работает.....
+
+// let link = document.querySelector('a')
+// let selector = 'a[href*="://"]:not[(href^="http://internal.com")]'
+// let links = document.querySelectorAll(selector)
+// links.forEach(link => link.style.color = 'orange')
 
 
 

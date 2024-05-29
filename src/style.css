@@ -158,3 +158,8 @@ input {
   border-radius: 100px;
   margin-bottom: 50px;
 }
+
+#empTable {
+  color: #fff;
+  margin: 20px;
+}
