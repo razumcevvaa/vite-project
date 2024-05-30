@@ -2552,19 +2552,17 @@ empTableDiv.innerHTML = emp.getHtml()
 // Напишите код, который выведет каждый элемент списка <li>:
 // Какой в нём текст (без поддерева) ?
 // Какое число потомков – всех вложенных <li> (включая глубоко вложенные) ?
-// for (let li of document.querySelectorAll('li')) {
-//     let text = li.firstChild.data
-//     text = text.trim()
-//     let count = li.getElementsByTagName('li').length
-//     console.log(text + count)
-// }
-
-//! ниче не работает.....
+for (let li of document.querySelectorAll('#fauna li')) {
+    // @ts-ignore
+    let text = li?.firstChild?.data.trim()
+    let count = li.getElementsByTagName('li').length
+    console.log(text + ' ' + count)
+}
 
 // let link = document.querySelector('a')
-// let selector = 'a[href*="://"]:not[(href^="http://internal.com")]'
-// let links = document.querySelectorAll(selector)
-// links.forEach(link => link.style.color = 'orange')
+let selector = 'a[href*="://"]:not(a[href^="http://internal.com"])'
+let links = document.querySelectorAll(selector) as NodeListOf<HTMLAnchorElement>
+links.forEach(link => link.style.color = 'orange')
 
 
 
