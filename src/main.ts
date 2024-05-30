@@ -2564,5 +2564,28 @@ let selector = 'a[href*="://"]:not(a[href^="http://internal.com"])'
 let links = document.querySelectorAll(selector) as NodeListOf<HTMLAnchorElement>
 links.forEach(link => link.style.color = 'orange')
 
+// ИЗМЕНЕНИЕ ДОКУМЕНТА
+let data = {
+    "Рыбы": {
+      "форель": {},
+      "лосось": {}
+    },
+  
+    "Деревья": {
+      "Огромные": {
+        "секвойя": {},
+        "дуб": {}
+      },
+      "Цветковые": {
+        "яблоня": {},
+        "магнолия": {}
+      }
+    }
+  }
+  function createTree(container, obj) {
+
+
+  }
+
 
 
