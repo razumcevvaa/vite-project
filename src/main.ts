@@ -2537,11 +2537,11 @@ class EmpTable {
     }
     getHtml() {
         let html = `<table> <thead>`
-        html += `<tr><th>Имя</th><th>Отдел<th/><th>Возраст<th/><th>ЗП<th/><tr/><thead/><tbody>`
+        html += `<tr><th>Имя</th><th>Отдел</th><th>Возраст</th><th>ЗП</th></tr></thead><tbody>`
         for (let el of this.arr) {
-            html += `<tr><td>${el.name}<td/><td>${el.departament}<td/><td>${el.age}<td/><td>${el.salary}<td/><tr/>`
+            html += `<tr><td>${el.name}</td><td>${el.departament}</td><td>${el.age}</td><td>${el.salary}</td></tr>`
         }
-        html += `<tbody/><table/>`
+        html += `</tbody></table>`
         return html
     }
 }
@@ -2552,40 +2552,67 @@ empTableDiv.innerHTML = emp.getHtml()
 // Напишите код, который выведет каждый элемент списка <li>:
 // Какой в нём текст (без поддерева) ?
 // Какое число потомков – всех вложенных <li> (включая глубоко вложенные) ?
-for (let li of document.querySelectorAll('#fauna li')) {
-    // @ts-ignore
-    let text = li?.firstChild?.data.trim()
-    let count = li.getElementsByTagName('li').length
-    console.log(text + ' ' + count)
-}
+// for (let li of document.querySelectorAll('#fauna li')) {
+//     let text = li?.firstChild?.data.trim()
+//     let count = li.getElementsByTagName('li').length
+//     console.log(text + ' ' + count)
+// }
 
 // let link = document.querySelector('a')
-let selector = 'a[href*="://"]:not(a[href^="http://internal.com"])'
-let links = document.querySelectorAll(selector) as NodeListOf<HTMLAnchorElement>
-links.forEach(link => link.style.color = 'orange')
+// let selector = 'a[href*="://"]:not(a[href^="http://internal.com"])'
+// let links = document.querySelectorAll(selector) as NodeListOf<HTMLAnchorElement>
+// links.forEach(link => link.style.color = 'orange')
 
 // ИЗМЕНЕНИЕ ДОКУМЕНТА
 let data = {
     "Рыбы": {
-      "форель": {},
-      "лосось": {}
+        "форель": {},
+        "лосось": {}
     },
-  
+
     "Деревья": {
-      "Огромные": {
-        "секвойя": {},
-        "дуб": {}
-      },
-      "Цветковые": {
-        "яблоня": {},
-        "магнолия": {}
-      }
+        "Огромные": {
+            "секвойя": {},
+            "дуб": {}
+        },
+        "Цветковые": {
+            "яблоня": {},
+            "магнолия": {}
+        }
     }
-  }
-  function createTree(container, obj) {
+} as Record<string, any>
+function createTree(container: HTMLDivElement, obj: Record<string, any>) {
+    container.innerHTML = createTreeText(obj)
+}
+function createTreeText(obj: Record<string, any>) {
+    let li = ''
+    let ul
+    for (let key in obj) {
+        li += `<li>${key}${createTreeText(obj[key])}</li>`
+    }
+    if (li) {
+        ul = `<ul>${li}</ul>`
+    }
+    return ul || ''
+}
+// @ts-ignore
+createTree(container, data)
 
+// 2 Выведите список потомков в дереве
+let listAn = document.querySelectorAll('#animals li')
+for (let li of listAn) {
+    let count = li.getElementsByTagName('li').length
+    if (!count) continue
+    // @ts-ignore
+    li.firstChild.data += `(${count})`
+}
 
-  }
+// 3 Создайте календарь в виде таблицы
+function createCalendar(elem: HTMLElement, year: number, month: number) {
+    let data = new Date(year, month - 1)
+
+}
+
 
 
 
