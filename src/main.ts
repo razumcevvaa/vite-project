@@ -2688,7 +2688,7 @@ function showNotification(options: options) {
     if (options.class) {
         notification.classList.add(options.class)
     }
-    notification.style.top = options.top + 'px'
+    notification.style.top = window.innerHeight/2-150 + 'px'
     notification.style.right = options.right + 'px'
     document.body.append(notification)
     setTimeout(() => notification.remove(), 1500)
