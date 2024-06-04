@@ -213,3 +213,10 @@ input {
   background-image: url(./стоппп.png);
   background-size: cover;
 }
+.month-button {
+  width: 100px;
+}
+.month-button input {
+  color:  rgb(241, 132, 255);
+  text-transform: uppercase;
+}

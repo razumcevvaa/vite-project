@@ -2652,17 +2652,17 @@ function getDay(date: Date) {
 }
 function getMonth(monthN: number) {
     const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
-    return months[monthN - 1]
+    return months[monthN]
 }
 
 let calendar = document.getElementById('calendar')
 createCalendar(calendar, 2024, 6)
 
-// const calMonthInp = document.getElementById('month') as HTMLInputElement
-// const calenInp = document.getElementById('month-sub') as HTMLInputElement
-// calenInp.addEventListener('click'()=> {
-//     calMonthInp.createCalendar(cancelAnimationFrame, 2024, calMonthInp.value)
-// })
+const calMonthInp = document.getElementById('month') as HTMLInputElement
+const calenInp = document.getElementById('month-sub') as HTMLInputElement
+calenInp.addEventListener('click',()=> {
+    createCalendar(calendar, 2024, +calMonthInp.value)
+})
 
 
 
