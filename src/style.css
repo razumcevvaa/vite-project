@@ -209,14 +209,31 @@ input {
   background-image: url(./старт.svg);
   background-size: cover;
 }
-#watch-stop{
+
+#watch-stop {
   background-image: url(./стоппп.png);
   background-size: cover;
 }
+
 .month-button {
   width: 100px;
 }
+
 .month-button input {
-  color:  rgb(241, 132, 255);
+  color: rgb(241, 132, 255);
   text-transform: uppercase;
+}
+
+.highlight {
+  background-color: rgb(249, 201, 255) !important;
+}
+
+.notification {
+  position: fixed;
+  z-index: 1;
+  left: calc(50% - 150px);
+}
+
+.notification img {
+  width: 300px;
 }

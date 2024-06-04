@@ -2628,9 +2628,11 @@ function createCalendar(elem: any, year: number, month: number) {
     for (let i = 0; i < getDay(data); i++) {
         table += '<td></td>'
     }
-
+    const today = new Date().getDate()
+    const todayMonth = new Date().getMonth()
     while (data.getMonth() == mon) {
-        table += '<td>' + data.getDate() + '</td>'
+        const isToday = today === data.getDate() && todayMonth == mon
+        table += `<td${isToday ? ' class="highlight"' : ''}>` + data.getDate() + '</td$>'
         if (getDay(data) % 7 == 6) {
             table += '</tr><tr>'
         }
@@ -2645,11 +2647,14 @@ function createCalendar(elem: any, year: number, month: number) {
     table += '</tr></table>'
     elem.innerHTML = table
 }
+
 function getDay(date: Date) {
     let day = date.getDay()
     if (day == 0) day = 7
     return day - 1
 }
+
+
 function getMonth(monthN: number) {
     const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
     return months[monthN]
@@ -2660,10 +2665,38 @@ createCalendar(calendar, 2024, 6)
 
 const calMonthInp = document.getElementById('month') as HTMLInputElement
 const calenInp = document.getElementById('month-sub') as HTMLInputElement
-calenInp.addEventListener('click',()=> {
+calenInp.addEventListener('click', () => {
     createCalendar(calendar, 2024, +calMonthInp.value)
 })
 
-
-
-
+// СТИЛИ И КЛАССЫ
+// Напишите функцию showNotification(options), которая создаёт уведомление: <div class="notification"> с заданным содержимым.
+type options = {
+    top?: number,
+    right?: number
+    html?: string
+    class?: string
+}
+function showNotification(options: options) {
+    if (!options.top) options.top = 10
+    if (!options.right) options.right = 10
+    if (!options.html) options.html = ''
+    if (!options.class) options.class = ''
+    let notification = document.createElement('div')
+    notification.innerHTML = options.html
+    notification.classList.add('notification')
+    if (options.class) {
+        notification.classList.add(options.class)
+    }
+    notification.style.top = options.top + 'px'
+    notification.style.right = options.right + 'px'
+    document.body.append(notification)
+    setTimeout(() => notification.remove(), 1500)
+}
+setInterval(() => {
+  showNotification({
+    // top:28,
+    // right: 64,
+    html: '<img src="./src/старт.svg">'
+  });
+}, 2000)
