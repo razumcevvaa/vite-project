@@ -11,10 +11,23 @@
 <body>
   <script type="module" src="/src/main.ts"></script>
   <div class="container">
-    <div id="secondsToTomorrow"></div>
-    <p class="lol">Секунд до завтра:</p>
-    <div id="time-tom"></div>
+    <div class="headerB">
+      <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div id="secondsToTomorrow"></div>
+        <div>
+          <input type="button" id="watch-start">
+          <input type="button" id="watch-stop">
+        </div>
+      </div>
 
+      <div id="calendar"></div>
+      <!-- <input type="number" id="month" min="1" max="12" placeholder="месяц" style="width: 50px;">
+      <input type="submit" id="month-sub" style="margin: 0;"> -->
+    </div>
+    <div>
+      <p class="lol">Секунд до завтра:</p>
+      <div id="time-tom"></div>
+    </div>
     <div class="shop-list" id="PZ22z2" style="display: flex;">
       <ol id="toBuyList"></ol>
       <div>
@@ -110,7 +123,6 @@
         </ul>
       </li>
     </ul>
-    <div id="calendar"></div>
   </div>
 </body>
 

@@ -2291,15 +2291,28 @@ function getSecondsToTomorrow() {
     return Math.floor(diff / 1000)
 }
 console.log(getSecondsToTomorrow())
-
+//!ЧАСЫ
 const timeNodeDIV = document.getElementById('secondsToTomorrow') as HTMLDivElement
 function getCurrentTimeString() {
     return new Date().toTimeString().replace(/ .*/, '')
 }
-setInterval(
-    () => timeNodeDIV.innerHTML = getCurrentTimeString(),
+let timerId = setInterval(() =>
+    timeNodeDIV.innerHTML = getCurrentTimeString(),
     1000
 )
+const watchS = document.getElementById('watch-start') as HTMLInputElement
+const watchSTop = document.getElementById('watch-stop') as HTMLInputElement
+watchS.addEventListener('click', () => {
+    clearInterval(timerId)
+    timerId = setInterval(() =>
+        timeNodeDIV.innerHTML = getCurrentTimeString(),
+        1000)
+})
+watchSTop.addEventListener('click', () => {
+    clearInterval(timerId)
+})
+
+
 const timeTomDIV = document.getElementById('time-tom') as HTMLDivElement
 
 function timeTomorr() {
@@ -2608,10 +2621,48 @@ for (let li of listAn) {
 }
 
 // 3 Создайте календарь в виде таблицы
-function createCalendar(elem: HTMLElement, year: number, month: number) {
-    let data = new Date(year, month - 1)
+function createCalendar(elem: any, year: number, month: number) {
+    let mon = month - 1
+    let data = new Date(year, mon)
+    let table = `<h4>${getMonth(mon)}</h4><table><tr><th>пн</th><th>вт</th><th>ср</th><th>чт</th><th>пт</th><th>сб</th><th>вс</th><tr/><tr>`
+    for (let i = 0; i < getDay(data); i++) {
+        table += '<td></td>'
+    }
 
+    while (data.getMonth() == mon) {
+        table += '<td>' + data.getDate() + '</td>'
+        if (getDay(data) % 7 == 6) {
+            table += '</tr><tr>'
+        }
+        data.setDate(data.getDate() + 1)
+    }
+
+    if (getDay(data) != 0) {
+        for (let i = getDay(data); i < 7; i++) {
+            table += '<td></td>'
+        }
+    }
+    table += '</tr></table>'
+    elem.innerHTML = table
 }
+function getDay(date: Date) {
+    let day = date.getDay()
+    if (day == 0) day = 7
+    return day - 1
+}
+function getMonth(monthN: number) {
+    const months = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь']
+    return months[monthN - 1]
+}
+
+let calendar = document.getElementById('calendar')
+createCalendar(calendar, 2024, 6)
+
+// const calMonthInp = document.getElementById('month') as HTMLInputElement
+// const calenInp = document.getElementById('month-sub') as HTMLInputElement
+// calenInp.addEventListener('click'()=> {
+//     calMonthInp.createCalendar(cancelAnimationFrame, 2024, calMonthInp.value)
+// })
 
 
 

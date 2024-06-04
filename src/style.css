@@ -154,6 +154,7 @@ input {
   margin: 0 30px;
   margin-bottom: 50px;
 }
+
 #fillM {
   border-radius: 100px;
   margin-bottom: 50px;
@@ -164,3 +165,51 @@ input {
   margin: 20px;
 }
 
+#calendar>table {
+  border-collapse: collapse;
+}
+
+#calendar td {
+  border: 1px solid grey;
+  background-color: rgb(196, 196, 196);
+  padding: 5px;
+  text-align: center;
+}
+
+#calendar th {
+  border: 1px solid grey;
+  padding: 5px;
+  text-align: center;
+  background-color: rgb(153, 153, 153);
+}
+
+#calendar h4 {
+  font-size: 24px;
+  margin: 2px;
+  text-align: center;
+  color: rgb(249, 201, 255);
+  text-transform: uppercase;
+}
+
+.headerB {
+  display: flex;
+  align-items: center;
+  padding: 0 50px;
+  gap: 50px;
+  justify-content: center;
+}
+
+#watch-start,
+#watch-stop {
+  width: 30px;
+  height: 30px;
+}
+
+#watch-start {
+  background-image: url(./старт.svg);
+  background-size: cover;
+}
+#watch-stop{
+  background-image: url(./стоппп.png);
+  background-size: cover;
+}
