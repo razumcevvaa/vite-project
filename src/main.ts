@@ -2688,15 +2688,23 @@ function showNotification(options: options) {
     if (options.class) {
         notification.classList.add(options.class)
     }
-    notification.style.top = window.innerHeight/2-150 + 'px'
+    // notification.style.top = window.innerHeight/2-150 + 'px' 
+    // чтобы поставить в центр
+    notification.style.top = options.top + 'px'
     notification.style.right = options.right + 'px'
     document.body.append(notification)
-    setTimeout(() => notification.remove(), 1500)
+    setTimeout(() => notification.remove(), 2000)
 }
 setInterval(() => {
   showNotification({
-    // top:28,
-    // right: 64,
-    html: '<img src="./src/старт.svg">'
-  });
-}, 2000)
+    top:30,
+    right: 50,
+    html: '<img src="./src/news.jpeg">'
+  })
+}, 2200)
+
+setInterval(() => {
+  showNotification({
+    html: '<div class="skrimer"></div>'
+  })
+}, 10000)

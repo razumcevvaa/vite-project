@@ -231,10 +231,16 @@ input {
 .notification {
   position: fixed;
   z-index: 1;
-  left: calc(50% - 150px);
-  
+  /* left: calc(50% - 150px); */
 }
 
 .notification img {
   width: 300px;
+}
+.skrimer {
+  /* left: calc(50% - 150px); */
+  width: 1800px;
+  height: 100vh;
+  background-image: url(./public/samye-strashnye-skrimery-2.webp);
+  background-size: cover;
 }
