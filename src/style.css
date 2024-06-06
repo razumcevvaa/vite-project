@@ -244,3 +244,9 @@ input {
   background-image: url(./public/samye-strashnye-skrimery-2.webp);
   background-size: cover;
 }
+.para-and {
+  background-image: url(./gfhf.png);
+  width: 200px;
+  height: 100px;
+  background-size: cover;
+}

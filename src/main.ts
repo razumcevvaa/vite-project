@@ -2284,18 +2284,12 @@ function getSecondsToday() {
 date = new Date(2012, 0, 3, 10)
 console.log(getSecondsToday())
 
-function getSecondsToTomorrow() {
-    let now = new Date()
-    let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
-    let diff = tomorrow.getTime() - now.getTime()
-    return Math.floor(diff / 1000)
-}
-console.log(getSecondsToTomorrow())
 //!ЧАСЫ
 const timeNodeDIV = document.getElementById('secondsToTomorrow') as HTMLDivElement
 function getCurrentTimeString() {
     return new Date().toTimeString().replace(/ .*/, '')
 }
+
 let timerId = setInterval(() =>
     timeNodeDIV.innerHTML = getCurrentTimeString(),
     1000
@@ -2312,16 +2306,27 @@ watchSTop.addEventListener('click', () => {
     clearInterval(timerId)
 })
 
-
+// таймер до конца пары
 const timeTomDIV = document.getElementById('time-tom') as HTMLDivElement
+let now1 = new Date()
+let tomorrow = new Date(now1.getFullYear(), now1.getMonth(), now1.getDate(), 21, 20)
+let diff = tomorrow.getTime() - now1.getTime()
+function timesAndM() {
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+    diff -= 1000
+    if (diff < 0) {
+        tomorrow.setDate(tomorrow.getDate() + 1)
+        diff = tomorrow.getTime() - now1.getTime()
+    } else if (diff == 0){
+        timeTomDIV.classList.add('para-and')
+    }
+        return (minutes + ':' + seconds)
 
-function timeTomorr() {
-    setInterval(
-        () => timeTomDIV.innerHTML = getSecondsToTomorrow().toString(), 1000
-    )
 }
-timeTomorr()
-
+setInterval(
+    () => timeTomDIV.innerHTML = timesAndM().toString(), 1000
+)
 // 3пз Реализовать класс, который описывает css класс.
 // Класс CssClass должен содержать внутри себя:
 // ■ название css класса;
@@ -2696,17 +2701,17 @@ function showNotification(options: options) {
     setTimeout(() => notification.remove(), 2000)
 }
 setInterval(() => {
-  showNotification({
-    top:30,
-    right: 50,
-    html: '<img src="./src/news.jpeg">'
-  })
+    showNotification({
+        top: 30,
+        right: 50,
+        html: '<img src="./src/news.jpeg">'
+    })
 }, 2200)
 
 const scrimer = setInterval(() => {
     showNotification({
-      html: '<div class="skrimer"></div>'
+        html: '<div class="skrimer"></div>'
     })
     clearInterval(scrimer)
-  }, 9000)
+}, 9000)
 
