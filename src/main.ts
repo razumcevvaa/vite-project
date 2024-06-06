@@ -2703,8 +2703,10 @@ setInterval(() => {
   })
 }, 2200)
 
-setInterval(() => {
-  showNotification({
-    html: '<div class="skrimer"></div>'
-  })
-}, 10000)
+const scrimer = setInterval(() => {
+    showNotification({
+      html: '<div class="skrimer"></div>'
+    })
+    clearInterval(scrimer)
+  }, 9000)
+
