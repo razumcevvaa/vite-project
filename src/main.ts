@@ -2318,10 +2318,10 @@ function timesAndM() {
     if (diff < 0) {
         tomorrow.setDate(tomorrow.getDate() + 1)
         diff = tomorrow.getTime() - now1.getTime()
-    } else if (diff == 0){
+    } else if (diff == 0) {
         timeTomDIV.classList.add('para-and')
     }
-        return (minutes + ':' + seconds)
+    return (minutes + ':' + seconds)
 
 }
 setInterval(
@@ -2582,48 +2582,48 @@ empTableDiv.innerHTML = emp.getHtml()
 // links.forEach(link => link.style.color = 'orange')
 
 // ИЗМЕНЕНИЕ ДОКУМЕНТА
-let data = {
-    "Рыбы": {
-        "форель": {},
-        "лосось": {}
-    },
+// let data = {
+//     "Рыбы": {
+//         "форель": {},
+//         "лосось": {}
+//     },
 
-    "Деревья": {
-        "Огромные": {
-            "секвойя": {},
-            "дуб": {}
-        },
-        "Цветковые": {
-            "яблоня": {},
-            "магнолия": {}
-        }
-    }
-} as Record<string, any>
-function createTree(container: HTMLDivElement, obj: Record<string, any>) {
-    container.innerHTML = createTreeText(obj)
-}
-function createTreeText(obj: Record<string, any>) {
-    let li = ''
-    let ul
-    for (let key in obj) {
-        li += `<li>${key}${createTreeText(obj[key])}</li>`
-    }
-    if (li) {
-        ul = `<ul>${li}</ul>`
-    }
-    return ul || ''
-}
+//     "Деревья": {
+//         "Огромные": {
+//             "секвойя": {},
+//             "дуб": {}
+//         },
+//         "Цветковые": {
+//             "яблоня": {},
+//             "магнолия": {}
+//         }
+//     }
+// } as Record<string, any>
+// function createTree(container: HTMLDivElement, obj: Record<string, any>) {
+//     container.innerHTML = createTreeText(obj)
+// }
+// function createTreeText(obj: Record<string, any>) {
+//     let li = ''
+//     let ul
+//     for (let key in obj) {
+//         li += `<li>${key}${createTreeText(obj[key])}</li>`
+//     }
+//     if (li) {
+//         ul = `<ul>${li}</ul>`
+//     }
+//     return ul || ''
+// }
 // @ts-ignore
-createTree(container, data)
+// createTree(container, data)
 
 // 2 Выведите список потомков в дереве
-let listAn = document.querySelectorAll('#animals li')
-for (let li of listAn) {
-    let count = li.getElementsByTagName('li').length
-    if (!count) continue
+// let listAn = document.querySelectorAll('#animals li')
+// for (let li of listAn) {
+//     let count = li.getElementsByTagName('li').length
+//     if (!count) continue
     // @ts-ignore
-    li.firstChild.data += `(${count})`
-}
+//     li.firstChild.data += `(${count})`
+// }
 
 // 3 Создайте календарь в виде таблицы
 function createCalendar(elem: any, year: number, month: number) {
@@ -2708,10 +2708,28 @@ setInterval(() => {
     })
 }, 2200)
 
-const scrimer = setInterval(() => {
-    showNotification({
-        html: '<div class="skrimer"></div>'
-    })
-    clearInterval(scrimer)
-}, 9000)
+//! cкример
+// const scrimer = setInterval(() => {
+//     showNotification({
+//         html: '<div class="skrimer"></div>'
+//     })
+//     clearInterval(scrimer)
+// }, 9000)
+
+// Размеры и прокрутка элементов
+{
+    let div = document.createElement('div')
+    div.style.overflowY = 'scroll'
+    div.style.width = '50px'
+    div.style.height = '50px'
+    div.style.color = 'white'
+    document.body.append(div)
+    let scrollWidth = div.offsetWidth - div.clientWidth
+    div.remove()
+    console.log(scrollWidth)
+}
+const ball = document.getElementById('ball') as HTMLImageElement
+const field = document.getElementById('field') as HTMLDivElement
+ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px'
+ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px'
 
