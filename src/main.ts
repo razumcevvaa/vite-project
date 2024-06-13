@@ -2700,13 +2700,13 @@ function showNotification(options: options) {
     document.body.append(notification)
     setTimeout(() => notification.remove(), 2000)
 }
-setInterval(() => {
-    showNotification({
-        top: 30,
-        right: 50,
-        html: '<img src="./src/news.jpeg">'
-    })
-}, 2200)
+// setInterval(() => {
+//     showNotification({
+//         top: 30,
+//         right: 50,
+//         html: '<img src="./src/news.jpeg">'
+//     })
+// }, 2200)
 
 //! cкример
 // const scrimer = setInterval(() => {
@@ -2728,42 +2728,35 @@ setInterval(() => {
     div.remove()
     console.log(scrollWidth)
 }
-const ball = document.getElementById('ball') as HTMLImageElement
-const field = document.getElementById('field') as HTMLDivElement
-ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px'
-ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px'
+
 
 const coords = document.getElementById('coords') as HTMLDivElement
-document.onclick = function (e) {
-    coords.innerHTML = e.clientX + ':' + e.clientY;
-}
-let fieldCoords = field.getBoundingClientRect()
-let answer = [
-    [
-        fieldCoords.left,
-        fieldCoords.top
-    ],
-    [
-        fieldCoords.right,
-        fieldCoords.bottom
-    ],
-    [
-        fieldCoords.left + field.clientLeft,
-        fieldCoords.top + field.clientTop
-    ],
-    [
-        fieldCoords.left + field.clientLeft + field.clientWidth,
-        fieldCoords.top + field.clientTop + field.clientHeight
-    ]
-]
+// document.onclick = function (e) {
+//     coords.innerHTML = e.clientX + ':' + e.clientY;
+// }
+const ball = document.getElementById('ball') as HTMLImageElement
+const field = document.getElementById('field') as HTMLDivElement
+ball.style.left = (field.clientWidth / 2 - ball.offsetWidth / 2) + 'px'
+ball.style.top = (field.clientHeight / 2 - ball.offsetHeight / 2) + 'px'
+    
 
-console.log(answer.join('  '))
+// let fieldTop = fieldCoords.y>document.documentElement.clientHeight?fieldCoords.y-window.scrollY:fieldCoords.y
+// console.log(fieldTop)
+// console.log(document.documentElement.clientHeight)
+// console.log(fieldCoords.y)
+// console.log(window.scrollY)
+// console.log(fieldCoords.y-window.scrollY)
 
-field.onclick = function (event) {
+// console.log(fieldCoords.y, field.clientTop)
+
+field.addEventListener('click', function (event) {
+    let fieldCoords = field.getBoundingClientRect()
+    coords.innerHTML = event.clientX + ':' + event.clientY;
     let ballCoords = {
-        top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
+        top: event.clientY - fieldCoords.y - field.clientTop - ball.clientHeight / 2,
         left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
     }
+//    console.log(fieldTop, window.scrollY, field.clientTop, ballCoords.top,  event.clientY)
     if (ballCoords.top < 0) ballCoords.top = 0
     if (ballCoords.left < 0) ballCoords.left = 0
     if (ballCoords.left + ball.clientWidth > field.clientWidth) {
@@ -2774,4 +2767,4 @@ field.onclick = function (event) {
     }
     ball.style.left = ballCoords.left + 'px'
     ball.style.top = ballCoords.top + 'px'
-}
+})
