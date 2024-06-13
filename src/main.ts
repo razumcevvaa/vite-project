@@ -2621,7 +2621,7 @@ empTableDiv.innerHTML = emp.getHtml()
 // for (let li of listAn) {
 //     let count = li.getElementsByTagName('li').length
 //     if (!count) continue
-    // @ts-ignore
+// @ts-ignore
 //     li.firstChild.data += `(${count})`
 // }
 
@@ -2733,3 +2733,45 @@ const field = document.getElementById('field') as HTMLDivElement
 ball.style.left = Math.round(field.clientWidth / 2 - ball.offsetWidth / 2) + 'px'
 ball.style.top = Math.round(field.clientHeight / 2 - ball.offsetHeight / 2) + 'px'
 
+const coords = document.getElementById('coords') as HTMLDivElement
+document.onclick = function (e) {
+    coords.innerHTML = e.clientX + ':' + e.clientY;
+}
+let fieldCoords = field.getBoundingClientRect()
+let answer = [
+    [
+        fieldCoords.left,
+        fieldCoords.top
+    ],
+    [
+        fieldCoords.right,
+        fieldCoords.bottom
+    ],
+    [
+        fieldCoords.left + field.clientLeft,
+        fieldCoords.top + field.clientTop
+    ],
+    [
+        fieldCoords.left + field.clientLeft + field.clientWidth,
+        fieldCoords.top + field.clientTop + field.clientHeight
+    ]
+]
+
+console.log(answer.join('  '))
+
+field.onclick = function (event) {
+    let ballCoords = {
+        top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
+        left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
+    }
+    if (ballCoords.top < 0) ballCoords.top = 0
+    if (ballCoords.left < 0) ballCoords.left = 0
+    if (ballCoords.left + ball.clientWidth > field.clientWidth) {
+        ballCoords.left = field.clientWidth - ball.clientWidth
+    }
+    if (ballCoords.top + ball.clientHeight > field.clientHeight) {
+        ballCoords.top = field.clientHeight - ball.clientHeight
+    }
+    ball.style.left = ballCoords.left + 'px'
+    ball.style.top = ballCoords.top + 'px'
+}

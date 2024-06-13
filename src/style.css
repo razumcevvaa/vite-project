@@ -251,14 +251,31 @@ input {
   background-size: cover;
 }
 #field {
-  width: 200px;
-  border: 10px groove black;
-  background-color: #00FF00;
+  width: 560px;
+  border: 10px groove rgb(0, 33, 1);
   position: relative;
+  margin: 0px 40px;
+  cursor: pointer;
+  height: 350px;
+  background-image: url(./футбольчик.jpeg);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 #ball {
   width: 40px;
   height: 40px;
   position: absolute;
+  left:0;
+  top: 0;
+  transition: 1s all;
+}
+
+#coords {
+  color: #fff;
+  text-align: center;
+  width: 200px;
+  margin: 5px 40px;
+  font-size: 20px;
+  font-weight: 600;
 }
