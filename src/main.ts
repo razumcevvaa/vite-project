@@ -1300,150 +1300,150 @@ console.log(getNotCommonUnionArray(arrNumb, arr2))
 
 //!ДЗ МАССИВЫ
 // Задание 1
-type product = {
-    name: string,
-    count: number,
-    isBuyed: boolean,
-}
+// type product = {
+//     name: string,
+//     count: number,
+//     isBuyed: boolean,
+// }
 
-const shopList: product[] = [
-    { name: 'сыр', count: 1, isBuyed: true },
-    { name: 'бекон', count: 1, isBuyed: false },
-    { name: 'сливки', count: 1, isBuyed: false },
-    { name: 'паста', count: 1, isBuyed: true },
-    { name: 'яйца', count: 1, isBuyed: false },
-]
+// const shopList: product[] = [
+//     { name: 'сыр', count: 1, isBuyed: true },
+//     { name: 'бекон', count: 1, isBuyed: false },
+//     { name: 'сливки', count: 1, isBuyed: false },
+//     { name: 'паста', count: 1, isBuyed: true },
+//     { name: 'яйца', count: 1, isBuyed: false },
+// ]
 // 1 Вывод всего списка на экран таким образом, чтобы сначала
 // шли некупленные продукты, а потом – купленные.
-const shopListOL = document.getElementById('toBuyList') as HTMLOListElement
-function renderBuyList(shopList: product[]) {
-    let html = ''
-    shopList.sort((a, b) => +a.isBuyed - +b.isBuyed).forEach(el => {
+// const shopListOL = document.getElementById('toBuyList') as HTMLOListElement
+// function renderBuyList(shopList: product[]) {
+//     let html = ''
+//     shopList.sort((a, b) => +a.isBuyed - +b.isBuyed).forEach(el => {
 
-        html += `<li style="color:${el.isBuyed ? 'green' : 'red'}">${el.name} ${el.count} ${!el.isBuyed ? `<button data-name="${el.name}">Отметить купленным</button>` : ''}</li>`
+//         html += `<li style="color:${el.isBuyed ? 'green' : 'red'}">${el.name} ${el.count} ${!el.isBuyed ? `<button data-name="${el.name}">Отметить купленным</button>` : ''}</li>`
 
-    })
-    shopListOL.innerHTML = html
-}
+//     })
+//     shopListOL.innerHTML = html
+// }
 
-renderBuyList(shopList)
+// renderBuyList(shopList)
 
 // 2 
-const productNameInput = document.getElementById('productName') as HTMLInputElement
-const productCountInput = document.getElementById('productCount') as HTMLInputElement
-const addProductButton = document.getElementById('addProduct') as HTMLButtonElement
+// const productNameInput = document.getElementById('productName') as HTMLInputElement
+// const productCountInput = document.getElementById('productCount') as HTMLInputElement
+// const addProductButton = document.getElementById('addProduct') as HTMLButtonElement
 
-function addToShopList(arr: product[], name: string, count: number) {
-    if (!name || !count) {
-        alert('Введите продукт и количество')
-        return
-    }
-    let inList = false
-    for (let el of arr) {
-        if (el.name == name && !el.isBuyed) {
-            el.count += count
-            inList = true
-        }
-    }
-    if (!inList) {
-        arr.push({ name, count, isBuyed: false })
-    }
-    renderBuyList(arr)
-}
+// function addToShopList(arr: product[], name: string, count: number) {
+//     if (!name || !count) {
+//         alert('Введите продукт и количество')
+//         return
+//     }
+//     let inList = false
+//     for (let el of arr) {
+//         if (el.name == name && !el.isBuyed) {
+//             el.count += count
+//             inList = true
+//         }
+//     }
+//     if (!inList) {
+//         arr.push({ name, count, isBuyed: false })
+//     }
+//     renderBuyList(arr)
+// }
 
-addProductButton.addEventListener('click', function () {
-    const count = parseFloat(productCountInput.value.replace(',', '.'))
-    addToShopList(shopList, productNameInput.value, count)
-    productNameInput.value = ''
-    productCountInput.value = ''
-})
+// addProductButton.addEventListener('click', function () {
+//     const count = parseFloat(productCountInput.value.replace(',', '.'))
+//     addToShopList(shopList, productNameInput.value, count)
+//     productNameInput.value = ''
+//     productCountInput.value = ''
+// })
 
 // 3 Покупка продукта. Функция принимает название продукта
 // и отмечает его как купленный.
-const setBuyedButton = document.getElementById('setBuyed') as HTMLButtonElement
+// const setBuyedButton = document.getElementById('setBuyed') as HTMLButtonElement
 
-function setBuyed(arr: product[], name: string) {
-    for (let el of arr) {
-        if (el.name == name) {
-            el.isBuyed = true
-        }
-    }
-    renderBuyList(arr)
-}
-setBuyedButton.addEventListener('click', function () {
-    setBuyed(shopList, productNameInput.value)
-    productNameInput.value = ''
-    productCountInput.value = ''
-})
-shopListOL.addEventListener('click', function (e) {
-    const target = e.target as HTMLElement
-    if (target.tagName == 'BUTTON' && target.dataset.name) {
-        setBuyed(shopList, target.dataset.name)
-    }
-})
+// function setBuyed(arr: product[], name: string) {
+//     for (let el of arr) {
+//         if (el.name == name) {
+//             el.isBuyed = true
+//         }
+//     }
+//     renderBuyList(arr)
+// }
+// setBuyedButton.addEventListener('click', function () {
+//     setBuyed(shopList, productNameInput.value)
+//     productNameInput.value = ''
+//     productCountInput.value = ''
+// })
+// shopListOL.addEventListener('click', function (e) {
+//     const target = e.target as HTMLElement
+//     if (target.tagName == 'BUTTON' && target.dataset.name) {
+//         setBuyed(shopList, target.dataset.name)
+//     }
+// })
 
 // з2 
-type Tovar = {
-    name: string,
-    count: number,
-    price: number,
-}
-const chequeShop: Tovar[] = [
-    { name: 'диван', count: 2, price: 40000 },
-    { name: 'стол', count: 1, price: 10000 },
-    { name: 'студ', count: 4, price: 7000 },
-    { name: 'кровать', count: 1, price: 45000 },
-    { name: 'телевизор', count: 1, price: 97000 },
-]
+// type Tovar = {
+//     name: string,
+//     count: number,
+//     price: number,
+// }
+// const chequeShop: Tovar[] = [
+//     { name: 'диван', count: 2, price: 40000 },
+//     { name: 'стол', count: 1, price: 10000 },
+//     { name: 'студ', count: 4, price: 7000 },
+//     { name: 'кровать', count: 1, price: 45000 },
+//     { name: 'телевизор', count: 1, price: 97000 },
+// ]
 // 1 Распечатка чека на экран.
 
-const chequeShopDiv = document.getElementById('cheque_shop') as HTMLDivElement
+// const chequeShopDiv = document.getElementById('cheque_shop') as HTMLDivElement
 
-function showChequeShop(arr: Tovar[]) {
-    let html = '<h3>check №2342342</h3>'
-    html += '<p>IP Razumtceva</p>'
-    html += `<table><tr>
-    <th>  
-    name
-    </th>
-    <th>  
-    count
-    </th>
-    <th>  
-price
-    </th>
-    </tr>`
-    for (let el of arr) {
-        html += `<tr>
-            <td>  
-            ${el.name}
-            </td>
-            <td>  
-            ${el.count} 
-            </td>
-            <td>  
-            ${el.price}
-            </td>
-        </tr>`
-    }
-    html += '</table>'
-    html += `<h1>TO PAY:   ${sumCheck(arr)}$</h1>`
+// function showChequeShop(arr: Tovar[]) {
+//     let html = '<h3>check №2342342</h3>'
+//     html += '<p>IP Razumtceva</p>'
+//     html += `<table><tr>
+//     <th>  
+//     name
+//     </th>
+//     <th>  
+//     count
+//     </th>
+//     <th>  
+// price
+//     </th>
+//     </tr>`
+//     for (let el of arr) {
+//         html += `<tr>
+//             <td>  
+//             ${el.name}
+//             </td>
+//             <td>  
+//             ${el.count} 
+//             </td>
+//             <td>  
+//             ${el.price}
+//             </td>
+//         </tr>`
+//     }
+//     html += '</table>'
+//     html += `<h1>TO PAY:   ${sumCheck(arr)}$</h1>`
 
-    chequeShopDiv.innerHTML = html
-}
+//     chequeShopDiv.innerHTML = html
+// }
 
 
-showChequeShop(chequeShop)
+// showChequeShop(chequeShop)
 
 // 2 Подсчет общей суммы покупки.
-function sumCheck(arr: Tovar[]) {
-    let sum = 0
-    for (let el of arr) {
-        sum += el.price * el.count
-    }
-    return sum
-}
-console.log(sumCheck(chequeShop))
+// function sumCheck(arr: Tovar[]) {
+//     let sum = 0
+//     for (let el of arr) {
+//         sum += el.price * el.count
+//     }
+//     return sum
+// }
+// console.log(sumCheck(chequeShop))
 
 // function sumCheckg(arr: Tovar[]) {
 //     let html = ''
@@ -1452,31 +1452,28 @@ console.log(sumCheck(chequeShop))
 //         sum+=el.price * el.count
 //     }
 //     html += `<h1>${sum}</h1>`
-//     // const htmlArr = chequeShopDiv.innerHTML.split('</p>')
-//     // htmlArr[1] = html + htmlArr[1]
-//     // chequeShopDiv.innerHTML = htmlArr.join('</p>')
 
 //     chequeShopDiv.innerHTML += html
 // }
 // sumCheckg(chequeShop)
 
 // 3 Получение самой дорогой покупки в чеке.
-function maxCheck(arr: Tovar[]) {
-    let max = 0
-    for (i = 0; i < arr.length; i++) {
-        if (arr[i].count * arr[i].price > max) {
-            max = arr[i].count * arr[i].price
-        }
-    }
-    return max
-}
-console.log(maxCheck(chequeShop))
+// function maxCheck(arr: Tovar[]) {
+//     let max = 0
+//     for (i = 0; i < arr.length; i++) {
+//         if (arr[i].count * arr[i].price > max) {
+//             max = arr[i].count * arr[i].price
+//         }
+//     }
+//     return max
+// }
+// console.log(maxCheck(chequeShop))
 
 // 4 Подсчет средней стоимости одного товара в чеке.
-function averageCheck(arr: Tovar[]) {
-    return sumCheck(arr) / arr.length
-}
-console.log(averageCheck(chequeShop))
+// function averageCheck(arr: Tovar[]) {
+//     return sumCheck(arr) / arr.length
+// }
+// console.log(averageCheck(chequeShop))
 
 
 // з3 
@@ -1658,29 +1655,29 @@ console.log(getEmployeeSalary(newArr(employees, 'ads')))
 console.log(getEmployeeSalary(newArr(employees, 'disign')))
 
 // 3.7. В HTML создать div для кнопок, задать ему id и получить объект div'a в js, аналогично заданию 2.2.
-const ButtonForEml = document.getElementById('button-for-empl') as HTMLDivElement
+// const ButtonForEml = document.getElementById('button-for-empl') as HTMLDivElement
 // 3.8. Так же как в 3.7 создать ul (as HTMLUListElement) для вывода списка и div для вывода суммы зарплат
-const sumSalary = document.getElementById('sum_sal') as HTMLDivElement
-function conclusionList(arr: Employees[]) {
-    let html = '<ul>'
-    for (let el of arr) {
-        html += `<li>${el.name} ${el.department} ${el.salary}</li>`
-    }
-    sumSalary.innerHTML = `${html}</ul><h3>Sum ${getEmployeeSalary(arr)}</h3>`
-}
-console.log(conclusionList(employees))
+// const sumSalary = document.getElementById('sum_sal') as HTMLDivElement
+// function conclusionList(arr: Employees[]) {
+//     let html = '<ul>'
+//     for (let el of arr) {
+//         html += `<li>${el.name} ${el.department} ${el.salary}</li>`
+//     }
+//     sumSalary.innerHTML = `${html}</ul><h3>Sum ${getEmployeeSalary(arr)}</h3>`
+// }
+// console.log(conclusionList(employees))
 // 3.9. Используя массив, полученный в 3.1. Вывести кнопки с названиями отделов + кнопку "Все отделы"
 //      использовать data-атрибут (data-dep), в который поместить название отдела. Для кнопки "Все отделы" data-dep="all"
 
-function renderButtons(arr: string[]) {
-    let html = ''
-    for (let dep of arr) {
-        html += `<button data-dep="${dep}">${dep.toUpperCase()}</button>`
-    }
-    html += `<button data-dep="all">ALL</button>`
-    ButtonForEml.innerHTML = html
-}
-renderButtons(unicDeps(employees))
+// function renderButtons(arr: string[]) {
+//     let html = ''
+//     for (let dep of arr) {
+//         html += `<button data-dep="${dep}">${dep.toUpperCase()}</button>`
+//     }
+//     html += `<button data-dep="all">ALL</button>`
+//     ButtonForEml.innerHTML = html
+// }
+// renderButtons(unicDeps(employees))
 // 3.10. Используя div, полученный в задании 3.7
 // div37.addEventListener('click', function (e) {
 //   const target = e.target as HTMLElement
@@ -1689,16 +1686,16 @@ renderButtons(unicDeps(employees))
 //      в div (3.8) выводить сумму зарплат
 //   }
 // })
-ButtonForEml.addEventListener('click', function (e) {
-    const target = e.target as HTMLElement
-    if (target.tagName == 'BUTTON' && target.dataset.dep) {
-        if (target.dataset.dep == 'all') {
-            conclusionList(employees)
-        } else {
-            conclusionList(getEmployee(employees, target.dataset.dep))
-        }
-    }
-})
+// ButtonForEml.addEventListener('click', function (e) {
+//     const target = e.target as HTMLElement
+//     if (target.tagName == 'BUTTON' && target.dataset.dep) {
+//         if (target.dataset.dep == 'all') {
+//             conclusionList(employees)
+//         } else {
+//             conclusionList(getEmployee(employees, target.dataset.dep))
+//         }
+//     }
+// })
 
 
 // ! СТРОКИ ПРАКТИКА
@@ -1985,25 +1982,25 @@ console.log(getInfoUrl('https://itstep.org/ua/about'))
 
 // !ПЗ КЛАССЫ
 //1
-const printMachDIV = document.getElementById('print-machin') as HTMLDivElement
-class PrintMachine {
-    tag: string
-    fontSize = 20
-    color = 'red'
-    fontFamily = 'verdana'
-    constructor(fontSize: number, color: string, fontFamily: string, tag = 'p') {
-        this.fontSize = fontSize
-        this.color = color
-        this.fontFamily = fontFamily
-        this.tag = tag
-    }
-    print(text: string) {
-        printMachDIV.innerHTML += `<${this.tag} style="font-size:${this.fontSize};font-family:${this.fontFamily}; color: ${this.color}">${text}</${this.tag}>`
-    }
-}
+// const printMachDIV = document.getElementById('print-machin') as HTMLDivElement
+// class PrintMachine {
+//     tag: string
+//     fontSize = 20
+//     color = 'red'
+//     fontFamily = 'verdana'
+//     constructor(fontSize: number, color: string, fontFamily: string, tag = 'p') {
+//         this.fontSize = fontSize
+//         this.color = color
+//         this.fontFamily = fontFamily
+//         this.tag = tag
+//     }
+//     print(text: string) {
+//         printMachDIV.innerHTML += `<${this.tag} style="font-size:${this.fontSize};font-family:${this.fontFamily}; color: ${this.color}">${text}</${this.tag}>`
+//     }
+// }
 
-const mee = new PrintMachine(400, 'yellow', 'verdana')
-mee.print('Hellpp(this is written by a printing machine)')
+// const mee = new PrintMachine(400, 'yellow', 'verdana')
+// mee.print('Hellpp(this is written by a printing machine)')
 // let mee2 = new PrintMachine(200, 'red', 'verdana')
 // mee2.print('как сделать второй текст')
 
@@ -2700,13 +2697,13 @@ function showNotification(options: options) {
     document.body.append(notification)
     setTimeout(() => notification.remove(), 2000)
 }
-// setInterval(() => {
-//     showNotification({
-//         top: 30,
-//         right: 50,
-//         html: '<img src="./src/news.jpeg">'
-//     })
-// }, 2200)
+setInterval(() => {
+    showNotification({
+        top: 30,
+        right: 50,
+        html: '<img src="./src/news.jpeg">'
+    })
+}, 2200)
 
 //! cкример
 // const scrimer = setInterval(() => {
@@ -2738,7 +2735,7 @@ const ball = document.getElementById('ball') as HTMLImageElement
 const field = document.getElementById('field') as HTMLDivElement
 ball.style.left = (field.clientWidth / 2 - ball.offsetWidth / 2) + 'px'
 ball.style.top = (field.clientHeight / 2 - ball.offsetHeight / 2) + 'px'
-    
+
 
 // let fieldTop = fieldCoords.y>document.documentElement.clientHeight?fieldCoords.y-window.scrollY:fieldCoords.y
 // console.log(fieldTop)
@@ -2756,7 +2753,7 @@ field.addEventListener('click', function (event) {
         top: event.clientY - fieldCoords.y - field.clientTop - ball.clientHeight / 2,
         left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
     }
-//    console.log(fieldTop, window.scrollY, field.clientTop, ballCoords.top,  event.clientY)
+    //    console.log(fieldTop, window.scrollY, field.clientTop, ballCoords.top,  event.clientY)
     if (ballCoords.top < 0) ballCoords.top = 0
     if (ballCoords.left < 0) ballCoords.left = 0
     if (ballCoords.left + ball.clientWidth > field.clientWidth) {
@@ -2768,3 +2765,22 @@ field.addEventListener('click', function (event) {
     ball.style.left = ballCoords.left + 'px'
     ball.style.top = ballCoords.top + 'px'
 })
+const butHid = document.getElementById('hider') as HTMLInputElement
+const butUnHid = document.getElementById('unhider') as HTMLInputElement
+butHid.onclick = function () {
+    ball.hidden = true
+}
+butUnHid.onclick = () => {
+    ball.hidden = false
+}
+
+// МЕНЮ ОТКРЫВАЕТСЯ И ЗАКРЫвается
+const openMenu = document.getElementById('but-for-mune') as HTMLSpanElement
+const textBlock = document.getElementById('block') as HTMLParagraphElement
+// openMenu.addEventListener('click', ()=>{
+//     textBlock.classList.add('open')
+// })
+openMenu.onclick = ()=> {
+    textBlock.classList.add('open')
+}
+

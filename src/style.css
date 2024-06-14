@@ -237,6 +237,7 @@ input {
 .notification img {
   width: 300px;
 }
+
 .skrimer {
   /* left: calc(50% - 150px); */
   width: 1800px;
@@ -244,12 +245,14 @@ input {
   background-image: url(./public/samye-strashnye-skrimery-2.webp);
   background-size: cover;
 }
+
 .para-and {
   background-image: url(./gfhf.png);
   width: 200px;
   height: 100px;
   background-size: cover;
 }
+
 #field {
   width: 560px;
   border: 10px groove rgb(0, 33, 1);
@@ -266,7 +269,7 @@ input {
   width: 40px;
   height: 40px;
   position: absolute;
-  left:0;
+  left: 0;
   top: 0;
   transition: 1s all;
 }
@@ -278,4 +281,38 @@ input {
   margin: 5px 40px;
   font-size: 20px;
   font-weight: 600;
+}
+
+.pole {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.menu {
+  color: rgb(215, 245, 250);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 50px 0;
+  text-align: justify;
+}
+
+.menu span {
+  cursor: pointer;
+}
+
+.menu .span::before {
+  content: '▶';
+  font-size: 80%;
+  color: green;
+}
+.menu p {
+  display: none;
+}
+.menu.open span::after {
+  content: '▼ ';
+}
+.menu.open p {
+  display: block;
+  transition: 1s all;
 }
