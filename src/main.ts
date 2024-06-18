@@ -2780,7 +2780,10 @@ const textBlock = document.getElementById('block') as HTMLParagraphElement
 // openMenu.addEventListener('click', ()=>{
 //     textBlock.classList.add('open')
 // })
-openMenu.onclick = ()=> {
-    textBlock.classList.add('open')
+openMenu.onclick  = (e)=> {
+    const eTarget = e.target as HTMLElement
+    const target = eTarget.closest('span')
+    if (!target) return
+    if (target.parentElement) target.parentElement.classList.toggle('open')
 }
 

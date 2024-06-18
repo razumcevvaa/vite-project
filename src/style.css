@@ -301,7 +301,7 @@ input {
   cursor: pointer;
 }
 
-.menu .span::before {
+.menu span::before {
   content: '▶';
   font-size: 80%;
   color: green;
@@ -309,7 +309,7 @@ input {
 .menu p {
   display: none;
 }
-.menu.open span::after {
+.menu.open span::before {
   content: '▼ ';
 }
 .menu.open p {
