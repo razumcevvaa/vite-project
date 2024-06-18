@@ -2776,14 +2776,21 @@ butUnHid.onclick = () => {
 
 // МЕНЮ ОТКРЫВАЕТСЯ И ЗАКРЫвается
 const openMenu = document.getElementById('but-for-mune') as HTMLSpanElement
-const textBlock = document.getElementById('block') as HTMLParagraphElement
 // openMenu.addEventListener('click', ()=>{
 //     textBlock.classList.add('open')
 // })
-openMenu.onclick  = (e)=> {
+openMenu.onclick = (e) => {
     const eTarget = e.target as HTMLElement
     const target = eTarget.closest('span')
     if (!target) return
     if (target.parentElement) target.parentElement.classList.toggle('open')
 }
 
+const allMessage = document.querySelector('.messages-iphone') as HTMLDivElement
+allMessage.addEventListener('click', (e) => {
+    const eTarget = e.target as HTMLElement
+    const target = eTarget.closest('.read')
+    if (!target) return
+    let mess = target.closest('.message')
+    mess?.remove()
+})
