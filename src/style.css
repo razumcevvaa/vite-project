@@ -349,6 +349,7 @@ input {
   font-style: italic;
   font-size: 14px;
 }
+
 .read {
   position: absolute;
   right: 10px;
@@ -356,4 +357,77 @@ input {
   color: rgb(144, 99, 143);
   font-size: 14px;
   cursor: pointer;
+}
+
+.container-for-carousel {
+  width: 1000px;
+  position: relative;
+  margin: 50px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.arrow {
+  position: absolute;
+  top: 150px;
+  padding: 0;
+  border: none;
+  font-size: 24px;
+  line-height: 24px;
+  color: #444;
+  display: block;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.arrow:hover {
+  color: rgb(255, 243, 72);
+  animation: blinker 1s linear infinite;
+}
+
+.arrow:focus {
+  color: rgb(255, 243, 72);
+  animation: blinker 1s linear infinite;
+  outline: none;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.left {
+  left: 7px;
+}
+
+.right {
+  right: 7px;
+}
+
+.porshe img {
+  width: 300px;
+  height: 300px;
+  display: block;
+}
+
+.porshe li {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+.porshe {
+  height: 300px;
+  width: 9999px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0;
+  transform: translateX(0);
+  transition: transform 500ms
+}
+
+.carousel {
+  overflow: hidden;
+  width: 900px;
 }
