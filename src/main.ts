@@ -2824,3 +2824,16 @@ carousel.querySelector('.right')?.addEventListener('click', () => {
     }
     porshe.style.transform = `translateX(${-position}px`
 })
+
+// Поймайте переход по ссылке
+const content = document.getElementById('contents') as HTMLDivElement
+content.addEventListener('click', (e) => {
+    function handleLink(href:string) {
+        let isLiving = confirm(`Перейти на другую стараницу ${href}?`)
+        if (!isLiving) return false
+    }
+    let target = e.target.closest('a')
+    if (target && content.contains(target)) {
+      return handleLink(target.getAttribute('href'))
+    }
+})

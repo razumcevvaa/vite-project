@@ -429,3 +429,12 @@ input {
   overflow: hidden;
   width: 900px;
 }
+#contents {
+  border: none;
+  color: aliceblue;
+}
+#contents a {
+  color: pink;
+  text-decoration: none;
+  font-style: italic;
+}
