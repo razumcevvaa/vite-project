@@ -360,7 +360,7 @@ input {
 }
 
 .container-for-carousel {
-  width: 1000px;
+  width: calc(300px * 3 + 40px * 2); 
   position: relative;
   margin: 50px 0;
   display: flex;
@@ -413,7 +413,7 @@ input {
 
 .porshe li {
   display: inline-block;
-  margin: 0 5px;
+  /* margin: 0 5px; */
 }
 
 .porshe {
@@ -421,8 +421,6 @@ input {
   width: 9999px;
   margin: 0;
   padding: 0;
-  list-style: none;
-  font-size: 0;
   transform: translateX(0);
   transition: transform 500ms;
 }

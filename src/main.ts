@@ -2797,25 +2797,30 @@ allMessage.addEventListener('click', (e) => {
 
 // карусель
 const carousel = document.querySelector('.container-for-carousel') as HTMLDivElement
-let iC = 1
-for (let li of carousel.querySelectorAll('.porshe li')) {
-    li.style.position = 'relative'
-    li.insertAdjacentHTML('beforeend', `<span style="position:absolute;left:0;top:0">${iC}</span>`)
-    iC++
-}
 let width = 300
 let count = 3
-let position = 0
 let amount = document.querySelectorAll('.porshe > li').length
+let rest = amount - count
 let porshe = document.querySelector('.porshe') as HTMLUListElement
+let position = 0
 
 carousel.querySelector('.left')?.addEventListener('click', () => {
-    position = -width * count
-    position = Math.min(position, 0)
+    if (amount - rest >= 2 * count) {
+        position -= count * width
+        rest += count
+    } else {
+        position -= (amount - rest - count) * width
+        rest = amount - count
+    }
     porshe.style.transform = `translateX(${-position}px`
 })
 carousel.querySelector('.right')?.addEventListener('click', () => {
-    position = -width * count
-    position = Math.max(position, -width * (amount - count))
-    porshe.style.transform = `translateX(${position}px`
+    if (rest >= count) {
+        position += count * width
+        rest -= count
+    } else {
+        position += rest * width
+        rest = 0
+    }
+    porshe.style.transform = `translateX(${-position}px`
 })
