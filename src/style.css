@@ -424,7 +424,7 @@ input {
   list-style: none;
   font-size: 0;
   transform: translateX(0);
-  transition: transform 500ms
+  transition: transform 500ms;
 }
 
 .carousel {
