@@ -2828,12 +2828,12 @@ carousel.querySelector('.right')?.addEventListener('click', () => {
 // Поймайте переход по ссылке
 const content = document.getElementById('contents') as HTMLDivElement
 content.addEventListener('click', (e) => {
-    function handleLink(href:string) {
-        let isLiving = confirm(`Перейти на другую стараницу ${href}?`)
-        if (!isLiving) return false
-    }
-    let target = e.target.closest('a')
-    if (target && content.contains(target)) {
-      return handleLink(target.getAttribute('href'))
+    const target = e.target as HTMLElement
+    let el = target.closest('a')
+    if (el) {
+        const isLiving = confirm(`Перейти на другую стараницу ${el.href}?`)
+        if (!isLiving) {
+            e.preventDefault()
+        }
     }
 })
