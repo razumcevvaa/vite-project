@@ -2797,7 +2797,7 @@ allMessage.addEventListener('click', (e) => {
 
 // карусель
 const carousel = document.querySelector('.container-for-carousel') as HTMLDivElement
-let width = 300
+let width = 305
 let count = 3
 let amount = document.querySelectorAll('.porshe > li').length
 let rest = amount - count
@@ -2837,3 +2837,30 @@ content.addEventListener('click', (e) => {
         }
     }
 })
+const slider = document.getElementById('slider') as HTMLDivElement
+const thumb = slider.querySelector('.thumb') as HTMLDivElement
+thumb.onmousedown = function (event) {
+    event.preventDefault()
+    let shiftX = event.clientX - thumb.getBoundingClientRect().left
+    document.addEventListener('mousemove', onMouseMove)
+    document.addEventListener('mouseup', onMouseUp)
+
+    function onMouseMove(event:any) {
+        let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left
+        if (newLeft < 0) {
+            newLeft = 0
+        }
+        let rightEdge = slider.offsetWidth - thumb.offsetWidth
+        if (newLeft > rightEdge) {
+            newLeft = rightEdge
+        }
+        thumb.style.left = newLeft + 'px'
+    }
+    function onMouseUp() {
+        document.removeEventListener('mouseup', onMouseUp)
+        document.removeEventListener('mousemove', onMouseMove)
+    }
+}
+thumb.ondragstart = function() {
+    return false
+  }
