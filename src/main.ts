@@ -2865,80 +2865,108 @@ thumb.ondragstart = function () {
     return false
 }
 
+let animTimer = 0
+
+function carMoveAnimation(el:HTMLElement, run:boolean, direction:boolean, deg=0) {
+    if (!run) {
+        if (animTimer) clearTimeout(animTimer)
+        return
+    }
+    animTimer = setTimeout(()=>{
+        if (direction) {
+            if (parseInt(el.style.left)+el.offsetWidth<document.documentElement.clientWidth+20) {
+                el.style.left = parseInt(el.style.left)+5+'px'
+                carMoveAnimation(el, run, direction,deg)
+            } else {
+                el.style.transformOrigin = `${el.offsetHeight-50}px ${el.offsetWidth-50}px`
+                deg+=180
+                el.style.transform = `rotate(${deg}deg)`
+                carMoveAnimation(el, run, !direction,deg)
+            }
+        } else {
+            if (parseInt(el.style.left)>20) {
+                el.style.left = parseInt(el.style.left)-5+'px'
+                carMoveAnimation(el, run, direction,deg)
+            } else {
+                deg+=180
+                el.style.transform = `rotate(${deg}deg)`
+                carMoveAnimation(el, run, !direction,deg)
+            }
+        }
+    },20)
+}
+
 // дорога с машинками
 document.addEventListener('mousedown', function (event) {
-
     let isDragging = false
-    let carEl = event.target.closest('.draggable')
+    const target = event.target as HTMLElement
+    if (event.shiftKey) {
+        let carEl = target.closest('.draggable') as HTMLElement
+        let shiftX = event.clientX - carEl.getBoundingClientRect().left
+        let shiftY = event.clientY - carEl.getBoundingClientRect().top
+        carEl.style.position = 'absolute'
+        carEl.style.zIndex = '1001'
+        carEl.style.left = event.pageX - shiftX + 'px'
+        carEl.style.top = event.pageY - shiftY + 'px'
+        carMoveAnimation(target,true,true)
+        return
+    }
+    carMoveAnimation(target,false,true)
+    let carEl = target.closest('.draggable') as HTMLElement
     if (!carEl) return
     event.preventDefault()
     carEl.ondragstart = function () {
         return false
     }
 
-    startDrag(carEl, event.clientX, event.clientY)
+    let shiftX = event.clientX - carEl.getBoundingClientRect().left
+    let shiftY = event.clientY - carEl.getBoundingClientRect().top
 
-    function onMouseUp(event) {
+    startDrag()
+
+    function onMouseUp() {
         finishDrag()
     }
 
-    function onMouseMove(event) {
-        moveAt(event.clientX, event.clientY)
+    function onMouseMove(event: MouseEvent) {
+        moveAt(event.pageX, event.pageY)
     }
 
-    function startDrag(el, clientX, clientY) {
+    function startDrag() {
         if (isDragging) {
             return
         }
         isDragging = true
-        document.addEventListener('mousemove', onMouseMove)
-        el.addEventListener('mouseup', onMouseUp)
-
-        let shiftX = clientX - el.getBoundingClientRect().left
-        let shiftY = clientY - el.getBoundingClientRect().top
-
-        el.style.position = 'fixed'
-        moveAt(clientX, clientY)
-    }
-    function finishDrag() {
-        if (!isDragging) {
-            return;
-        }
-
-        isDragging = false;
-
-        carEl.style.top = parseInt(carEl.style.top) + pageYOffset + 'px'
         carEl.style.position = 'absolute'
+        carEl.style.zIndex = '1001'
+        carEl.style.left = event.pageX - shiftX + 'px'
+        carEl.style.top = event.pageY - shiftY + 'px'
+        document.addEventListener('mousemove', onMouseMove)
+        carEl.addEventListener('mouseup', onMouseUp)
+    }
 
+    function finishDrag() {
+        if (!isDragging) return
+        isDragging = false
         document.removeEventListener('mousemove', onMouseMove)
         carEl.removeEventListener('mouseup', onMouseUp)
     }
-    function moveAt(clientX, clientY) {
+    function moveAt(clientX: number, clientY: number) {
         let newX = clientX - shiftX
         let newY = clientY - shiftY
 
         let newBottom = newY + carEl.offsetHeight;
 
-        if (newBottom > document.documentElement.clientHeight) {
-            let docBottom = document.documentElement.getBoundingClientRect().bottom
-            let scrollY = Math.min(docBottom - newBottom, 10)
-
-            if (scrollY < 0) scrollY = 0
-
+        console.log(newBottom, window.scrollY + carEl.offsetHeight)
+        if (newBottom > document.documentElement.clientHeight + window.scrollY) {
+            let scrollY = Math.min(document.documentElement.offsetHeight - newBottom, 10)
             window.scrollBy(0, scrollY)
-
-            newY = Math.min(newY, document.documentElement.clientHeight - carEl.offsetHeight)
+            newY = Math.min(newY, document.documentElement.clientHeight + window.scrollY - carEl.offsetHeight)
         }
-        if (newY < 0) {
-            let scrollY = Math.min(-newY, 10)
-            if (scrollY < 0) scrollY = 0
-
+        if (newBottom < window.scrollY + carEl.offsetHeight) {
+            let scrollY = Math.min(document.documentElement.offsetHeight + newBottom, 10)
             window.scrollBy(0, -scrollY)
-            newY = Math.max(newY, 0)
-        }
-        if (newX < 0) newX = 0
-        if (newX > document.documentElement.clientWidth - carEl.offsetWidth) {
-            newX = document.documentElement.clientWidth - carEl.offsetWidth
+            newY = Math.max(newY, window.scrollY)
         }
         carEl.style.left = newX + 'px'
         carEl.style.top = newY + 'px'

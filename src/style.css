@@ -481,6 +481,7 @@ input {
   width: 200px;
   height: 115px;
   cursor: pointer;
+  transition: transform .5s;
 }
 
 #por1 {
@@ -506,3 +507,4 @@ input {
   background-size: cover;
   background-repeat: no-repeat;
 }
+
