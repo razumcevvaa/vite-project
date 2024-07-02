@@ -2845,7 +2845,7 @@ thumb.onmousedown = function (event) {
     document.addEventListener('mousemove', onMouseMove)
     document.addEventListener('mouseup', onMouseUp)
 
-    function onMouseMove(event:any) {
+    function onMouseMove(event: any) {
         let newLeft = event.clientX - shiftX - slider.getBoundingClientRect().left
         if (newLeft < 0) {
             newLeft = 0
@@ -2861,6 +2861,87 @@ thumb.onmousedown = function (event) {
         document.removeEventListener('mousemove', onMouseMove)
     }
 }
-thumb.ondragstart = function() {
+thumb.ondragstart = function () {
     return false
-  }
+}
+
+// дорога с машинками
+document.addEventListener('mousedown', function (event) {
+
+    let isDragging = false
+    let carEl = event.target.closest('.draggable')
+    if (!carEl) return
+    event.preventDefault()
+    carEl.ondragstart = function () {
+        return false
+    }
+
+    startDrag(carEl, event.clientX, event.clientY)
+
+    function onMouseUp(event) {
+        finishDrag()
+    }
+
+    function onMouseMove(event) {
+        moveAt(event.clientX, event.clientY)
+    }
+
+    function startDrag(el, clientX, clientY) {
+        if (isDragging) {
+            return
+        }
+        isDragging = true
+        document.addEventListener('mousemove', onMouseMove)
+        el.addEventListener('mouseup', onMouseUp)
+
+        let shiftX = clientX - el.getBoundingClientRect().left
+        let shiftY = clientY - el.getBoundingClientRect().top
+
+        el.style.position = 'fixed'
+        moveAt(clientX, clientY)
+    }
+    function finishDrag() {
+        if (!isDragging) {
+            return;
+        }
+
+        isDragging = false;
+
+        carEl.style.top = parseInt(carEl.style.top) + pageYOffset + 'px'
+        carEl.style.position = 'absolute'
+
+        document.removeEventListener('mousemove', onMouseMove)
+        carEl.removeEventListener('mouseup', onMouseUp)
+    }
+    function moveAt(clientX, clientY) {
+        let newX = clientX - shiftX
+        let newY = clientY - shiftY
+
+        let newBottom = newY + carEl.offsetHeight;
+
+        if (newBottom > document.documentElement.clientHeight) {
+            let docBottom = document.documentElement.getBoundingClientRect().bottom
+            let scrollY = Math.min(docBottom - newBottom, 10)
+
+            if (scrollY < 0) scrollY = 0
+
+            window.scrollBy(0, scrollY)
+
+            newY = Math.min(newY, document.documentElement.clientHeight - carEl.offsetHeight)
+        }
+
+        if (newY < 0) {
+            let scrollY = Math.min(-newY, 10)
+            if (scrollY < 0) scrollY = 0
+
+            window.scrollBy(0, -scrollY)
+            newY = Math.max(newY, 0)
+        }
+        if (newX < 0) newX = 0
+        if (newX > document.documentElement.clientWidth - carEl.offsetWidth) {
+            newX = document.documentElement.clientWidth - carEl.offsetWidth
+        }
+        carEl.style.left = newX + 'px'
+        carEl.style.top = newY + 'px'
+    }
+})

@@ -360,7 +360,7 @@ input {
 }
 
 .container-for-carousel {
-  width: calc(300px * 3 + 40px * 2); 
+  width: calc(300px * 3 + 40px * 2);
   position: relative;
   margin: 50px 0;
   display: flex;
@@ -429,21 +429,26 @@ input {
   overflow: hidden;
   width: 900px;
 }
+
 #contents {
   border: none;
   color: aliceblue;
 }
+
 #contents a {
   color: pink;
   text-decoration: none;
   font-style: italic;
 }
+
 .slider-container {
   display: flex;
 }
+
 .slider-container img {
   width: 50px;
 }
+
 .slider {
   width: 300px;
   background-color: aliceblue;
@@ -451,6 +456,7 @@ input {
   margin: 18px 0;
   border-radius: 20px;
 }
+
 .thumb {
   width: 12px;
   background-color: palevioletred;
@@ -461,4 +467,42 @@ input {
   top: -5px;
   border-radius: 5px;
   transition: all 300ms;
+}
+
+.road {
+  width: 1400px;
+  margin-top: 20px;
+  height: 500px;
+  background-size: contain;
+  background-repeat: repeat;
+  background-image: url(./дорога.jpeg);
+}
+.hero {
+  width: 200px;
+  height: 115px;
+  cursor: pointer;
+}
+
+#por1 {
+  background-image: url(./порше1.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#por2 {
+  background-image: url(./порше2.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#por3 {
+  background-image: url(./порше3.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#por4 {
+  background-image: url(./порше4.png);
+  background-size: cover;
+  background-repeat: no-repeat;
 }
