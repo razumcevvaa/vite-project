@@ -2929,7 +2929,6 @@ document.addEventListener('mousedown', function (event) {
 
             newY = Math.min(newY, document.documentElement.clientHeight - carEl.offsetHeight)
         }
-
         if (newY < 0) {
             let scrollY = Math.min(-newY, 10)
             if (scrollY < 0) scrollY = 0
