@@ -2865,6 +2865,8 @@ thumb.ondragstart = function () {
     return false
 }
 
+
+
 let animTimer = 0
 
 function carMoveAnimation(el:HTMLElement, run:boolean, direction:boolean, deg=0) {
