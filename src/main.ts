@@ -2980,9 +2980,8 @@ const starRating = document.querySelectorAll('.rating-star')
 starRating.forEach((star: Element, index1: number) => {
     star.addEventListener('click', () => {
         starRating.forEach((star: Element, index2: number) => {
-            console.log(index1)
-            console.log(index2)
-
+            console.log(index1);
+            
             if (index1 >= index2) {
                 star.classList.add("star-activ")
             } else {
