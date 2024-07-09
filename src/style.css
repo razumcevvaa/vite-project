@@ -507,4 +507,20 @@ input {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
+.star-rating-box{
+display: flex;
+gap: 5px;
+margin: 30px 0;
+}
+.rating-star {
+  background-image: url(star.png);
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+.three-star{
+  background-image: url(red-star.PNG);
+}
+.star-activ{
+  background-image: url(yel-star.png);
+}

@@ -2663,7 +2663,7 @@ function getMonth(monthN: number) {
 }
 
 let calendar = document.getElementById('calendar')
-createCalendar(calendar, 2024, 6)
+createCalendar(calendar, 2024, 7)
 
 const calMonthInp = document.getElementById('month') as HTMLInputElement
 const calenInp = document.getElementById('month-sub') as HTMLInputElement
@@ -2869,33 +2869,33 @@ thumb.ondragstart = function () {
 
 let animTimer = 0
 
-function carMoveAnimation(el:HTMLElement, run:boolean, direction:boolean, deg=0) {
+function carMoveAnimation(el: HTMLElement, run: boolean, direction: boolean, deg = 0) {
     if (!run) {
         if (animTimer) clearTimeout(animTimer)
         return
     }
-    animTimer = setTimeout(()=>{
+    animTimer = setTimeout(() => {
         if (direction) {
-            if (parseInt(el.style.left)+el.offsetWidth<document.documentElement.clientWidth+20) {
-                el.style.left = parseInt(el.style.left)+5+'px'
-                carMoveAnimation(el, run, direction,deg)
+            if (parseInt(el.style.left) + el.offsetWidth < document.documentElement.clientWidth + 20) {
+                el.style.left = parseInt(el.style.left) + 5 + 'px'
+                carMoveAnimation(el, run, direction, deg)
             } else {
-                el.style.transformOrigin = `${el.offsetHeight-50}px ${el.offsetWidth-50}px`
-                deg+=180
+                el.style.transformOrigin = `${el.offsetHeight - 50}px ${el.offsetWidth - 50}px`
+                deg += 180
                 el.style.transform = `rotate(${deg}deg)`
-                carMoveAnimation(el, run, !direction,deg)
+                carMoveAnimation(el, run, !direction, deg)
             }
         } else {
-            if (parseInt(el.style.left)>20) {
-                el.style.left = parseInt(el.style.left)-5+'px'
-                carMoveAnimation(el, run, direction,deg)
+            if (parseInt(el.style.left) > 20) {
+                el.style.left = parseInt(el.style.left) - 5 + 'px'
+                carMoveAnimation(el, run, direction, deg)
             } else {
-                deg+=180
+                deg += 180
                 el.style.transform = `rotate(${deg}deg)`
-                carMoveAnimation(el, run, !direction,deg)
+                carMoveAnimation(el, run, !direction, deg)
             }
         }
-    },20)
+    }, 20)
 }
 
 // дорога с машинками
@@ -2910,10 +2910,10 @@ document.addEventListener('mousedown', function (event) {
         carEl.style.zIndex = '1001'
         carEl.style.left = event.pageX - shiftX + 'px'
         carEl.style.top = event.pageY - shiftY + 'px'
-        carMoveAnimation(target,true,true)
+        carMoveAnimation(target, true, true)
         return
     }
-    carMoveAnimation(target,false,true)
+    carMoveAnimation(target, false, true)
     let carEl = target.closest('.draggable') as HTMLElement
     if (!carEl) return
     event.preventDefault()
@@ -2973,4 +2973,21 @@ document.addEventListener('mousedown', function (event) {
         carEl.style.left = newX + 'px'
         carEl.style.top = newY + 'px'
     }
+})
+
+// пятизвездочная шкала
+const starRating = document.querySelectorAll('.rating-star')
+starRating.forEach((star: Element, index1: number) => {
+    star.addEventListener('click', () => {
+        starRating.forEach((star: Element, index2: number) => {
+            console.log(index1)
+            console.log(index2)
+
+            if (index1 >= index2) {
+                star.classList.add("star-activ")
+            } else {
+                star.classList.remove("star-activ")
+            }
+        })
+    })
 })
