@@ -2981,12 +2981,12 @@ starRating.forEach((star: Element, index1: number) => {
     star.addEventListener('click', () => {
         starRating.forEach((star: Element, index2: number) => {
             console.log(index1);
-            
             if (index1 >= index2) {
                 star.classList.add("star-activ")
             } else {
                 star.classList.remove("star-activ")
             }
+            // index1 >= index2 ? star.classList.add("star-activ") :star.classList.remove("star-activ")
         })
     })
 })
