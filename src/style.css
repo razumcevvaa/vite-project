@@ -520,7 +520,7 @@ input {
   width: 32px;
   height: 32px;
   cursor: pointer;
-  transition: ease-in-out 0.7s;
+  transition: background-image ease-in-out 0.7s;
 }
 
 .rating-star:hover {
@@ -528,7 +528,7 @@ input {
 }
 
 .three-star {
-  background-image: url(red-star.PNG);
+  filter: hue-rotate(310deg) saturate(6.5);
 }
 
 .star-activ {
