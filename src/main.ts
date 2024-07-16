@@ -2981,20 +2981,19 @@ starRating.forEach((star: Element, index1: number) => {
     star.addEventListener('click', () => {
         starRating.forEach((star: Element, index2: number) => {
             if (index1 >= index2) {
-                if (index1<=2) {
-                    star.className = 'rating-star star-activ three-star' 
+                if (index1 <= 2) {
+                    star.className = 'rating-star star-activ three-star'
                 } else {
-                    star.className = 'rating-star star-activ' 
+                    star.className = 'rating-star star-activ'
                 }
             } else {
-                star.className = 'rating-star' 
-                // star.classList.remove("three-star")
+                star.className = 'rating-star'
             }
             // index1 >= index2 ? star.classList.add("star-activ") :star.classList.remove("star-activ")
         })
     })
 })
-
+// каркулятор
 const form = document.querySelector('.dep-carculator') as HTMLFormElement
 form.money.oninput = calculate
 form.months.onchange = calculate
@@ -3019,3 +3018,27 @@ function calculate() {
     moneyB.innerHTML = form.money.value
     moneyA.innerHTML = `${result}`
 }
+// лайки
+const like = document.querySelector('.like') as HTMLDivElement
+let storage = document.querySelector('.num-like') as HTMLDivElement
+let counter = 0
+like.addEventListener('click', () => {
+    storage.innerHTML = ''
+    storage.innerHTML += ++counter
+    if (counter > 9) {
+        storage.style.margin = '10px'
+    }
+    if (counter > 99) {
+        like.style.width = '115px'
+    }
+})
+
+// рандомное число 
+const random = document.getElementById('random') as HTMLButtonElement
+const numbeRand = document.getElementById('random-result') as HTMLHeadingElement
+random.addEventListener('click', () => {
+    const max = 100
+    let result = Math.round(Math.random() * max)
+    numbeRand.innerHTML = `${result}`
+})
+
