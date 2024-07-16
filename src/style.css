@@ -477,6 +477,7 @@ input {
   background-repeat: repeat;
   background-image: url(./дорога.jpeg);
 }
+
 .hero {
   width: 200px;
   height: 115px;
@@ -507,11 +508,13 @@ input {
   background-size: cover;
   background-repeat: no-repeat;
 }
-.star-rating-box{
-display: flex;
-gap: 5px;
-margin: 30px 0;
+
+.star-rating-box {
+  display: flex;
+  gap: 5px;
+  margin: 30px 0;
 }
+
 .rating-star {
   background-image: url(star.png);
   width: 32px;
@@ -519,12 +522,55 @@ margin: 30px 0;
   cursor: pointer;
   transition: ease-in-out 0.7s;
 }
-.rating-star:hover{
+
+.rating-star:hover {
   transform: scale(1.2);
 }
-.three-star{
+
+.three-star {
   background-image: url(red-star.PNG);
 }
-.star-activ{
+
+.star-activ {
   background-image: url(yel-star.png);
+}
+
+.dep-carculator {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+
+.dep-carculator h4 {
+  margin: 5px;
+  color: hsl(211, 69%, 39%);
+  text-align: center;
+}
+
+.dep-carculator input,
+select {
+  height: 30px !important;
+  border-radius: 20px;
+  padding: 0;
+  background-color: #fff;
+  text-align: center;
+  border: 2px solid hsl(211, 100%, 80%);
+  margin: 0;
+}
+.container-for-carc {
+  display: flex;
+  background-color: rgb(215, 243, 250);
+  width: 420px;
+  border-radius: 10px;
+}
+.result {
+  margin-top: 30px;
+  color: hsl(211, 69%, 39%);
+  display: flex;
+  gap: 30px;
+  align-items: start;
+}
+.moneyAB {
+  margin: 3px;
 }

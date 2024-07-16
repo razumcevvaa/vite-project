@@ -2165,73 +2165,73 @@ console.log(abc.lengthCircle())
 
 // 2
 
-class HtmlElement {
-    tag: string
-    isSingle: boolean
-    text: string
-    atributes = [] as any[]
-    styles = [] as any[]
-    elements = [] as HtmlElement[]
-    constructor(tag: string, text = '') {
-        const singleArr = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
-        this.tag = tag
-        this.text = text
-        this.isSingle = singleArr.includes(tag) ? true : false
-    }
-    setAtribute(name: string, value: string) {
-        this.atributes.push({ name, value })
-    }
-    setStyle(name: string, value: string) {
-        this.styles.push({ name, value })
-    }
-    prepend(el: HtmlElement) {
-        this.elements.unshift(el)
-    }
-    append(el: HtmlElement) {
-        this.elements.push(el)
-    }
-    getHtml(): string {
-        const styles = this.styles.map(el => el.name + ':' + el.value).join(';')
-        const attrCopy = [...this.atributes]
-        if (this.styles.length) {
-            attrCopy.push({ name: 'style', value: styles })
-        }
-        if (this.isSingle) {
-            if (this.text) {
-                attrCopy.push({ name: 'area-label', value: this.text })
-            }
-            const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
-            return `<${this.tag} ${atributes}>`
-        } else {
-            const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
-            return `<${this.tag} ${atributes}>${this.text}${this.elements.map(el => el.getHtml()).join('\n')}</${this.tag}>`
-        }
-    }
-}
-const wrapper = new HtmlElement('div')
-wrapper.setAtribute('id', 'wrapper')
-wrapper.setStyle('display', 'flex')
-const div = new HtmlElement('div')
-div.setStyle('width', '300px')
-div.setStyle('margin', '10px')
-const h3 = new HtmlElement('h3', 'Lorem')
-const img = new HtmlElement('img')
-img.setStyle('width', '100%')
-img.setAtribute('src', '1.gif')
-img.setAtribute('alt', 'Lorem')
-const p = new HtmlElement('p', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla assumenda inventore voluptas natus obcaecati mollitia ad eos adipisci delectus quia odit, earum culpa sunt, molestiae doloribus in explicabo! Illo, harum!')
-p.setStyle('text-align', 'justify')
-const ala = new HtmlElement('a', ' More...')
-ala.setAtribute('href', 'https://www.lipsum.com/')
-ala.setAtribute('target', '_blank')
-p.append(ala)
-div.append(img)
-div.append(p)
-div.prepend(h3)
-wrapper.append(div)
-wrapper.append(div)
-const heDiv = document.getElementById('he') as HTMLDivElement
-heDiv.innerHTML = wrapper.getHtml()
+// class HtmlElement {
+//     tag: string
+//     isSingle: boolean
+//     text: string
+//     atributes = [] as any[]
+//     styles = [] as any[]
+//     elements = [] as HtmlElement[]
+//     constructor(tag: string, text = '') {
+//         const singleArr = ['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']
+//         this.tag = tag
+//         this.text = text
+//         this.isSingle = singleArr.includes(tag) ? true : false
+//     }
+//     setAtribute(name: string, value: string) {
+//         this.atributes.push({ name, value })
+//     }
+//     setStyle(name: string, value: string) {
+//         this.styles.push({ name, value })
+//     }
+//     prepend(el: HtmlElement) {
+//         this.elements.unshift(el)
+//     }
+//     append(el: HtmlElement) {
+//         this.elements.push(el)
+//     }
+//     getHtml(): string {
+//         const styles = this.styles.map(el => el.name + ':' + el.value).join(';')
+//         const attrCopy = [...this.atributes]
+//         if (this.styles.length) {
+//             attrCopy.push({ name: 'style', value: styles })
+//         }
+//         if (this.isSingle) {
+//             if (this.text) {
+//                 attrCopy.push({ name: 'area-label', value: this.text })
+//             }
+//             const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
+//             return `<${this.tag} ${atributes}>`
+//         } else {
+//             const atributes = attrCopy.map(el => el.name + '="' + el.value + '"').join(' ')
+//             return `<${this.tag} ${atributes}>${this.text}${this.elements.map(el => el.getHtml()).join('\n')}</${this.tag}>`
+//         }
+//     }
+// }
+// const wrapper = new HtmlElement('div')
+// wrapper.setAtribute('id', 'wrapper')
+// wrapper.setStyle('display', 'flex')
+// const div = new HtmlElement('div')
+// div.setStyle('width', '300px')
+// div.setStyle('margin', '10px')
+// const h3 = new HtmlElement('h3', 'Lorem')
+// const img = new HtmlElement('img')
+// img.setStyle('width', '100%')
+// img.setAtribute('src', '1.gif')
+// img.setAtribute('alt', 'Lorem')
+// const p = new HtmlElement('p', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla assumenda inventore voluptas natus obcaecati mollitia ad eos adipisci delectus quia odit, earum culpa sunt, molestiae doloribus in explicabo! Illo, harum!')
+// p.setStyle('text-align', 'justify')
+// const ala = new HtmlElement('a', ' More...')
+// ala.setAtribute('href', 'https://www.lipsum.com/')
+// ala.setAtribute('target', '_blank')
+// p.append(ala)
+// div.append(img)
+// div.append(p)
+// div.prepend(h3)
+// wrapper.append(div)
+// wrapper.append(div)
+// const heDiv = document.getElementById('he') as HTMLDivElement
+// heDiv.innerHTML = wrapper.getHtml()
 
 
 let now = new Date()
@@ -2372,56 +2372,56 @@ descCss.innerHTML += bigRed.getCss()
 // дом (сначала теги style с описанием всех классов, а потом
 // все html содержимое из корневого тега и его вложенных
 // элементов).
-class HtmlBlock {
-    styles = [] as CssClass[]
-    element: HtmlElement
-    constructor(styles: CssClass[], element: HtmlElement) {
-        this.styles = styles
-        this.element = element
-    }
-    getCode() {
-        return {
-            styles: this.styles.map(el => el.getCss()).join('\n'),
-            html: this.element.getHtml()
-        }
-    }
-}
-const docCss = document.getElementById('st') as HTMLDivElement
-const bigGreen = new CssClass('bigGreen')
-const docDiv = document.getElementById('he') as HTMLDivElement
-bigGreen.setStyle("color", "pink")
-bigGreen.setStyle("color", "white")
-bigGreen.setStyle("font-size", "40px")
-bigGreen.setStyle("font-family", "Times New Roman")
-console.log(bigGreen.getCss())
-bigGreen.removeProperty("font-family")
-bigGreen.removeProperty("color")
+// class HtmlBlock {
+//     styles = [] as CssClass[]
+//     element: HtmlElement
+//     constructor(styles: CssClass[], element: HtmlElement) {
+//         this.styles = styles
+//         this.element = element
+//     }
+//     getCode() {
+//         return {
+//             styles: this.styles.map(el => el.getCss()).join('\n'),
+//             html: this.element.getHtml()
+//         }
+//     }
+// }
+// const docCss = document.getElementById('st') as HTMLDivElement
+// const bigGreen = new CssClass('bigGreen')
+// const docDiv = document.getElementById('he') as HTMLDivElement
+// bigGreen.setStyle("color", "pink")
+// bigGreen.setStyle("color", "white")
+// bigGreen.setStyle("font-size", "40px")
+// bigGreen.setStyle("font-family", "Times New Roman")
+// console.log(bigGreen.getCss())
+// bigGreen.removeProperty("font-family")
+// bigGreen.removeProperty("color")
 
-const wrapClass = new CssClass('wrap')
-wrapClass.setStyle("display", "flex")
+// const wrapClass = new CssClass('wrap')
+// wrapClass.setStyle("display", "flex")
 
-const blockClass = new CssClass('block')
-blockClass.setStyle("width", "300px")
-blockClass.setStyle("margin", "10px")
+// const blockClass = new CssClass('block')
+// blockClass.setStyle("width", "300px")
+// blockClass.setStyle("margin", "10px")
 
-const imgClass = new CssClass('img')
-imgClass.setStyle("width", "100%")
-imgClass.setStyle("color", "blueviolet")
+// const imgClass = new CssClass('img')
+// imgClass.setStyle("width", "100%")
+// imgClass.setStyle("color", "blueviolet")
 
-const textClass = new CssClass('text')
-textClass.setStyle("text-align", "justify")
+// const textClass = new CssClass('text')
+// textClass.setStyle("text-align", "justify")
 
-const block = new HtmlBlock([wrapClass, blockClass, imgClass, textClass], wrapper)
+// const block = new HtmlBlock([wrapClass, blockClass, imgClass, textClass], wrapper)
 
-docCss.innerHTML += bigGreen.getCss()
-docDiv.innerHTML = wrapper.getHtml()
-const blockCode = block.getCode()
-docCss.innerHTML += blockCode.styles
-docDiv.innerHTML = blockCode.html
+// docCss.innerHTML += bigGreen.getCss()
+// docDiv.innerHTML = wrapper.getHtml()
+// const blockCode = block.getCode()
+// docCss.innerHTML += blockCode.styles
+// docDiv.innerHTML = blockCode.html
 
 // const block = new HtmlBlock([bigGreen,], wrapper)
-docCss.innerHTML += bigGreen.getCss()
-docDiv.innerHTML = wrapper.getHtml()
+// docCss.innerHTML += bigGreen.getCss()
+// docDiv.innerHTML = wrapper.getHtml()
 
 // ДЗ5 Реализовать класс, описывающий простой маркер. 
 const markText = document.getElementById('marker') as HTMLDivElement
@@ -2990,3 +2990,28 @@ starRating.forEach((star: Element, index1: number) => {
         })
     })
 })
+
+const form = document.querySelector('.dep-carculator') as HTMLFormElement
+form.money.oninput = calculate
+form.months.onchange = calculate
+form.interest.oninput = calculate
+function calculate() {
+    let initial = +form.money.value
+    if (!initial) return
+
+    let interest = form.interest.value * 0.01
+    if (!interest) return
+
+    let years = form.months.value / 12
+    if (!years) return
+
+    let result = Math.round(initial * (1 + interest) ** years)
+
+    let height = result / form.money.value * 100 + 'px'
+    const resultGraf = document.getElementById('height-after') as HTMLDivElement
+    const moneyB = document.getElementById('money-before') as HTMLHeadingElement
+    const moneyA = document.getElementById('money-after') as HTMLHeadingElement
+    resultGraf.style.height = height
+    moneyB.innerHTML = form.money.value
+    moneyA.innerHTML = `${result}`
+}

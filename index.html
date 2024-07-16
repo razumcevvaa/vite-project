@@ -170,9 +170,38 @@
       <div class="star4 rating-star"></div>
       <div class="star5 rating-star"></div>
     </div>
+    <div class="container-for-carc">
+      <form name="carculator" class="dep-carculator">
+        <h4>Первоначальный депозит</h4>
+        <input type="number" id="money" value="10000" required>
+        <h4>Срок вклада?</h4>
+        <select name="months" id="months">
+          <option value="3">3 (минимум)</option>
+          <option value="6">6 (полгода)</option>
+          <option value="12" selected>12 (год)</option>
+          <option value="18">18 (1.5 года)</option>
+          <option value="24">24 (2 года)</option>
+          <option value="30">30 (2.5 года)</option>
+          <option value="36">36 (3 года)</option>
+          <option value="60">60 (5 лет)</option>
+        </select>
+        <h4>Годовая процентная ставка?</h4>
+        <input name="interest" type="number" value="5" required>
+      </form>
+      <div class="result">
+        <div>
+          <h4 class="moneyAB">Было:</h4>
+          <h4 class="moneyAB" id="money-before"></h4>
+          <div style="background: hsl(200, 100%, 63%);width:40px;height:100px"></div>
+        </div>
+        <div>
+          <h4 class="moneyAB">Стало:</h4>
+          <h4 class="moneyAB" id="money-after"></h4>
+          <div style="background: rgb(255, 85, 181);width:40px;height:0" id="height-after"></div>
+        </div>
+      </div>
+    </div>
 
-    <div id="pm"></div>
-    <div style="color: aliceblue;" id="he"></div>
     <div id="st"></div>
     <div id="empTable"></div>
     <div style="display: flex;">
