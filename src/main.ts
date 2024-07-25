@@ -3042,29 +3042,13 @@ random.addEventListener('click', () => {
     numbeRand.innerHTML = `${result}`
 })
 
-// Перепишите, используя async/await
-// function loadJson(url:string) {
-//     return fetch(url)
-//       .then(response => {
-//         if (response.status == 200) {
-//           return response.json();
-//         } else {
-//           throw new Error(response.status)
-//         }
-//       })
-//   }
+// поиск фильмов
+const titleFilm = document.getElementById("title-film") as HTMLInputElement
+const typeFilm= document.getElementById("type-film") as HTMLSelectElement
+const searchButton = document.getElementById("search-button") as HTMLButtonElement
+const resultsFilm = document.getElementById("result-film")  as HTMLDivElement
 
-//   loadJson('no-such-user.json') 
-//     .catch(alert)
 
-// async function loadJson() {
-//     let response = await fetch('razumcevvaa.github.io/JS-project/')
 
-//     if (response.status == 200) {
-//         let json = await response.json()
-//         return json
-//     }
-//     throw new Error(String(response.status))
-// }
-// loadJson().catch(e => console.log(e))
+
 

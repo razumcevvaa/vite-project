@@ -208,13 +208,24 @@
         </div>
       </div>
     </div>
-
     <div id="st"></div>
     <div id="empTable"></div>
     <div style="display: flex;">
       <div id="marker"></div>
       <button id="fillM">fill</button>
     </div>
+
+    <div class="movie">
+      <input type="text" id="title-film" placeholder="Название фильма">
+      <select name="type" id="type-film">
+        <option value="movie">фильм</option>
+        <option value="series">cериал</option>
+        <option value="episode">эпизод</option>
+      </select>
+      <button id="search-button">Поиск</button>
+    </div>
+    <div id="result-film"></div>
+
   </div>
   <script type="module" src="/src/main.ts"></script>
 </body>

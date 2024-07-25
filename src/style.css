@@ -622,3 +622,40 @@ select {
   color: rgb(255, 229, 252);
   margin: 0;
 }
+
+.movie {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  gap: 10px;
+  align-items: center;
+  background-color: rgb(255, 206, 231);
+  padding: 20px;
+  border-radius: 30px;
+}
+
+.movie input,
+select {
+  width: 200px;
+  margin: 0;
+  padding: 10px 0;
+  color: hotpink;
+}
+
+.movie input::placeholder {
+  color: hotpink;
+  text-align: start;
+  padding: 0 10px;
+}
+
+#search-button {
+  width: 100px;
+  height: 30px;
+  border-radius: 20px;
+  border: none;
+  margin-top: 10px;
+  background-color: rgb(255, 83, 172);
+  color: aliceblue;
+  text-transform: uppercase;
+  font-weight: bolder;
+}
