@@ -3104,8 +3104,10 @@ function showDetails(imdbID:string) {
 // } catch (e) {
 //     console.log('Не включен сервер')
 // }
-// let search = 'element'
-// axios(`http://www.omdbapi.com/?apikey=73558a7a&s=${search}&page=2`).then((resp) => console.log(resp.data))
+()=>{
+    let search = 'element'
+    axios(`http://www.omdbapi.com/?apikey=73558a7a&s=${search}&page=2`).then((resp) => console.log(resp.data))
+}
 
 
 
