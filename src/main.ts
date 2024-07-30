@@ -1,5 +1,6 @@
 // import { TRUE } from 'sass'
 import './style.css'
+import axios from 'axios'
 
 // console.log(typeof 12)
 // console.log(typeof '12')
@@ -3052,17 +3053,17 @@ searchButton.addEventListener('click', () => {
     const title = titleFilm.value
     const type = typeFilm.value
 
-    fetch(`http://www.omdbapi.com/?apikey=73558a7a&t=${title}&type=${type}`)
+    fetch(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}&type=${type}`)
         .then(response => response.json())
         .then(data => {
             if (data.Search && data.Search.length > 0) {
-                data.Search.forEach(movie => {
+                data.Search.forEach((movie:any) => {
                     // const movieElement = document.createElement("div")
-                    resultsFilm.innerHTML =
+                    resultsFilm.innerHTML +=
                         `<img src="${movie.Poster}" alt = "${movie.Title}" >
-                            <h3>${movie.Title} </h3>
-                                <p> Type: ${movie.Type} </p>
-                                    <button onclick = ${showDetails(movie.imdbID)}> Details </button>`
+                        <h3>${movie.Title} </h3>
+                        <p> Type: ${movie.Type} </p>
+                        <button data-id="${movie.imdbID}"> Details </button>`
                     // resultsFilm.appendChild(movieElement)
                 })
             } else {
@@ -3076,7 +3077,7 @@ searchButton.addEventListener('click', () => {
         })
 })
 
-function showDetails(imdbID) {
+function showDetails(imdbID:string) {
     fetch(`http://www.omdbapi.com/?apikey=73558a7a&i=${imdbID}`)
         .then(response => response.json())
         .then(data => {
@@ -3095,16 +3096,16 @@ function showDetails(imdbID) {
         })
 }
 
-try {
-    axios('http://localhost:5173/JS-project/').then((resp) => console.log(resp.data))
-    fetch('http://localhost:5173/JS-project/')
-        .then((resp) => resp.json())
-        .then((data) => { console.log(data) })
-} catch (e) {
-    console.log('Не включен сервер')
-}
-let search = 'element'
-axios(`http://www.omdbapi.com/?apikey=73558a7a&s=${search}&page=2`).then((resp) => console.log(resp.data))
+// try {
+//     axios('http://localhost:5173/JS-project/').then((resp) => console.log(resp.data))
+//     fetch('http://localhost:5173/JS-project/')
+//         .then((resp) => resp.json())
+//         .then((data) => { console.log(data) })
+// } catch (e) {
+//     console.log('Не включен сервер')
+// }
+// let search = 'element'
+// axios(`http://www.omdbapi.com/?apikey=73558a7a&s=${search}&page=2`).then((resp) => console.log(resp.data))
 
 
 
