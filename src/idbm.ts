@@ -1,16 +1,21 @@
 import './idbm.scss'
 // поиск фильмов
 const titleFilm = document.getElementById("title-film") as HTMLInputElement
-const typeFilm = document.getElementById("type-film") as HTMLSelectElement
 const searchButton = document.getElementById("search-button") as HTMLButtonElement
 const resultsFilm = document.getElementById("result-film") as HTMLDivElement
 
-searchButton.addEventListener('click', () => {
+document.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement
+  if (!target.dataset.value) return
+  const type = target.dataset.value
   const title = titleFilm.value
-  const type = typeFilm.value
+  if (!title) return
+  request(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}&type=${type}`)
+})
 
-  // fetch(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}&type=${type}`)
-  fetch(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}&type=${type}`)
+function request (url:string) {
+  resultsFilm.innerHTML = ''
+  fetch(url)
     .then(response => response.json())
     .then(data => {
       if (data.Search && data.Search.length > 0) {
@@ -32,6 +37,11 @@ searchButton.addEventListener('click', () => {
     .catch(error => {
       console.log("An error occurred:", error)
     })
+}
+
+searchButton.addEventListener('click', () => {
+  const title = titleFilm.value
+  request(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}`)
 })
 
 function showDetails(imdbID: string) {
