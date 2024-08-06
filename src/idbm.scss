@@ -52,6 +52,7 @@
   background-image: url(./joker.webp);
   background-size: cover;
   background-repeat: no-repeat;
+
   a {
     margin-right: 100px;
     width: 120px;
@@ -65,17 +66,44 @@
     font-weight: 100;
   }
 }
+
 .result-film {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   min-height: 500px;
   padding: 30px;
+
   div {
     display: flex;
     flex-direction: column;
+
     img {
       width: 300px;
     }
   }
+}
+
+.movie {
+  width: 200px;
+  margin-left: 20px;
+
+  input {
+    border: none;
+    background-color: transparent;
+    color: white;
+    text-transform: uppercase;
+    margin: 15px 5px;
+    font-size: 12px;
+    position: relative;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+}
+
+
+
+.container {
+  background-color: rgb(13, 12, 12);
 }

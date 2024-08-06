@@ -13,7 +13,7 @@ document.addEventListener('click', (e) => {
   request(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}&type=${type}`)
 })
 
-function request (url:string) {
+function request(url: string) {
   resultsFilm.innerHTML = ''
   fetch(url)
     .then(response => response.json())
@@ -25,7 +25,7 @@ function request (url:string) {
             `<img src="${movie.Poster}" alt = "${movie.Title}" >
                         <h3>${movie.Title} </h3>
                         <p> Type: ${movie.Type} </p>
-                        <button data-id="${movie.imdbID}"> Details </button>`
+                        <button id="details-b" data-id="${movie.imdbID}"> Details </button>`
           resultsFilm.appendChild(movieElement)
         })
       } else {
@@ -38,6 +38,7 @@ function request (url:string) {
       console.log("An error occurred:", error)
     })
 }
+const details = document.getElementById("details-b") as HTMLButtonElement
 
 searchButton.addEventListener('click', () => {
   const title = titleFilm.value
@@ -62,6 +63,11 @@ function showDetails(imdbID: string) {
       console.log("An error occurred:", error)
     })
 }
+
+details.addEventListener('click', () => {
+  let imdbID = details.dataset.id
+  showDetails(`${imdbID}`)
+})
 // const plakat = document.getElementById("plakat") as HTMLDivElement
 // setInterval(() => {
 //   plakat.classList.add('nextPl')

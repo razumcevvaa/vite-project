@@ -1,34 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>page2</title>
   <script type="module" src="/src/idbm.ts"></script>
 </head>
+
 <body>
- <div class="container">
-  <div class="plakat" id="plakat">
-    <div class="nav">
-      <h5 class="name-site">themovie<span>box</span></h5>
-     <div class="poisk">
-      <input type="text" id="title-film" placeholder="Название фильма">
-      <button id="search-button"><img src="./public/poisk.webp" alt=""></button>
-     </div>
-     <a href="index.html">BACK</a>
+  <div class="container">
+    <div class="plakat" id="plakat">
+      <div class="nav">
+        <h5 class="name-site">themovie<span>box</span></h5>
+        <div class="poisk">
+          <input type="text" id="title-film" placeholder="Название фильма">
+          <button id="search-button"><img src="./public/poisk.webp" alt=""></button>
+        </div>
+        <a href="index.html">BACK</a>
+      </div>
     </div>
+    <div class="movie">
+      <input type="button" data-value="movie" value="movie">
+      <input type="button" data-value="series" value="series">
+      <input type="button" data-value="episode" value="episode">
+    </div>
+    <div class="result-film" id="result-film"></div>
+
   </div>
- </div>
-  <div class="movie">
-    <!-- <select name="type" id="type-film">
-      <option value="movie" selected>фильм</option>
-      <option value="series">cериал</option>
-      <option value="episode">эпизод</option>
-    </select> -->
-    <input type="button" data-value="movie" value="movie">
-    <input type="button" data-value="series" value="series">
-    <input type="button" data-value="episode" value="episode">
-  </div>
-  <div class="result-film" id="result-film"></div>
 </body>
+
 </html>
