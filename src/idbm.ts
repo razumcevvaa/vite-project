@@ -12,6 +12,13 @@ document.addEventListener('click', (e) => {
   if (!title) return
   request(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}&type=${type}`)
 })
+//@ts-ignore
+titleFilm.addEventListener('keydown', (event:number) => {
+  const title = titleFilm.value
+  if (event.keyCode === 13) {
+    request(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}`)
+  }
+})
 
 function request(url: string) {
   resultsFilm.innerHTML = ''
