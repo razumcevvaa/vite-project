@@ -32,7 +32,7 @@ function request(url: string) {
             `<img src="${movie.Poster}" alt = "${movie.Title}" >
                         <h3>${movie.Title} </h3>
                         <p> Type: ${movie.Type} </p>
-                        <button id="details-b" data-id="${movie.imdbID}"> Details </button>`
+                        <button data-id="${movie.imdbID}"> Details </button>`
           resultsFilm.appendChild(movieElement)
         })
       } else {
@@ -69,20 +69,31 @@ function showDetails(imdbID: string) {
       console.log("An error occurred:", error)
     })
 }
-// const details = document.getElementById("details-b") as HTMLButtonElement
-// const details = resultsFilm.closest('button') as HTMLButtonElement
-// details.addEventListener('click', () => {
-//   let imdbID = details.dataset.id
-//   showDetails(`${imdbID}`)
-// })
+
+resultsFilm.addEventListener('click', (e) => {
+  const target = e.target as HTMLElement
+  if (!target.dataset.id) return
+  showDetails(target.dataset.id)
+})
+
+async function sleep(s:number) {
+  return new Promise((resolve) => {
+    setTimeout(()=>resolve(true),s*1000)
+  })
+}
+
 
 const plakat = document.getElementById("plakat") as HTMLDivElement
-function nextP() {
+async function nextP() {
   const images = ['joker.webp', 'super.jpeg', 'marvel.webr', 'looper.jpg', 'hol.jpeg', 'forsaw.jpeg']
-  for (let img of images) {
-    plakat.style.backgroundImage = `url(${img})`
+  for (let i=0; i<=images.length; i++) {
+    if (i==images.length) i=0
+    plakat.style.backgroundImage = `url(${images[i]})`
+    const img = document.createElement('img')
+    img.src = i==images.length-1 ? images[0] : images[i+1]
+    await sleep(5)
   }
 }
 // setInterval(() => {
-//   nextP()
+  nextP()
 // }, 1000)
