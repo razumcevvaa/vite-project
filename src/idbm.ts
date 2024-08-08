@@ -83,7 +83,6 @@ function nextP() {
     plakat.style.backgroundImage = `url(${img})`
   }
 }
-nextP()
 // setInterval(() => {
 //   nextP()
 // }, 1000)
