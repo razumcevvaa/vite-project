@@ -29,6 +29,7 @@
     color: aliceblue;
     padding-left: 10px;
     outline: none;
+    font-size: 15px;
   }
 
   button {
@@ -48,11 +49,10 @@
 }
 
 .plakat {
-  height: 90vh;
-  background-image: url(./joker.webp);
+  height: 94vh;
+  background-image: url(time.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
-
   a {
     margin-right: 100px;
     width: 120px;
@@ -72,17 +72,17 @@
   gap: 50px;
   flex-wrap: wrap;
   justify-content: space-between;
-  min-height: 500px;
   padding: 10px 30px;
 
   div {
     display: flex;
     flex-direction: column;
-    color: antiquewhite;
+    color: rgb(255, 255, 255);
     gap: 10px;
     justify-content: space-between;
-    height: 500px;
-
+    min-height: 500px;
+    max-height: 520px;
+    width: 300px;
     img {
       width: 300px;
       height: 400px;
@@ -119,6 +119,7 @@
     position: relative;
     cursor: pointer;
     text-decoration: none;
+    transition: all 1s;
   }
 
   input:hover {

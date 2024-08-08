@@ -12,8 +12,8 @@ document.addEventListener('click', (e) => {
   if (!title) return
   request(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}&type=${type}`)
 })
-//@ts-ignore
-titleFilm.addEventListener('keydown', (event:number) => {
+
+titleFilm.addEventListener('keydown', (event) => {
   const title = titleFilm.value
   if (event.keyCode === 13) {
     request(`http://www.omdbapi.com/?apikey=73558a7a&s=${title}`)
@@ -45,7 +45,6 @@ function request(url: string) {
       console.log("An error occurred:", error)
     })
 }
-const details = document.getElementById("details-b") as HTMLButtonElement
 
 searchButton.addEventListener('click', () => {
   const title = titleFilm.value
@@ -70,12 +69,22 @@ function showDetails(imdbID: string) {
       console.log("An error occurred:", error)
     })
 }
+// const details = document.getElementById("details-b") as HTMLButtonElement
+// const details = resultsFilm.closest('button') as HTMLButtonElement
+// details.addEventListener('click', () => {
+//   let imdbID = details.dataset.id
+//   showDetails(`${imdbID}`)
+// })
 
-details.addEventListener('click', () => {
-  let imdbID = details.dataset.id
-  showDetails(`${imdbID}`)
-})
-// const plakat = document.getElementById("plakat") as HTMLDivElement
+const plakat = document.getElementById("plakat") as HTMLDivElement
+function nextP() {
+  const images = ['joker.webp', 'super.jpeg', 'marvel.webr', 'looper.jpg', 'hol.jpeg', 'forsaw.jpeg']
+  for (let i = 0; i < images.length; i++) {
+    if (i > 0) {
+      plakat.style.backgroundImage = `url(${images[i]})`
+    }
+  }
+}
 // setInterval(() => {
-//   plakat.classList.add('nextPl')
-// }, 5000)
+//   nextP()
+// }, 1000)
