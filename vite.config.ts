@@ -9,6 +9,8 @@ export default {
                 main: resolve(__dirname, 'index.html'),
                 // @ts-ignore
                 page2: resolve(__dirname, 'idbm.html'),
+                // @ts-ignore
+                page3: resolve(__dirname, 'vue.html'),
             }
         }
     }
