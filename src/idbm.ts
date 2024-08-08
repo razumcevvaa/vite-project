@@ -79,12 +79,11 @@ function showDetails(imdbID: string) {
 const plakat = document.getElementById("plakat") as HTMLDivElement
 function nextP() {
   const images = ['joker.webp', 'super.jpeg', 'marvel.webr', 'looper.jpg', 'hol.jpeg', 'forsaw.jpeg']
-  for (let i = 0; i < images.length; i++) {
-    if (i > 0) {
-      plakat.style.backgroundImage = `url(${images[i]})`
-    }
+  for (let img of images) {
+    plakat.style.backgroundImage = `url(${img})`
   }
 }
+nextP()
 // setInterval(() => {
 //   nextP()
 // }, 1000)
