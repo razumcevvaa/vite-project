@@ -53,6 +53,7 @@
   background-image: url(time.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
+
   a {
     margin-right: 100px;
     width: 120px;
@@ -83,6 +84,7 @@
     min-height: 500px;
     max-height: 520px;
     width: 300px;
+
     img {
       width: 300px;
       height: 400px;
@@ -140,4 +142,24 @@
 footer {
   height: 250px;
   background-color: rgb(13, 12, 12);
+}
+
+.overlay {
+  position: fixed;
+  top: 250px;
+  bottom: 300px;
+  left: 350px;
+  right: 50px;
+  width: 800px;
+  height: 50%;
+  z-index: 1050;
+  transition: opacity 200ms ease-in;
+  background-color: #f40073;
+  display: flex;
+  opacity: 1;
+  overflow: auto;
+  img {
+    width: 350px;
+  }
+
 }

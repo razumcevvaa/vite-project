@@ -55,15 +55,19 @@ function showDetails(imdbID: string) {
   fetch(`http://www.omdbapi.com/?apikey=73558a7a&i=${imdbID}`)
     .then(response => response.json())
     .then(data => {
-      const movieDetails = document.createElement("div");
+      const movieDetails = document.createElement("div")
       movieDetails.innerHTML =
-        `<h3>${data.Title}</h3>
+        `<img src="${data.Poster}" alt = "${data.Title}" >
+        <div>
+        <h3>${data.Title}</h3>
                 <p>Released: ${data.Released}</p>
                 <p>Genre: ${data.Genre}</p>
                 <p>Director: ${data.Director}</p>
                 <p>Actors: ${data.Actors}</p>
-                <p>Plot: ${data.Plot}</p>`
-      resultsFilm.appendChild(movieDetails)
+                <p>Plot: ${data.Plot}</p> </div>`
+      document.body.style.opacity = '0.3'
+      movieDetails.className = 'overlay'
+      document.body.append(movieDetails)
     })
     .catch(error => {
       console.log("An error occurred:", error)
@@ -76,24 +80,23 @@ resultsFilm.addEventListener('click', (e) => {
   showDetails(target.dataset.id)
 })
 
-async function sleep(s:number) {
+async function sleep(s: number) {
   return new Promise((resolve) => {
-    setTimeout(()=>resolve(true),s*1000)
+    setTimeout(() => resolve(true), s * 1000)
   })
 }
 
-
 const plakat = document.getElementById("plakat") as HTMLDivElement
 async function nextP() {
-  const images = ['joker.webp', 'super.jpeg', 'marvel.webr', 'looper.jpg', 'hol.jpeg', 'forsaw.jpeg']
-  for (let i=0; i<=images.length; i++) {
-    if (i==images.length) i=0
+  const images = ['joker.webp', 'super.jpeg', 'marvel.webp', 'looper.jpg', 'hol.jpeg', 'forsaw.jpeg']
+  for (let i = 0; i <= images.length; i++) {
+    if (i == images.length) i = 0
     plakat.style.backgroundImage = `url(${images[i]})`
     const img = document.createElement('img')
-    img.src = i==images.length-1 ? images[0] : images[i+1]
-    await sleep(5)
+    img.src = i == images.length - 1 ? images[0] : images[i + 1]
+    await sleep(7)
   }
 }
-// setInterval(() => {
-  nextP()
-// }, 1000)
+nextP()
+
+
